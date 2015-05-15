@@ -156,7 +156,7 @@ class LocationSearchViewController: UITableViewController, UISearchBarDelegate {
     
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
 }

@@ -8,11 +8,14 @@
 
 import UIKit
 
-
+/// Protocol containing the method signatures for the LocationListViewDelegate.
+protocol LocationListViewDelegate : class {
+    func didTapAddLocationButtonInLocationListView(view: LocationListView)
+}
 
 class LocationListView: GradientView {
     
-
+    weak var delegate : LocationListViewDelegate?
     
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
@@ -79,10 +82,8 @@ class LocationListView: GradientView {
             multiplier: 1, constant: -20).active = true
     }
     
-    
     func addLocationButtonTapped(sender : UIButton!){
-        println("Button tapped")
-    
+        self.delegate?.didTapAddLocationButtonInLocationListView(self)
     }
 }
 

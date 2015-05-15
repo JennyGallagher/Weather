@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class LocationListViewController: UITableViewController, SearchViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SearchViewControllerDelegate, LocationListViewDelegate  {
     
     let locationListView : LocationListView = {
         let colors = UIColor.yellowToPinkColor()
@@ -23,7 +23,7 @@ class LocationListViewController: UITableViewController, SearchViewControllerDel
     
     override func loadView() {
         view = locationListView
-            }
+    }
     
     
     override func viewDidLoad() {
@@ -33,6 +33,7 @@ class LocationListViewController: UITableViewController, SearchViewControllerDel
     
     
     private func prepareViewForInitialDataLoad() {
+        (view as? LocationListView)?.delegate = self
         (view as? LocationListView)?.tableView.dataSource = self
         (view as? LocationListView)?.tableView.delegate = self
         
@@ -40,11 +41,11 @@ class LocationListViewController: UITableViewController, SearchViewControllerDel
     
     func searchViewAddNewLocation(location: Location) {
         self.locations.append(location)
-        self.tableView.reloadData()
+        (view as? LocationListView)?.tableView.reloadData()
         
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.locations.isEmpty {
             return 5
         }
@@ -54,7 +55,7 @@ class LocationListViewController: UITableViewController, SearchViewControllerDel
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         
         
@@ -89,28 +90,28 @@ class LocationListViewController: UITableViewController, SearchViewControllerDel
     
     
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
     
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             self.locations.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     
-    func addLocationButtonTouched(sender: UIButton!) {
-        let locationSearchViewController = LocationSearchViewController()
-        locationSearchViewController.delegate = self
-        self.navigationController?.pushViewController(locationSearchViewController, animated: true)
-    }
-    
-    
     func respondToButtonClick(sender:UIButton!){
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    /// MARK: LocationListViewDelegate methods
+    
+    func didTapAddLocationButtonInLocationListView(view: LocationListView) {
+        let locationSearchViewController = LocationSearchViewController()
+        self.navigationController?.pushViewController(locationSearchViewController, animated: true)
     }
     
 }

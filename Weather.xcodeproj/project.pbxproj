@@ -195,8 +195,8 @@
 		1C58217F1ACDC33200116D82 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1C8883EF1B05AD8F00CC81BD /* LocationList */,
 				1C032A801AC25FFF0015A78F /* ForecastViewController.swift */,
-				1C32DF5A1AFA7C5500D29185 /* LocationListViewController.swift */,
 				1CC11B071AF27EC80077F63C /* LocationSearchViewController.swift */,
 				1C032A821AC262230015A78F /* LocationController.swift */,
 			);
@@ -216,13 +216,21 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		1C8883EF1B05AD8F00CC81BD /* LocationList */ = {
+			isa = PBXGroup;
+			children = (
+				1C32DF5A1AFA7C5500D29185 /* LocationListViewController.swift */,
+				1CDDF8BE1AEFFB0F00965B57 /* LocationListView.swift */,
+				1C78A6961B05104900FBB091 /* FooterView.swift */,
+			);
+			name = LocationList;
+			sourceTree = "<group>";
+		};
 		1CCDE5751AFD6F51002AB9BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				1C5821861AD0AECA00116D82 /* ForecastView.swift */,
-				1CDDF8BE1AEFFB0F00965B57 /* LocationListView.swift */,
 				1CCDE5731AFD6F36002AB9BC /* LocationSearchView.swift */,
-				1C78A6961B05104900FBB091 /* FooterView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
