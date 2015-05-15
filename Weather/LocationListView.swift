@@ -79,6 +79,11 @@ class LocationListView: GradientView {
             multiplier: 1, constant: -20).active = true
     }
     
+    
+    func addLocationButtonTapped(sender : UIButton!){
+        println("Button tapped")
+    
+    }
 }
 
 

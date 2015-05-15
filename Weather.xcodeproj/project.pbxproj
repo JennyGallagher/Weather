@@ -17,7 +17,6 @@
 		1C032A851AC33BBB0015A78F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C032A841AC33BBB0015A78F /* CoreLocation.framework */; };
 		1C2FA3331AD6EC8500EF66F5 /* GradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FA3321AD6EC8500EF66F5 /* GradientLayerExtension.swift */; };
 		1C2FA3391AD7082700EF66F5 /* myFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C2FA3381AD7081C00EF66F5 /* myFont.ttf */; };
-		1C2FA33B1AD7094600EF66F5 /* mistral.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C2FA33A1AD7092300EF66F5 /* mistral.ttf */; };
 		1C2FA33D1AD7722400EF66F5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FA33C1AD7722400EF66F5 /* GradientView.swift */; };
 		1C2FA33F1AD77BCD00EF66F5 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FA33E1AD77BCD00EF66F5 /* UIColorExtension.swift */; };
 		1C32DF541AF8036900D29185 /* GooglePlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DF531AF8036900D29185 /* GooglePlaces.swift */; };
@@ -63,7 +62,6 @@
 		1C032A841AC33BBB0015A78F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1C2FA3321AD6EC8500EF66F5 /* GradientLayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayerExtension.swift; sourceTree = "<group>"; };
 		1C2FA3381AD7081C00EF66F5 /* myFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = myFont.ttf; sourceTree = "<group>"; };
-		1C2FA33A1AD7092300EF66F5 /* mistral.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mistral.ttf; path = ../mistral.ttf; sourceTree = "<group>"; };
 		1C2FA33C1AD7722400EF66F5 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1C2FA33E1AD77BCD00EF66F5 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		1C2FA3401AD840F200EF66F5 /* GrafientAnimation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GrafientAnimation.playground; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				1C2FA3381AD7081C00EF66F5 /* myFont.ttf */,
-				1C2FA33A1AD7092300EF66F5 /* mistral.ttf */,
 				1CEB95491AE6FB510083705F /* Lovelo Line Bold.otf */,
 				1CEB95471AE6FB0E0083705F /* ROBOTECH GP.ttf */,
 				1C032A5F1ABCC1750015A78F /* Info.plist */,
@@ -313,7 +310,6 @@
 				1CEB954A1AE6FB600083705F /* Lovelo Line Bold.otf in Resources */,
 				1CEB95481AE6FB370083705F /* ROBOTECH GP.ttf in Resources */,
 				1CEB95461AE6F9BE0083705F /* flat-ui-icons-regular.ttf in Resources */,
-				1C2FA33B1AD7094600EF66F5 /* mistral.ttf in Resources */,
 				1C2FA3391AD7082700EF66F5 /* myFont.ttf in Resources */,
 				1C032A6B1ABCC1750015A78F /* LaunchScreen.xib in Resources */,
 				1C032A681ABCC1750015A78F /* Images.xcassets in Resources */,
