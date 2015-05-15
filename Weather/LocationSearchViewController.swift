@@ -57,8 +57,6 @@ class LocationSearchViewController: UITableViewController, UISearchBarDelegate {
         // Adding footer to remove extra row lines
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        BlurView.addBlurView(view, style: UIBlurEffectStyle.ExtraLight)
-        
         self.tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         
         definesPresentationContext = true

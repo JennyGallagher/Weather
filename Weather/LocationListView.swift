@@ -17,6 +17,12 @@ class LocationListView: GradientView {
     
     weak var delegate : LocationListViewDelegate?
     
+    lazy var blurView : BlurView = {
+        let blurView = BlurView()
+        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return blurView
+        }()
+    
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView.registerClass(LocationListTableViewCell.self, forCellReuseIdentifier: LocationListTableViewCellIdentifier)
@@ -25,7 +31,7 @@ class LocationListView: GradientView {
         tableView.estimatedRowHeight = 200
         tableView.layoutMargins = UIEdgeInsetsZero
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
-        tableView.backgroundColor = UIColor.yellowColor()
+        tableView.backgroundColor = UIColor.clearColor()
         
         let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100.0))
         footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
@@ -38,9 +44,9 @@ class LocationListView: GradientView {
     
     override init(topColor: UIColor, bottomColor: UIColor) {
         super.init(topColor: topColor, bottomColor: bottomColor)
+        addSubview(blurView)
         addSubview(tableView)
         configureConstraints()
-        
     }
     
     
@@ -49,13 +55,47 @@ class LocationListView: GradientView {
     }
     
     func configureConstraints(){
+        // Blurred background constraints.
+        let blurViewTopConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Top,
+            multiplier: 1, constant: 0).active = true
+        
+        let blurViewBottomConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Bottom,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Bottom,
+            multiplier: 1, constant: 0).active = true
+        
+        let blurViewLeftConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Left,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Left,
+            multiplier: 1, constant: 0).active = true
+        
+        let blurViewRightConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Right,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Right,
+            multiplier: 1, constant: 0).active = true
+        
+        // Table view constraints.
         let tableViewTopConstraint: () = NSLayoutConstraint(
             item: self.tableView,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 20).active = true
+            multiplier: 1, constant: 0).active = true
         
         let tableViewBottomConstraint: () = NSLayoutConstraint(
             item: self.tableView,
@@ -63,7 +103,7 @@ class LocationListView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Bottom,
-            multiplier: 1, constant: 20).active = true
+            multiplier: 1, constant: 0).active = true
         
         let tableViewLeftConstraint: () = NSLayoutConstraint(
             item: self.tableView,
@@ -71,7 +111,7 @@ class LocationListView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Left,
-            multiplier: 1, constant: 20).active = true
+            multiplier: 1, constant: 0).active = true
     
         let tableViewRightConstraint: () = NSLayoutConstraint(
             item: self.tableView,
@@ -79,7 +119,7 @@ class LocationListView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Right,
-            multiplier: 1, constant: -20).active = true
+            multiplier: 1, constant: 0).active = true
     }
     
     func addLocationButtonTapped(sender : UIButton!){

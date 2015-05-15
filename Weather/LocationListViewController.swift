@@ -29,6 +29,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareViewForInitialDataLoad()
+   
     }
     
     

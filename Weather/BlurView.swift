@@ -8,17 +8,17 @@
 
 import UIKit
 
-class BlurView {
+class BlurView : UIVisualEffectView {
     
-    class func addBlurView(view: UIView, style: UIBlurEffectStyle){
+    init() {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-        var blurEffectView = UIVisualEffectView(effect: blurEffect)
-        var vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
-        blurEffectView.frame = view.bounds
-        view.insertSubview(blurEffectView, atIndex: 0)
+        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+        super.init(effect: blurEffect)
     }
-    
 
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
 }
 
