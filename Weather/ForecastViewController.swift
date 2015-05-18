@@ -31,11 +31,10 @@ class ForecastViewController: UIViewController {
         
         self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
         
-        self.locationController.retrieveLocations({ success in
+        self.locationController.retrieveLocations({location, success in
             if success {
-                self.locationController.requestWeatherDataForCity({ (success, weather) -> Void in
+                self.locationController.requestWeatherDataForLocation(location!, completion: { (success, weather) -> Void in
                     if success {
-                        
                         self.forecastView.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
                         self.forecastView.tempLabel.text = "\(weather.temperature!)°"
                         //                        self.forecastView.currentTimeLabel.text = weather.currentTime

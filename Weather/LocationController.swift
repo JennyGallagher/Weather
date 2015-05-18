@@ -27,10 +27,10 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     var selectedLocation : Location? = nil
     
     
-    var completionToCallWhenLocationsAreDone : (Bool -> Void)? = nil
+    var completionToCallWhenLocationsAreDone : ((Location?, Bool) -> Void)? = nil
     
     
-    func retrieveLocations(completion : Bool -> Void) {
+    func retrieveLocations(completion: (Location?, Bool) -> Void) {
         
         self.locationManager.delegate = self
         self.locationManager.distanceFilter = 500
@@ -94,7 +94,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let error = error {
                 println("Error:  \(error.localizedDescription)")
-                self.completionToCallWhenLocationsAreDone?(false)
+                self.completionToCallWhenLocationsAreDone?(nil, false)
                 self.completionToCallWhenLocationsAreDone = nil
             }
             else {
@@ -103,12 +103,10 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                     
                     let placemark = placemarks.last as? CLPlacemark
                     
-                    self.selectedCity = placemark!.locality
-                    self.selectedState = placemark!.administrativeArea
-                    self.selectedLocation = Location(city: self.selectedCity! as String, state: self.selectedState! as String, latitude: self.currentLocationLat, longitude: self.currentLocationLong)
+                    let newLocation = Location(city: placemark!.locality as String, state: placemark!.administrativeArea as String, latitude: self.currentLocationLat, longitude: self.currentLocationLong)
                     
                     
-                    self.completionToCallWhenLocationsAreDone?(true)
+                    self.completionToCallWhenLocationsAreDone?(newLocation, true)
                     self.completionToCallWhenLocationsAreDone = nil
                 }
             }
@@ -121,22 +119,22 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     
     typealias WeatherCompletionClosure = (success : Bool, weather : WeatherData) -> Void
     
-    func requestWeatherDataForCity(completion : WeatherCompletionClosure) {
+    func requestWeatherDataForLocation(location: Location, completion: WeatherCompletionClosure) {
         
         let apiKey = "81e71bbb6b05cc0f6f5fca5ac0ecdac2"
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(currentLocationLatString),\(currentLocationLongString)", relativeToURL: baseURL)
+        let forecastURL = NSURL(string: "\(location.latitude),\(location.longitude)", relativeToURL: baseURL)
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL!, response: NSURLResponse!, error:NSError!) -> Void in
+        let downloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error:NSError!) -> Void in
             
             if (error == nil) {
-                let dataObject = NSData(contentsOfURL: location)
+                let dataObject = NSData(contentsOfURL: url)
                 let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as! NSDictionary
                 
                 var currentWeather = WeatherData(weatherDictionary: weatherDictionary)
-                currentWeather.currentCity = self.selectedCity as? String
-                currentWeather.currentState = self.selectedState as? String
+                currentWeather.currentCity = location.city
+                currentWeather.currentState = location.state
                 
                 
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
