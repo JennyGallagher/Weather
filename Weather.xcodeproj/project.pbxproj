@@ -228,8 +228,8 @@
 		1C8883F01B0648E100CC81BD /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
-				1C5821861AD0AECA00116D82 /* ForecastView.swift */,
 				1C032A801AC25FFF0015A78F /* ForecastViewController.swift */,
+				1C5821861AD0AECA00116D82 /* ForecastView.swift */,
 			);
 			name = Forecast;
 			sourceTree = "<group>";
