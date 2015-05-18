@@ -43,7 +43,7 @@ class Detail {
                 self.city = component["long_name"] as? String
                 
             } else if contains(types, "administrative_area_level_1") {
-                self.state = component["long_name"] as? String
+                self.state = component["short_name"] as? String
                 
             } else if contains(types, "postal_code") {
                 self.postalCode = component["long_name"] as? String
