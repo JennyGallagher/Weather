@@ -35,7 +35,14 @@ class LocationSearchView: GradientView {
         return tableView
         }()
     
-    
+    lazy var googleLogo : UIImageView! = {
+        let imageView = UIImageView(image: UIImage(named: "powered-by-google-on-white"))
+        
+        imageView.contentMode = .ScaleAspectFit
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return imageView
+        }()
+
     lazy var searchBar : UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
@@ -66,6 +73,7 @@ class LocationSearchView: GradientView {
         addSubview(blurView)
         addSubview(tableView)
         addSubview(searchBar)
+        tableView.addSubview(googleLogo)
         configureConstraints()
     }
     
@@ -148,6 +156,23 @@ class LocationSearchView: GradientView {
             toItem: self,
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
+        
+        let googleLogoXConstraint:() = NSLayoutConstraint(
+            item: googleLogo,
+            attribute: .Right,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Right,
+            multiplier: 1, constant: -5).active = true
+        
+        let googleLogoYConstraint:() = NSLayoutConstraint(
+            item: googleLogo,
+            attribute: .Bottom,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Bottom,
+            multiplier: 1, constant: -5).active = true
+        
     }
     
     
