@@ -20,7 +20,6 @@ class LocationListTableViewCell: UITableViewCell {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
         label.font = UIFont(name: "Avenir-Black", size: 21.0)
-        label.text = "San Francisco, CA "
         label.textAlignment = NSTextAlignment.Left
         return label
         }()
@@ -30,7 +29,6 @@ class LocationListTableViewCell: UITableViewCell {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
         label.font = UIFont(name: "Avenir-Black", size: 13)
-        label.text = "Partly Cloudy"
         label.textAlignment = NSTextAlignment.Left
         return label
         }()
@@ -40,14 +38,12 @@ class LocationListTableViewCell: UITableViewCell {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
         label.font = UIFont(name: "Avenir-Black", size: 45)
-        label.text = "80°"
         label.textAlignment = NSTextAlignment.Right
         return label
         }()
     
     lazy var iconImageView: UIImageView = {
-        let image = UIImage(named: "snow")
-        let icon = UIImageView(image: image)
+        let icon = UIImageView()
         icon.contentMode = .ScaleAspectFit
         icon.setTranslatesAutoresizingMaskIntoConstraints(false)
         return icon

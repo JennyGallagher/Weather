@@ -67,25 +67,21 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         }
         else {
             
+            cell.cityLabel.text = ""
+            cell.iconImageView.image = nil
+            cell.tempLabel.text = ""
+            cell.summaryLabel.text = ""
+            
             let location : Location = self.locations[indexPath.row]
-            cell.cityLabel.text = "\(location.city),  \(location.state)"
+            cell.cityLabel.text = "\(location.city), \(location.state)"
             
-            
-            let currentLocationLatString : String = "\(location.latitude)"
-            let currentLocationLongString : String = "\(location.longitude)"
-            println("\(currentLocationLatString), \(currentLocationLongString)")
-           
-            
-//            forecastURL = "\(currentLocationLatString),\(currentLocationLongString)"
-//            
-//            
-//            locationController.requestWeatherDataForCity({ (success, weather) -> Void in
-//                cell.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
-//                cell.iconImageView.image = weather.condition?.icon()
-//                cell.tempLabel.text = "\(weather.temperature!)°"
-//                cell.summaryLabel.text = weather.summary
-//            })
-            
+            locationController.requestWeatherDataForLocation(location, completion: { success, weather in
+                if tableView.cellForRowAtIndexPath(indexPath) == cell {
+                    cell.iconImageView.image = weather.condition?.icon()
+                    cell.tempLabel.text = "\(weather.temperature!)°"
+                    cell.summaryLabel.text = weather.summary
+                }
+            })
         }
         
         return cell
