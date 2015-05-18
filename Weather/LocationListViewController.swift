@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SearchViewControllerDelegate, LocationListViewDelegate  {
+class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationSearchViewControllerDelegate, LocationListViewDelegate  {
     
     let locationListView : LocationListView = {
         let colors = UIColor.yellowToPinkColor()
@@ -40,15 +40,14 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
-    func searchViewAddNewLocation(location: Location) {
+    func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location) {
         self.locations.append(location)
         (view as? LocationListView)?.tableView.reloadData()
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.locations.isEmpty {
-            return 5
+            return 1
         }
         else {
             return self.locations.count
@@ -58,10 +57,10 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
-        
+                    cell = LocationListTableViewCell()
         
         if self.locations.isEmpty {
-            cell = LocationListTableViewCell()
+
             cell.cityLabel.text = "Add a new city"
             
         }
@@ -112,6 +111,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func didTapAddLocationButtonInLocationListView(view: LocationListView) {
         let locationSearchViewController = LocationSearchViewController()
+        locationSearchViewController.delegate = self
         self.navigationController?.pushViewController(locationSearchViewController, animated: true)
     }
     

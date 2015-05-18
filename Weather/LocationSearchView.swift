@@ -8,7 +8,33 @@
 
 import UIKit
 
+
+
+
 class LocationSearchView: GradientView {
+    
+
+    
+    lazy var blurView : BlurView = {
+        let blurView = BlurView()
+        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return blurView
+        }()
+    
+    lazy var tableView : UITableView = {
+        let tableView = UITableView(frame: CGRectZero, style: .Plain)
+        tableView.registerClass(LocationSearchTableViewCell.self, forCellReuseIdentifier: LocationSearchTableViewCellIdentifier)
+        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+//        tableView.rowHeight = 75
+        tableView.estimatedRowHeight = 75
+        tableView.layoutMargins = UIEdgeInsetsZero
+        tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.preservesSuperviewLayoutMargins = false
+        return tableView
+        }()
+    
     
     lazy var searchBar : UISearchBar = {
         let searchBar = UISearchBar()
@@ -20,6 +46,7 @@ class LocationSearchView: GradientView {
         searchBar.returnKeyType = .Search
         searchBar.tintColor = .customColor()
         searchBar.becomeFirstResponder()
+        
         
         // Customizing searchbar text color
         var textFieldInsideSearchBar : UITextField? = nil
@@ -33,6 +60,95 @@ class LocationSearchView: GradientView {
         textFieldInsideSearchBar?.textColor = .customColor()
         return searchBar
         }()
+    
+    override init(topColor: UIColor, bottomColor: UIColor) {
+        super.init(topColor: topColor, bottomColor: bottomColor)
+        addSubview(blurView)
+        addSubview(tableView)
+        addSubview(searchBar)
+        configureConstraints()
+    }
+    
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    func configureConstraints(){
+        // Blurred background constraints.
+        let blurViewTopConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Top,
+            multiplier: 1, constant: 0).active = true
+        
+        let blurViewBottomConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Bottom,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Bottom,
+            multiplier: 1, constant: 0).active = true
+        
+        let blurViewLeftConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Left,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Left,
+            multiplier: 1, constant: 0).active = true
+        
+        let blurViewRightConstraint: () = NSLayoutConstraint(
+            item: blurView,
+            attribute: .Right,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Right,
+            multiplier: 1, constant: 0).active = true
+        
+        // Table view constraints.
+        let tableViewTopConstraint: () = NSLayoutConstraint(
+            item: self.tableView,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: searchBar,
+            attribute: .Bottom,
+            multiplier: 1, constant: 0).active = true
+        
+        let tableViewBottomConstraint: () = NSLayoutConstraint(
+            item: self.tableView,
+            attribute: .Bottom,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Bottom,
+            multiplier: 1, constant: 0).active = true
+        
+        let tableViewLeftConstraint: () = NSLayoutConstraint(
+            item: self.tableView,
+            attribute: .Left,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Left,
+            multiplier: 1, constant: 0).active = true
+        
+        let tableViewRightConstraint: () = NSLayoutConstraint(
+            item: self.tableView,
+            attribute: .Right,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Right,
+            multiplier: 1, constant: 0).active = true
+        
+        let searchBarAboveTableViewConstraint: () = NSLayoutConstraint(
+            item: self.searchBar,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Top,
+            multiplier: 1, constant: 0).active = true
+    }
     
     
 }

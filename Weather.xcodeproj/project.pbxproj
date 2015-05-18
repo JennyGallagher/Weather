@@ -130,7 +130,7 @@
 				1C32DF551AF8037200D29185 /* GooglePlacesAutocomplete */,
 				1C58217F1ACDC33200116D82 /* Controller */,
 				1C58217D1ACDC30800116D82 /* Model */,
-				1C5821881AD0AF1A00116D82 /* View */,
+				1C5821881AD0AF1A00116D82 /* Views */,
 				1C032A601ABCC1750015A78F /* AppDelegate.swift */,
 				1C032A671ABCC1750015A78F /* Images.xcassets */,
 				1C032A691ABCC1750015A78F /* LaunchScreen.xib */,
@@ -195,25 +195,24 @@
 		1C58217F1ACDC33200116D82 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1C8883F01B0648E100CC81BD /* Forecast */,
 				1C8883EF1B05AD8F00CC81BD /* LocationList */,
-				1C032A801AC25FFF0015A78F /* ForecastViewController.swift */,
-				1CC11B071AF27EC80077F63C /* LocationSearchViewController.swift */,
+				1C8883F11B0648FB00CC81BD /* LocationSearch */,
 				1C032A821AC262230015A78F /* LocationController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		1C5821881AD0AF1A00116D82 /* View */ = {
+		1C5821881AD0AF1A00116D82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1CCDE5751AFD6F51002AB9BC /* Views */,
 				1C2FA3321AD6EC8500EF66F5 /* GradientLayerExtension.swift */,
 				1C2FA33C1AD7722400EF66F5 /* GradientView.swift */,
 				1C2FA33E1AD77BCD00EF66F5 /* UIColorExtension.swift */,
 				1CCDE56F1AFD5660002AB9BC /* BlurView.swift */,
 				1CCDE5711AFD6DCD002AB9BC /* TableViewCell.swift */,
 			);
-			name = View;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		1C8883EF1B05AD8F00CC81BD /* LocationList */ = {
@@ -226,13 +225,22 @@
 			name = LocationList;
 			sourceTree = "<group>";
 		};
-		1CCDE5751AFD6F51002AB9BC /* Views */ = {
+		1C8883F01B0648E100CC81BD /* Forecast */ = {
 			isa = PBXGroup;
 			children = (
 				1C5821861AD0AECA00116D82 /* ForecastView.swift */,
+				1C032A801AC25FFF0015A78F /* ForecastViewController.swift */,
+			);
+			name = Forecast;
+			sourceTree = "<group>";
+		};
+		1C8883F11B0648FB00CC81BD /* LocationSearch */ = {
+			isa = PBXGroup;
+			children = (
+				1CC11B071AF27EC80077F63C /* LocationSearchViewController.swift */,
 				1CCDE5731AFD6F36002AB9BC /* LocationSearchView.swift */,
 			);
-			name = Views;
+			name = LocationSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,6 +485,7 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -487,6 +496,7 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -27,13 +27,16 @@ class LocationListView: GradientView {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView.registerClass(LocationListTableViewCell.self, forCellReuseIdentifier: LocationListTableViewCellIdentifier)
         tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = 75
+        tableView.estimatedRowHeight = 75
         tableView.layoutMargins = UIEdgeInsetsZero
+        
+        
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         tableView.backgroundColor = UIColor.clearColor()
         
-        let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100.0))
+        let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 50.0))
+        footerView.backgroundColor = UIColor.clearColor()
         footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
         tableView.tableFooterView = footerView
         
@@ -112,7 +115,7 @@ class LocationListView: GradientView {
             toItem: self,
             attribute: .Left,
             multiplier: 1, constant: 0).active = true
-    
+        
         let tableViewRightConstraint: () = NSLayoutConstraint(
             item: self.tableView,
             attribute: .Right,

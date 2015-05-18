@@ -11,20 +11,32 @@ import UIKit
 class FooterView: UIView {
     
     lazy var addLocationButton : UIButton! = {
-        let button =  UIButton(frame: CGRectMake(0, 0, 50, 50))
+        let button =  UIButton(frame: CGRectMake(0, 0, 25, 25))
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
        
-        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 30)
+        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
         return button
         }()
     
     
+    lazy var changeUnitsButton : UIButton! = {
+        let button =  UIButton(frame: CGRectMake(0, 0, 20, 20))
+        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.setTitle("°F", forState: .Normal)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
+        
+        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 20)
+        return button
+        }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(addLocationButton)
+        addSubview(changeUnitsButton)
         configureConstraints()
     }
     
@@ -34,20 +46,36 @@ class FooterView: UIView {
     
     func configureConstraints(){
         let addLocationButtonXConstraint: () = NSLayoutConstraint(
-            item: self.addLocationButton,
-            attribute: .CenterX,
+            item: addLocationButton,
+            attribute: .Left,
             relatedBy: .Equal,
             toItem: self,
-            attribute: .CenterX,
-            multiplier: 1, constant: 0).active = true
+            attribute: .Left,
+            multiplier: 1, constant: 25).active = true
         
         let addLocationButtonYConstraint: () = NSLayoutConstraint(
-            item: self.addLocationButton,
-            attribute: .CenterY,
+            item: addLocationButton,
+            attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
-            attribute: .CenterY,
-            multiplier: 1, constant: 0).active = true
+            attribute: .Top,
+            multiplier: 1, constant: -5).active = true
+        
+        let changeUnitsButtonXConstraint: () = NSLayoutConstraint(
+            item: changeUnitsButton,
+            attribute: .Right,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Right,
+            multiplier: 1, constant: -25).active = true
+        
+        let changeUnitsButtonYConstraint: () = NSLayoutConstraint(
+            item: changeUnitsButton,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .Top,
+            multiplier: 1, constant: -2).active = true
     }
     
 }

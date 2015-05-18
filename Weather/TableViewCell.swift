@@ -9,19 +9,18 @@
 import UIKit
 
 let LocationListTableViewCellIdentifier = "LocationListTableViewCellIdentifier"
-
+let LocationSearchTableViewCellIdentifier = "LocationSearchTableViewCellIdentifier"
 
 
 class LocationListTableViewCell: UITableViewCell {
-    
     
     
     lazy var cityLabel: UILabel! = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
-        label.font = UIFont(name: "Avenir-Black", size: 20.0)
-        label.text = " "
+        label.font = UIFont(name: "Avenir-Black", size: 21.0)
+        label.text = "San Francisco, CA "
         label.textAlignment = NSTextAlignment.Left
         return label
         }()
@@ -30,7 +29,7 @@ class LocationListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
-        label.font = UIFont(name: "Avenir-Black", size: 12.0)
+        label.font = UIFont(name: "Avenir-Black", size: 13)
         label.text = "Partly Cloudy"
         label.textAlignment = NSTextAlignment.Left
         return label
@@ -40,14 +39,14 @@ class LocationListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
-        label.font = UIFont(name: "Avenir-Black", size: 80.0)
+        label.font = UIFont(name: "Avenir-Black", size: 45)
         label.text = "80°"
         label.textAlignment = NSTextAlignment.Right
         return label
         }()
     
     lazy var iconImageView: UIImageView = {
-        let image = UIImage(named: "fog")
+        let image = UIImage(named: "snow")
         let icon = UIImageView(image: image)
         icon.contentMode = .ScaleAspectFit
         icon.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -67,7 +66,6 @@ class LocationListTableViewCell: UITableViewCell {
         backgroundColor = UIColor.clearColor()
         configureSubviews()
         configureConstraints()
-        
         
     }
     
@@ -98,15 +96,16 @@ class LocationListTableViewCell: UITableViewCell {
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Top,
-            multiplier: 1, constant: 0).active = true
+            multiplier: 1, constant: 14).active = true
         
+        // summaryLabel constraints
         let summaryLabelXConstraint: () = NSLayoutConstraint(
             item: self.summaryLabel,
             attribute: .Left,
             relatedBy: .Equal,
             toItem: iconImageView,
             attribute: .Right,
-            multiplier: 1, constant: 5).active = true
+            multiplier: 1, constant: 8).active = true
         
         let summaryLabelYConstraint: () = NSLayoutConstraint(
             item: self.summaryLabel,
@@ -114,9 +113,9 @@ class LocationListTableViewCell: UITableViewCell {
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Bottom,
-            multiplier: 1, constant: -3).active = true
+            multiplier: 1, constant: -14).active = true
         
-        
+        // tempLabel constraints
         let tempLabelXConstraint: () = NSLayoutConstraint(
             item: self.tempLabel,
             attribute: .Right,
@@ -127,13 +126,13 @@ class LocationListTableViewCell: UITableViewCell {
         
         let tempLabelYConstraint: () = NSLayoutConstraint(
             item: self.tempLabel,
-            attribute: .Top,
+            attribute: .CenterY,
             relatedBy: .Equal,
             toItem: contentView,
-            attribute: .Top,
-            multiplier: 1, constant: -2).active = true
+            attribute: .CenterY,
+            multiplier: 1, constant: 0).active = true
         
-        
+        // iconImage constraints
         let iconImageXContraints: () = NSLayoutConstraint(
             item: self.iconImageView,
             attribute: .Left,
@@ -144,19 +143,11 @@ class LocationListTableViewCell: UITableViewCell {
         
         let iconImageYContraints: () = NSLayoutConstraint(
             item: self.iconImageView,
-            attribute: .Top,
-            relatedBy: .Equal,
-            toItem: cityLabel,
-            attribute: .Bottom,
-            multiplier: 1, constant: 0).active = true
-        
-        let iconImageBottomContraints: () = NSLayoutConstraint(
-            item: self.iconImageView,
             attribute: .Bottom,
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Bottom,
-            multiplier: 1, constant: -5).active = true
+            multiplier: 1, constant: -10).active = true
         
         let iconImageWidthConstraints: () = NSLayoutConstraint(
             item: self.iconImageView,
@@ -164,7 +155,7 @@ class LocationListTableViewCell: UITableViewCell {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 15).active = true
+            multiplier: 1, constant: 25).active = true
         
         let iconImageHeightConstraints: () = NSLayoutConstraint(
             item: self.iconImageView,
@@ -172,9 +163,28 @@ class LocationListTableViewCell: UITableViewCell {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 15).active = true
+            multiplier: 1, constant: 25).active = true
         
         
     }
     
+}
+
+class LocationSearchTableViewCell : UITableViewCell {
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        separatorInset = UIEdgeInsetsZero
+        layoutMargins = UIEdgeInsetsZero
+        selectionStyle = .None
+        preservesSuperviewLayoutMargins = false
+        backgroundColor = UIColor.clearColor()
+        textLabel?.textColor = UIColor.customColor()
+        selectionStyle = .None
+        
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
