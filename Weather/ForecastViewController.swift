@@ -9,13 +9,13 @@
 import UIKit
 
 
-class ForecastViewController: UIViewController {
+class ForecastViewController: UIViewController, LocationListViewControllerDelegate {
     
     
     let locationController = LocationController()
     
     let forecastView : ForecastView = {
-        let colors = UIColor.yellowToPinkColor()
+        let colors = UIColor.miamiViceColors()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -47,16 +47,36 @@ class ForecastViewController: UIViewController {
         })
     }
     func cityListViewButtonTouched(sender: UIButton!) {
-        let controller = LocationListViewController()
-        let navigationController = UINavigationController(rootViewController: controller)
+        let locationListViewController = LocationListViewController()
+        let navigationController = UINavigationController(rootViewController: locationListViewController)
         navigationController.setNavigationBarHidden(true, animated: false)
         self.presentViewController(navigationController, animated: true, completion: nil)
+        locationListViewController.delegate = self
+        
     }
+    
     func respondToButtonClick(sender:UIButton!){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-
+    func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location) {
+        let locationListViewController = LocationListViewController()
+        
+        self.locationController.requestWeatherDataForLocation(location, completion: { (success, weather) -> Void in
+            if success {
+                self.forecastView.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
+                self.forecastView.tempLabel.text = "\(weather.temperature!)°"
+                self.forecastView.iconImage.image = weather.condition!.icon()
+                self.forecastView.summaryLabel.text = weather.summary
+                self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
+                
+        
+                
+            }
+        })
+    }
+    
+    
 }
 
 

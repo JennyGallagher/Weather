@@ -9,8 +9,15 @@
 import UIKit
 import CoreLocation
 
+protocol LocationListViewControllerDelegate {
+    func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location)
+    
+}
+
 
 class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationSearchViewControllerDelegate, LocationListViewDelegate  {
+    
+    var delegate : LocationListViewControllerDelegate? = nil
     
     let locationListView : LocationListView = {
         let colors = UIColor.yellowToPinkColor()
@@ -19,7 +26,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         }()
     
     let locationController = LocationController()
-
+    
     var locations : [Location] = []
     
     override func loadView() {
@@ -30,7 +37,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareViewForInitialDataLoad()
-   
+        
     }
     
     
@@ -58,12 +65,24 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
-                    cell = LocationListTableViewCell()
+        cell = LocationListTableViewCell()
         
-        if self.locations.isEmpty {
-
-            cell.cityLabel.text = "Add a new city"
+        //        if self.locations.isEmpty {
+        if indexPath.row == 0 {
             
+            self.locationController.retrieveLocations({location, success in
+                if success {
+                    self.locationController.requestWeatherDataForLocation(location!, completion: { (success, weather) -> Void in
+                        if success {
+                            cell.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
+                            cell.iconImageView.image = weather.condition?.icon()
+                            cell.tempLabel.text = "\(weather.temperature!)°"
+                            cell.summaryLabel.text = weather.summary
+                            
+                        }
+                    })
+                }
+            })
         }
         else {
             
@@ -91,7 +110,12 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        if indexPath.row == 0 {
+            return false }
+        else {
+            
+            return true
+        }
     }
     
     
@@ -102,6 +126,17 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
+    
+    
+    // Select city to view on ForecastView
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let location : Location = self.locations[indexPath.row]        
+        self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location)
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
     
     func respondToButtonClick(sender:UIButton!){
         self.dismissViewControllerAnimated(true, completion: nil)

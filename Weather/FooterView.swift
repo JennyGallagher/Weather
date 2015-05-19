@@ -15,8 +15,7 @@ class FooterView: UIView {
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
-        
+        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)        
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
         return button
         }()
@@ -28,25 +27,14 @@ class FooterView: UIView {
         button.setTitle("°F", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
-        
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 20)
         return button
         }()
-    
-//    lazy var googleLogo : UIImageView! = {
-//        let imageView = UIImageView(image: UIImage(named: "powered-by-google-on-white"))
-//        
-//        imageView.contentMode = .ScaleAspectFit
-//        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        return imageView
-//        }()
-
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(addLocationButton)
         addSubview(changeUnitsButton)
-
         configureConstraints()
     }
     
@@ -86,10 +74,6 @@ class FooterView: UIView {
             toItem: self,
             attribute: .Top,
             multiplier: 1, constant: -2).active = true
-        
-        
-
-        
 
         
     }
