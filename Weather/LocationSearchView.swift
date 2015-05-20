@@ -13,7 +13,7 @@ import UIKit
 
 class LocationSearchView: GradientView {
     
-
+    
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
@@ -25,7 +25,6 @@ class LocationSearchView: GradientView {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView.registerClass(LocationSearchTableViewCell.self, forCellReuseIdentifier: LocationSearchTableViewCellIdentifier)
         tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        tableView.rowHeight = 75
         tableView.estimatedRowHeight = 75
         tableView.layoutMargins = UIEdgeInsetsZero
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
@@ -42,7 +41,7 @@ class LocationSearchView: GradientView {
         imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return imageView
         }()
-
+    
     lazy var searchBar : UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
@@ -81,9 +80,9 @@ class LocationSearchView: GradientView {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
     func configureConstraints(){
-        // Blurred background constraints.
+        
         let blurViewTopConstraint: () = NSLayoutConstraint(
             item: blurView,
             attribute: .Top,
@@ -116,7 +115,7 @@ class LocationSearchView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: 0).active = true
         
-        // Table view constraints.
+        
         let tableViewTopConstraint: () = NSLayoutConstraint(
             item: self.tableView,
             attribute: .Top,

@@ -47,9 +47,9 @@ class GradientView: UIView {
         background.locations = locations as [AnyObject]
         
         let gradientAnimation = CABasicAnimation(keyPath: "locations")
-        gradientAnimation.fromValue = [0.05, 0.7]
-        gradientAnimation.byValue = [0.0, 0.6]
-        gradientAnimation.duration = 3.0
+        gradientAnimation.fromValue = [0.0, 0.5]
+        gradientAnimation.byValue = [0.1, 0.6]
+        gradientAnimation.duration = 4.0
         gradientAnimation.repeatCount = Float.infinity
         gradientAnimation.autoreverses = true
         
@@ -59,34 +59,4 @@ class GradientView: UIView {
         
     }
 }
-//gradientAnimation.fromValue = [0.0, 0.9]
-//gradientAnimation.byValue = [0.0, 0.5, 0.6, 0.9]
-//
-//gradientAnimation.fromValue = [0.0, 0.8]
-//gradientAnimation.byValue = [ 0.05, 0.9]
 
-//
-//gradientAnimation.fromValue = [0.0, 0.5]
-//gradientAnimation.byValue = [ 0.35, 0.9]
-
-
-
-//    func gradientAnimationColors(){
-//        let colors = [
-//        UIColor.whiteColor(),
-//        UIColor.redColor(),
-//        UIColor.yellowColor(),
-//        UIColor.purpleColor()
-//        ]
-//
-//    background.colors = colors
-//        let gradientAnimationColors = CABasicAnimation(keyPath: "colors")
-////        gradientAnimationColors.fromValue = [UIColor.whiteColor(), UIColor.redColor()]
-//        gradientAnimationColors.toValue = [UIColor.yellowColor(), UIColor.purpleColor()]
-//        gradientAnimationColors.duration = 1.0
-//        gradientAnimationColors.repeatCount = Float.infinity
-//        gradientAnimationColors.autoreverses = true
-//
-//        background.addAnimation(gradientAnimationColors, forKey: nil)
-//
-//    }

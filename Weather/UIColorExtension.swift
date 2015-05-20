@@ -39,6 +39,12 @@ extension UIColor {
         return (topColor, bottomColor)
     }
     
+    class func yellowToPinkColor2() -> (topColor : UIColor, bottomColor : UIColor) {
+        let topColor = UIColor(red: (255/255.0), green: (191/255.0), blue: (64/255.0), alpha: 1)
+        let bottomColor = UIColor(red: (255/255.0), green: (9/255.0), blue: (162/255.0), alpha: 1)
+        
+        return (topColor, bottomColor)
+    }
     
     class func yellowToPurle() -> (topColor : UIColor, bottomColor : UIColor) {
         let topColor = UIColor(red: (254/255.0), green: (215/255.0), blue: (69/255.0), alpha: 1)

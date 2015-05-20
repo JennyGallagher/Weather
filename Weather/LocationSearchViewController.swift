@@ -33,7 +33,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     //     End test code
     let locations : [Location] = []
-
+    
     
     let locationSearchView : LocationSearchView = {
         let colors = UIColor.yellowToPinkColor()
@@ -41,7 +41,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         return view
         }()
     
-   
+    
     override func loadView() {
         view = locationSearchView
     }
@@ -67,11 +67,11 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     // MARK:- UITableView methods
     
-     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredData.count
     }
     
@@ -90,47 +90,47 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
             }
             self.filteredData = self.originalData
             (self.view as? LocationSearchView)?.tableView.reloadData()
-
-
+            
+            
         }
     }
     
     
     
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationSearchTableViewCellIdentifier, forIndexPath: indexPath) as! LocationSearchTableViewCell
-
+        
         cell = LocationSearchTableViewCell()
         
         cell.textLabel!.text = self.filteredData[indexPath.row]
-
+        
         
         return cell
     }
     
     
-//    
-//    //    // SeperatorInsets go to left and right edges
-//     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-//        forRowAtIndexPath indexPath: NSIndexPath)
-//    {
-//        // Remove seperator inset
-//        cell.separatorInset = UIEdgeInsetsZero
-//        
-//        // Prevent the cell from inheriting the Table View's margin settings
-//        if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
-//            cell.preservesSuperviewLayoutMargins = false
-//        }
-//        
-//        // Explictly set your cell's layout margins
-//        if cell.respondsToSelector("setLayoutMargins:") {
-//            cell.layoutMargins = UIEdgeInsetsZero
-//        }
-//    }
-//    
+    //
+    //    //    // SeperatorInsets go to left and right edges
+    //     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+    //        forRowAtIndexPath indexPath: NSIndexPath)
+    //    {
+    //        // Remove seperator inset
+    //        cell.separatorInset = UIEdgeInsetsZero
+    //
+    //        // Prevent the cell from inheriting the Table View's margin settings
+    //        if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
+    //            cell.preservesSuperviewLayoutMargins = false
+    //        }
+    //
+    //        // Explictly set your cell's layout margins
+    //        if cell.respondsToSelector("setLayoutMargins:") {
+    //            cell.layoutMargins = UIEdgeInsetsZero
+    //        }
+    //    }
+    //
     
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         selected = true
         
@@ -140,9 +140,9 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
             var locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude)
             
             println("saved location \(locationFromAddressSearch)")
-
+            
             self.delegate?.locationSearchViewController(self, didAddNewLocation: locationFromAddressSearch)
-
+            
             self.navigationController?.popViewControllerAnimated(true)
         }
     }

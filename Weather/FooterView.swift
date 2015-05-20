@@ -15,7 +15,7 @@ class FooterView: UIView {
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)        
+        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
         return button
         }()
@@ -30,7 +30,7 @@ class FooterView: UIView {
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 20)
         return button
         }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(addLocationButton)
@@ -74,7 +74,7 @@ class FooterView: UIView {
             toItem: self,
             attribute: .Top,
             multiplier: 1, constant: -2).active = true
-
+        
         
     }
     

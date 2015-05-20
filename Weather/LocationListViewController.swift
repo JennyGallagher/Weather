@@ -67,22 +67,9 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         cell = LocationListTableViewCell()
         
-        //        if self.locations.isEmpty {
-        if indexPath.row == 0 {
-            
-            self.locationController.retrieveLocations({location, success in
-                if success {
-                    self.locationController.requestWeatherDataForLocation(location!, completion: { (success, weather) -> Void in
-                        if success {
-                            cell.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
-                            cell.iconImageView.image = weather.condition?.icon()
-                            cell.tempLabel.text = "\(weather.temperature!)°"
-                            cell.summaryLabel.text = weather.summary
-                            
-                        }
-                    })
-                }
-            })
+        if self.locations.isEmpty {
+            cell.cityLabel.text = "Add a new city"
+            cell.userInteractionEnabled = false
         }
         else {
             
@@ -110,12 +97,16 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if indexPath.row == 0 {
-            return false }
+//        if indexPath.row == 0 {
+//            return false }
+//        else {
+        if self.locations.isEmpty  {
+        
+        return false }
         else {
-            
             return true
         }
+//        }
     }
     
     
@@ -127,12 +118,14 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
+
     
     // Select city to view on ForecastView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let location : Location = self.locations[indexPath.row]        
+        let location : Location = self.locations[indexPath.row]
         self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }

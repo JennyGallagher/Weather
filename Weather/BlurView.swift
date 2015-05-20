@@ -11,7 +11,7 @@ import UIKit
 class BlurView : UIVisualEffectView {
     
     init() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
         super.init(effect: blurEffect)
     }

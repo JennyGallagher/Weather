@@ -15,7 +15,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     let locationController = LocationController()
     
     let forecastView : ForecastView = {
-        let colors = UIColor.miamiViceColors()
+        let colors = UIColor.yellowToPinkColor()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -45,7 +45,9 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 })
             }
         })
+        
     }
+    
     func cityListViewButtonTouched(sender: UIButton!) {
         let locationListViewController = LocationListViewController()
         let navigationController = UINavigationController(rootViewController: locationListViewController)
@@ -60,7 +62,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     }
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location) {
-        let locationListViewController = LocationListViewController()
+       
         
         self.locationController.requestWeatherDataForLocation(location, completion: { (success, weather) -> Void in
             if success {
@@ -70,27 +72,11 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 self.forecastView.summaryLabel.text = weather.summary
                 self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
                 
-        
                 
             }
         })
+     
     }
-    
-    
 }
 
 
-
-
-
-
-
-
-
-
-
-// Getting address from string:
-//
-//                locationController.getAddressFromSearch(addressString: "springfield", completion: { locations in
-//                println(locations)
-//                })

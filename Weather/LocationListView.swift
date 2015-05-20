@@ -38,7 +38,7 @@ class LocationListView: GradientView {
         footerView.backgroundColor = UIColor.clearColor()
         footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
         tableView.tableFooterView = footerView
-      
+        
         tableView.preservesSuperviewLayoutMargins = false
         return tableView
         }()
@@ -139,8 +139,8 @@ class LocationListView: GradientView {
     }
     
     func refreshTableView(sender : AnyObject){
-    tableView.reloadData()
-    refreshControl.endRefreshing()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
