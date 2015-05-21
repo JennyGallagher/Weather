@@ -87,8 +87,9 @@ class ForecastView: GradientView {
         return icon
         }()
     
-    
+ 
 
+    
     override init(topColor: UIColor, bottomColor: UIColor) {
         
         super.init(topColor: topColor, bottomColor: bottomColor)
@@ -245,5 +246,7 @@ class ForecastView: GradientView {
     }
     
 }
+
+
 
 

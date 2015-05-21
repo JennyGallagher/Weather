@@ -54,32 +54,38 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.locations.isEmpty {
-            return 1
-        }
-        else {
-            return self.locations.count
-        }
+
+            return (self.locations.count + 1)
+
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         cell = LocationListTableViewCell()
-        
-        
-        if self.locations.isEmpty {
-            cell.cityLabel.text = "Add a new city"
-            cell.userInteractionEnabled = false
+
+        if indexPath.row == 0 {
+         cell.userInteractionEnabled = false
+            self.locationController.retrieveLocations({location, success in
+                if success {
+                    self.locationController.requestWeatherDataForLocation(location!, completion: { success, weather in
+                            cell.cityLabel.text =  "\(location!.city), \(location!.state)"
+                            cell.iconImageView.image = weather.condition?.icon()
+                            cell.tempLabel.text = "\(weather.temperature!)°"
+                            cell.summaryLabel.text = weather.summary
+                    }
+                )}
+            })
+            
         }
         else {
-            
+            if indexPath.row != 0 {
             cell.cityLabel.text = ""
             cell.iconImageView.image = nil
             cell.tempLabel.text = ""
             cell.summaryLabel.text = ""
             
-            let location : Location = self.locations[indexPath.row]
+            let location : Location = self.locations[(indexPath.row-1)]
             cell.cityLabel.text = "\(location.city), \(location.state)"
             
             locationController.requestWeatherDataForLocation(location, completion: { success, weather in
@@ -89,6 +95,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
                     cell.summaryLabel.text = weather.summary
                 }
             })
+        }
         }
         
         return cell
@@ -112,7 +119,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            self.locations.removeAtIndex(indexPath.row)
+            self.locations.removeAtIndex(indexPath.row-1)
             if (self.locations.count != 0){
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
             }

@@ -157,7 +157,7 @@ class LocationSearchView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let googleLogoXConstraint:() = NSLayoutConstraint(
+        let googleLogoXConstraint: () = NSLayoutConstraint(
             item: googleLogo,
             attribute: .Right,
             relatedBy: .Equal,
@@ -165,13 +165,13 @@ class LocationSearchView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: -5).active = true
         
-        let googleLogoYConstraint:() = NSLayoutConstraint(
+        let googleLogoYConstraint: () = NSLayoutConstraint(
             item: googleLogo,
             attribute: .Bottom,
             relatedBy: .Equal,
             toItem: self,
             attribute: .Bottom,
-            multiplier: 1, constant: -5).active = true
+            multiplier: 1, constant: -225).active = true
         
     }
     

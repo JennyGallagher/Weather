@@ -34,7 +34,7 @@ class LocationListView: GradientView {
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         tableView.backgroundColor = UIColor.clearColor()
         
-        let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 50.0))
+        let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100.0))
         footerView.backgroundColor = UIColor.clearColor()
         footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
         tableView.tableFooterView = footerView
@@ -106,7 +106,7 @@ class LocationListView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 0).active = true
+            multiplier: 1, constant: 10).active = true
         
         let tableViewBottomConstraint: () = NSLayoutConstraint(
             item: self.tableView,

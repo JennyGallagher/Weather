@@ -12,23 +12,23 @@ class FooterView: UIView {
     
     
     lazy var addLocationButton : UIButton! = {
-        let button =  UIButton(frame: CGRectMake(0, 0, 25, 25))
+        let button =  UIButton(frame: CGRectMake(0, 0, 40, 40))
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
-        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
+        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 32)
         return button
         }()
     
     
     lazy var changeUnitsButton : UIButton! = {
-        let button =  UIButton(frame: CGRectMake(0, 0, 20, 20))
+        let button =  UIButton(frame: CGRectMake(0, 0, 40, 40))
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("°F", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
-        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 20)
+        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
         return button
         }()
     
@@ -58,7 +58,7 @@ class FooterView: UIView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: -5).active = true
+            multiplier: 1, constant: 0).active = true
         
         let changeUnitsButtonXConstraint: () = NSLayoutConstraint(
             item: changeUnitsButton,
@@ -74,7 +74,7 @@ class FooterView: UIView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: -2).active = true
+            multiplier: 1, constant: 4).active = true
         
         
     }

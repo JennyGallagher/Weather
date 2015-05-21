@@ -20,6 +20,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         return view
         }()
     
+
     
     override func loadView() {
         view = forecastView
@@ -28,6 +29,13 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         let pullToRefresh: UIScreenEdgePanGestureRecognizer = {
+            let pullToRefresh = UIScreenEdgePanGestureRecognizer(target: self, action: Selector("handleRefreshForecastView:"))
+            pullToRefresh.edges = UIRectEdge.Left
+            self.view.addGestureRecognizer(pullToRefresh)
+            return pullToRefresh
+            }()
         
         self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
         
@@ -65,6 +73,22 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
             }
         })
+    }
+    
+    func handleRefreshForecastView(sender : UIGestureRecognizer){
+        println("pulled")
+
+        
+        if sender.state == UIGestureRecognizerState.Ended{
+            self.locationController.retrieveLocations({location, success in
+                if success {
+                    self.requestWeatherData(location!)
+                    
+                }
+            })
+
+        }
+    
     }
 }
 
