@@ -57,6 +57,7 @@ class LocationListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         separatorInset = UIEdgeInsetsZero
         layoutMargins = UIEdgeInsetsZero
+        
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false
         backgroundColor = UIColor.clearColor()

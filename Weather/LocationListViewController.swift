@@ -20,7 +20,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     var delegate : LocationListViewControllerDelegate? = nil
     
     let locationListView : LocationListView = {
-        let colors = UIColor.yellowToPinkColor()
+        let colors = UIColor.miamiViceColors()
         let view = LocationListView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -67,6 +67,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         cell = LocationListTableViewCell()
         
+        
         if self.locations.isEmpty {
             cell.cityLabel.text = "Add a new city"
             cell.userInteractionEnabled = false
@@ -97,16 +98,14 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        if indexPath.row == 0 {
-//            return false }
-//        else {
-        if self.locations.isEmpty  {
         
-        return false }
+        if self.locations.isEmpty  {
+            
+            return false
+        }
         else {
             return true
         }
-//        }
     }
     
     
@@ -114,11 +113,17 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             self.locations.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            if (self.locations.count != 0){
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            }
+            else {
+                
+                tableView.reloadData()
+                
+            }
         }
     }
     
-
     
     // Select city to view on ForecastView
     
@@ -130,10 +135,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
-    
-    func respondToButtonClick(sender:UIButton!){
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     /// MARK: LocationListViewDelegate methods
     

@@ -36,7 +36,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     
     let locationSearchView : LocationSearchView = {
-        let colors = UIColor.yellowToPinkColor()
+        let colors = UIColor.miamiViceColors()
         let view = LocationSearchView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -51,9 +51,6 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         prepareViewForInitialDataLoad()
         
         locationSearchView.searchBar.delegate = self
-        
-        
-        definesPresentationContext = true
         
         (view as? LocationSearchView)?.tableView.reloadData()
     }
@@ -77,20 +74,17 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        println("updateSearchResultsForSearchController")
         selected = false
         self.originalData.removeAll()
         self.place_ids.removeAll()
         googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text){ predictions in
             for prediction: Prediction in predictions {
                 
-                //      self.sectionData.append(prediction.description)
                 self.originalData.append(prediction.description)
                 self.place_ids.append(prediction.place_id)
             }
             self.filteredData = self.originalData
             (self.view as? LocationSearchView)?.tableView.reloadData()
-            
             
         }
     }
@@ -102,33 +96,12 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationSearchTableViewCellIdentifier, forIndexPath: indexPath) as! LocationSearchTableViewCell
         
         cell = LocationSearchTableViewCell()
-        
         cell.textLabel!.text = self.filteredData[indexPath.row]
-        
         
         return cell
     }
     
-    
-    //
-    //    //    // SeperatorInsets go to left and right edges
-    //     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-    //        forRowAtIndexPath indexPath: NSIndexPath)
-    //    {
-    //        // Remove seperator inset
-    //        cell.separatorInset = UIEdgeInsetsZero
-    //
-    //        // Prevent the cell from inheriting the Table View's margin settings
-    //        if cell.respondsToSelector("setPreservesSuperviewLayoutMargins:") {
-    //            cell.preservesSuperviewLayoutMargins = false
-    //        }
-    //
-    //        // Explictly set your cell's layout margins
-    //        if cell.respondsToSelector("setLayoutMargins:") {
-    //            cell.layoutMargins = UIEdgeInsetsZero
-    //        }
-    //    }
-    //
+
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath

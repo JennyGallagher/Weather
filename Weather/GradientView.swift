@@ -47,9 +47,9 @@ class GradientView: UIView {
         background.locations = locations as [AnyObject]
         
         let gradientAnimation = CABasicAnimation(keyPath: "locations")
-        gradientAnimation.fromValue = [0.0, 0.5]
-        gradientAnimation.byValue = [0.1, 0.6]
-        gradientAnimation.duration = 4.0
+        gradientAnimation.fromValue = [0.05, 0.7]
+        gradientAnimation.byValue = [0.4, 0.8]
+        gradientAnimation.duration = 6.0
         gradientAnimation.repeatCount = Float.infinity
         gradientAnimation.autoreverses = true
         

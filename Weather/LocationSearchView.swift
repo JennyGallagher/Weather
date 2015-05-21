@@ -27,16 +27,17 @@ class LocationSearchView: GradientView {
         tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
         tableView.estimatedRowHeight = 75
         tableView.layoutMargins = UIEdgeInsetsZero
+        
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         tableView.backgroundColor = UIColor.clearColor()
+        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.preservesSuperviewLayoutMargins = false
         return tableView
         }()
     
     lazy var googleLogo : UIImageView! = {
-        let imageView = UIImageView(image: UIImage(named: "powered-by-google-on-white"))
-        
+        let imageView = UIImageView(image: UIImage(named: "powered-by-google-on-non-white"))
         imageView.contentMode = .ScaleAspectFit
         imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         return imageView

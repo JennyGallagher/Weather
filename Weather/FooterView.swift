@@ -10,6 +10,7 @@ import UIKit
 
 class FooterView: UIView {
     
+    
     lazy var addLocationButton : UIButton! = {
         let button =  UIButton(frame: CGRectMake(0, 0, 25, 25))
         button.setTranslatesAutoresizingMaskIntoConstraints(false)

@@ -132,6 +132,8 @@ class LocationListView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: 0).active = true
         
+
+        
     }
     
     func addLocationButtonTapped(sender : UIButton!){

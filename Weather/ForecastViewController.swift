@@ -33,16 +33,8 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         
         self.locationController.retrieveLocations({location, success in
             if success {
-                self.locationController.requestWeatherDataForLocation(location!, completion: { (success, weather) -> Void in
-                    if success {
-                        self.forecastView.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
-                        self.forecastView.tempLabel.text = "\(weather.temperature!)°"
-                        //                        self.forecastView.currentTimeLabel.text = weather.currentTime
-                        self.forecastView.iconImage.image = weather.condition!.icon()
-                        self.forecastView.summaryLabel.text = weather.summary
-                        self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
-                    }
-                })
+                self.requestWeatherData(location!)
+                
             }
         })
         
@@ -54,16 +46,16 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         navigationController.setNavigationBarHidden(true, animated: false)
         self.presentViewController(navigationController, animated: true, completion: nil)
         locationListViewController.delegate = self
-        
     }
     
-    func respondToButtonClick(sender:UIButton!){
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+    
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location) {
-       
-        
+        requestWeatherData(location)
+    }
+    
+    
+    func requestWeatherData(location : Location){
         self.locationController.requestWeatherDataForLocation(location, completion: { (success, weather) -> Void in
             if success {
                 self.forecastView.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
@@ -71,11 +63,8 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 self.forecastView.iconImage.image = weather.condition!.icon()
                 self.forecastView.summaryLabel.text = weather.summary
                 self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
-                
-                
             }
         })
-     
     }
 }
 
