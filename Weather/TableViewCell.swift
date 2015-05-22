@@ -21,6 +21,8 @@ class LocationListTableViewCell: UITableViewCell {
         label.textColor = .customColor()
         label.font = UIFont(name: "Avenir-Black", size: 20.0)
         label.textAlignment = NSTextAlignment.Left
+        label.lineBreakMode = NSLineBreakMode.ByTruncatingTail
+        label.numberOfLines = 1
         return label
         }()
     
@@ -87,23 +89,25 @@ class LocationListTableViewCell: UITableViewCell {
     private func configureConstraints() {
         
         // cityLabel constraints
+        
+        
         let cityLabelLeftConstraint: () = NSLayoutConstraint(
             item: self.cityLabel,
-            attribute: .Left,
+            attribute: .Leading,
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Left,
             multiplier: 1, constant: 22).active = true
         
-//        let cityLabelRightConstraint: () = NSLayoutConstraint(
-//            item: self.cityLabel,
-//            attribute: .Top,
-//            relatedBy: .Equal,
-//            toItem: contentView,
-//            attribute: .Top,
-//            multiplier: 1, constant: 14).active = true
+        let cityLabelRightConstraint: () = NSLayoutConstraint(
+            item: self.cityLabel,
+            attribute: .Trailing,
+            relatedBy: .Equal,
+            toItem: contentView,
+            attribute: .Right,
+            multiplier: 1, constant: -75).active = true
         
-        let cityLabelYConstraint: () = NSLayoutConstraint(
+        let cityLabelTopConstraint: () = NSLayoutConstraint(
             item: self.cityLabel,
             attribute: .Top,
             relatedBy: .Equal,
@@ -111,6 +115,13 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Top,
             multiplier: 1, constant: 14).active = true
 
+        let cityLabelBottomConstraint: () = NSLayoutConstraint(
+            item: self.cityLabel,
+            attribute: .Bottom,
+            relatedBy: .GreaterThanOrEqual,
+            toItem: summaryLabel,
+            attribute: .Top,
+            multiplier: 1, constant: 5).active = true
         
         // summaryLabel constraints
         let summaryLabelXConstraint: () = NSLayoutConstraint(
@@ -130,13 +141,14 @@ class LocationListTableViewCell: UITableViewCell {
             multiplier: 1, constant: -14).active = true
         
         // tempLabel constraints
-        let tempLabelXConstraint: () = NSLayoutConstraint(
+        let tempLabelRightConstraint: () = NSLayoutConstraint(
             item: self.tempLabel,
-            attribute: .Right,
+            attribute: .Trailing,
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Right,
             multiplier: 1, constant: -10).active = true
+    
         
         let tempLabelYConstraint: () = NSLayoutConstraint(
             item: self.tempLabel,
@@ -192,11 +204,11 @@ class LocationListTableViewCell: UITableViewCell {
         
         let locationArrowImageYContraints: () = NSLayoutConstraint(
             item: locationArrowImageView,
-            attribute: .Top,
+            attribute: .CenterY,
             relatedBy: .Equal,
             toItem: contentView,
-            attribute: .Top,
-            multiplier: 1, constant: 20).active = true
+            attribute: .CenterY,
+            multiplier: 1, constant: 0).active = true
         
         let locationArrowImageWidthConstraints: () = NSLayoutConstraint(
             item: locationArrowImageView,

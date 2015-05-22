@@ -25,11 +25,13 @@ class ForecastView: GradientView {
         label.text = "Chicago, IL"
         label.textAlignment = NSTextAlignment.Center
         label.userInteractionEnabled = false
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.numberOfLines = 0
         return label
         }()
     
     lazy var cityListViewButton: UIButton! = {
-        let image = UIImage(named: "List-icon")
+        let image = UIImage(named: "List Filled-64")
         let button = UIButton()
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setImage(image, forState: UIControlState.Normal)
@@ -132,6 +134,22 @@ class ForecastView: GradientView {
             toItem: self,
             attribute: .CenterX,
             multiplier: 1, constant: 0).active = true
+        
+        let cityLabelLeftConstraint: () = NSLayoutConstraint(
+            item: self.cityLabel,
+            attribute: .Left,
+            relatedBy: .GreaterThanOrEqual,
+            toItem: self,
+            attribute: .Left,
+            multiplier: 1, constant: 10).active = true
+        
+        let cityLabelRightConstraint: () = NSLayoutConstraint(
+            item: self.cityLabel,
+            attribute: .Right,
+            relatedBy: .GreaterThanOrEqual,
+            toItem: self,
+            attribute: .Right,
+            multiplier: 1, constant: -10).active = true
         
         let cityLabelYConstraint: () = NSLayoutConstraint(
             item: self.cityLabel,
