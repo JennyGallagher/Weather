@@ -20,7 +20,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     var delegate : LocationListViewControllerDelegate? = nil
     
     let locationListView : LocationListView = {
-        let colors = UIColor.miamiViceColors()
+        let colors = UIColor.yellowToPinkColor()
         let view = LocationListView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -31,6 +31,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     override func loadView() {
         view = locationListView
+        
     }
     
     
@@ -48,54 +49,66 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    
     func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location) {
         self.locations.append(location)
+        
         (view as? LocationListView)?.tableView.reloadData()
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-            return (self.locations.count + 1)
-
+        if self.locations.count == 0 {
+            return 1
+        }
+        else {
+            return self.locations.count
+        }
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         cell = LocationListTableViewCell()
-
-        if indexPath.row == 0 {
-         cell.userInteractionEnabled = false
+        
+        if indexPath.row == 0 && self.locations.isEmpty {
+            
             self.locationController.retrieveLocations({location, success in
                 if success {
                     self.locationController.requestWeatherDataForLocation(location!, completion: { success, weather in
-                            cell.cityLabel.text =  "\(location!.city), \(location!.state)"
-                            cell.iconImageView.image = weather.condition?.icon()
-                            cell.tempLabel.text = "\(weather.temperature!)°"
-                            cell.summaryLabel.text = weather.summary
-                    }
-                )}
+                        cell.cityLabel.text =  "\(location!.city), \(location!.state)"
+                        cell.iconImageView.image = weather.condition?.icon()
+                        cell.tempLabel.text = "\(weather.temperature!)°"
+                        cell.summaryLabel.text = weather.summary
+                        cell.locationArrowImageView.image = UIImage(named: "arrow8")
+                        self.locations.append(location!)
+                        }
+                    )}
             })
-            
         }
+            
         else {
-            if indexPath.row != 0 {
+            
             cell.cityLabel.text = ""
             cell.iconImageView.image = nil
             cell.tempLabel.text = ""
             cell.summaryLabel.text = ""
             
-            let location : Location = self.locations[(indexPath.row-1)]
+            let location : Location = self.locations[indexPath.row]
             cell.cityLabel.text = "\(location.city), \(location.state)"
+            
+            if indexPath.row == 0{
+            
+            cell.locationArrowImageView.image = UIImage(named: "arrow8")}
             
             locationController.requestWeatherDataForLocation(location, completion: { success, weather in
                 if tableView.cellForRowAtIndexPath(indexPath) == cell {
                     cell.iconImageView.image = weather.condition?.icon()
                     cell.tempLabel.text = "\(weather.temperature!)°"
                     cell.summaryLabel.text = weather.summary
+                    
                 }
             })
-        }
         }
         
         return cell
@@ -106,7 +119,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
-        if self.locations.isEmpty  {
+        if indexPath.row == 0  {
             
             return false
         }
@@ -119,15 +132,8 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            self.locations.removeAtIndex(indexPath.row-1)
-            if (self.locations.count != 0){
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
-            }
-            else {
-                
-                tableView.reloadData()
-                
-            }
+            self.locations.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
         }
     }
     
@@ -135,9 +141,9 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     // Select city to view on ForecastView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         let location : Location = self.locations[indexPath.row]
         self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location)
-        
         self.dismissViewControllerAnimated(true, completion: nil)
         
     }

@@ -20,7 +20,6 @@ protocol LocationSearchViewControllerDelegate {
 }
 
 class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
-    //    Adding code to test "SearchController" from GitHub
     
     var delegate : LocationSearchViewControllerDelegate? = nil
     
@@ -31,7 +30,6 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     var selectedIndex = NSIndexPath()
     var selected : Bool!
     
-    //     End test code
     let locations : [Location] = []
     
     

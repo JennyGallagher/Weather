@@ -4,7 +4,7 @@
 //
 //  Created by Jenny Gallagher on 5/4/15.
 //  Copyright (c) 2015 Jenny Gallagher. All rights reserved.
-//
+//  Adapted from wiserkuo SearchController - https://github.com/wiserkuo/Swift-SearchController
 
 
 import UIKit

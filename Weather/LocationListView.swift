@@ -106,7 +106,7 @@ class LocationListView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 10).active = true
+            multiplier: 1, constant: 2).active = true
         
         let tableViewBottomConstraint: () = NSLayoutConstraint(
             item: self.tableView,

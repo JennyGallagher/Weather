@@ -18,7 +18,6 @@
 		1C2FA3331AD6EC8500EF66F5 /* GradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FA3321AD6EC8500EF66F5 /* GradientLayerExtension.swift */; };
 		1C2FA33D1AD7722400EF66F5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FA33C1AD7722400EF66F5 /* GradientView.swift */; };
 		1C2FA33F1AD77BCD00EF66F5 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FA33E1AD77BCD00EF66F5 /* UIColorExtension.swift */; };
-		1C32DF541AF8036900D29185 /* GooglePlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DF531AF8036900D29185 /* GooglePlaces.swift */; };
 		1C32DF571AF882AC00D29185 /* GooglePlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DF561AF882AC00D29185 /* GooglePlaceAPI.swift */; };
 		1C32DF591AF882DA00D29185 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DF581AF882DA00D29185 /* GooglePlace.swift */; };
 		1C32DF5B1AFA7C5500D29185 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DF5A1AFA7C5500D29185 /* LocationListViewController.swift */; };
@@ -64,7 +63,6 @@
 		1C2FA33C1AD7722400EF66F5 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1C2FA33E1AD77BCD00EF66F5 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		1C2FA3401AD840F200EF66F5 /* GrafientAnimation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GrafientAnimation.playground; sourceTree = "<group>"; };
-		1C32DF531AF8036900D29185 /* GooglePlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaces.swift; sourceTree = "<group>"; };
 		1C32DF561AF882AC00D29185 /* GooglePlaceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceAPI.swift; sourceTree = "<group>"; };
 		1C32DF581AF882DA00D29185 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		1C32DF5A1AFA7C5500D29185 /* LocationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
@@ -176,7 +174,6 @@
 		1C32DF551AF8037200D29185 /* GooglePlacesAutocomplete */ = {
 			isa = PBXGroup;
 			children = (
-				1C32DF531AF8036900D29185 /* GooglePlaces.swift */,
 				1C32DF561AF882AC00D29185 /* GooglePlaceAPI.swift */,
 				1C32DF581AF882DA00D29185 /* GooglePlace.swift */,
 			);
@@ -366,7 +363,6 @@
 				1CDDF8BF1AEFFB0F00965B57 /* LocationListView.swift in Sources */,
 				1C2FA3331AD6EC8500EF66F5 /* GradientLayerExtension.swift in Sources */,
 				1C032A811AC25FFF0015A78F /* ForecastViewController.swift in Sources */,
-				1C32DF541AF8036900D29185 /* GooglePlaces.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

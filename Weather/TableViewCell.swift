@@ -19,7 +19,7 @@ class LocationListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .customColor()
-        label.font = UIFont(name: "Avenir-Black", size: 21.0)
+        label.font = UIFont(name: "Avenir-Black", size: 20.0)
         label.textAlignment = NSTextAlignment.Left
         return label
         }()
@@ -49,6 +49,14 @@ class LocationListTableViewCell: UITableViewCell {
         return icon
         }()
     
+    lazy var locationArrowImageView: UIImageView = {
+        let icon = UIImageView()
+        icon.alpha = 0.45
+        icon.contentMode = .ScaleAspectFit
+        icon.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return icon
+        }()
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -57,7 +65,6 @@ class LocationListTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         separatorInset = UIEdgeInsetsZero
         layoutMargins = UIEdgeInsetsZero
-        
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false
         backgroundColor = UIColor.clearColor()
@@ -73,19 +80,28 @@ class LocationListTableViewCell: UITableViewCell {
         contentView.addSubview(summaryLabel)
         contentView.addSubview(iconImageView)
         contentView.addSubview(tempLabel)
+        contentView.addSubview(locationArrowImageView)
         
     }
     
     private func configureConstraints() {
         
         // cityLabel constraints
-        let cityLabelXConstraint: () = NSLayoutConstraint(
+        let cityLabelLeftConstraint: () = NSLayoutConstraint(
             item: self.cityLabel,
             attribute: .Left,
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Left,
-            multiplier: 1, constant: 10).active = true
+            multiplier: 1, constant: 22).active = true
+        
+//        let cityLabelRightConstraint: () = NSLayoutConstraint(
+//            item: self.cityLabel,
+//            attribute: .Top,
+//            relatedBy: .Equal,
+//            toItem: contentView,
+//            attribute: .Top,
+//            multiplier: 1, constant: 14).active = true
         
         let cityLabelYConstraint: () = NSLayoutConstraint(
             item: self.cityLabel,
@@ -94,6 +110,7 @@ class LocationListTableViewCell: UITableViewCell {
             toItem: contentView,
             attribute: .Top,
             multiplier: 1, constant: 14).active = true
+
         
         // summaryLabel constraints
         let summaryLabelXConstraint: () = NSLayoutConstraint(
@@ -136,7 +153,7 @@ class LocationListTableViewCell: UITableViewCell {
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Left,
-            multiplier: 1, constant: 10).active = true
+            multiplier: 1, constant: 20).active = true
         
         let iconImageYContraints: () = NSLayoutConstraint(
             item: self.iconImageView,
@@ -161,6 +178,41 @@ class LocationListTableViewCell: UITableViewCell {
             toItem: nil,
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 25).active = true
+        
+        // locationArrow constraints
+        
+        // iconImage constraints
+        let locationArrowImageXContraints: () = NSLayoutConstraint(
+            item: locationArrowImageView,
+            attribute: .Left,
+            relatedBy: .Equal,
+            toItem: contentView,
+            attribute: .Left,
+            multiplier: 1, constant: 5).active = true
+        
+        let locationArrowImageYContraints: () = NSLayoutConstraint(
+            item: locationArrowImageView,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: contentView,
+            attribute: .Top,
+            multiplier: 1, constant: 20).active = true
+        
+        let locationArrowImageWidthConstraints: () = NSLayoutConstraint(
+            item: locationArrowImageView,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1, constant: 12).active = true
+        
+        let locationArrowImageHeightConstraints: () = NSLayoutConstraint(
+            item: locationArrowImageView,
+            attribute: .Height,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1, constant: 12).active = true
         
         
     }
