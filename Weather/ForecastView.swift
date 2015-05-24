@@ -22,7 +22,7 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 30.0)
-        label.text = "Chicago, IL"
+        label.text = "--"
         label.textAlignment = NSTextAlignment.Center
         label.userInteractionEnabled = false
         label.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -54,7 +54,7 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 130.0)
-        label.text = "100°"
+        label.text = "--"
         label.textAlignment = NSTextAlignment.Center
         return label
         }()
@@ -65,7 +65,7 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 20.0)
-        label.text = "50°"
+//        label.text = "50°"
         label.textAlignment = NSTextAlignment.Left
         return label
         }()
@@ -85,6 +85,7 @@ class ForecastView: GradientView {
     lazy var iconImage: UIImageView = {
         let icon = UIImageView()
         icon.contentMode = .ScaleAspectFit
+        icon.alpha = 0.85
         icon.setTranslatesAutoresizingMaskIntoConstraints(false)
         return icon
         }()
@@ -210,15 +211,15 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 60).active = true
+            multiplier: 1, constant: 70).active = true
         
         let tempMinMaxLabelXConstraint: () = NSLayoutConstraint(
             item: self.tempMinMaxLabel,
-            attribute: .Left,
+            attribute: .Leading,
             relatedBy: .Equal,
-            toItem: self,
-            attribute: .Left,
-            multiplier: 1, constant: 80).active = true
+            toItem: iconImage,
+            attribute: .Trailing,
+            multiplier: 1, constant: 5).active = true
         
         let tempMinMaxLabelYConstraint: () = NSLayoutConstraint(
             item: self.tempMinMaxLabel,
@@ -226,7 +227,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 25).active = true
+            multiplier: 1, constant: 40).active = true
         
         let iconImageXContraints: () = NSLayoutConstraint(
             item: self.iconImage,
@@ -244,14 +245,13 @@ class ForecastView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 30).active = true
         
-        
         let iconImageWidthConstraints: () = NSLayoutConstraint(
             item: self.iconImage,
             attribute: .Width,
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 40).active = true
+            multiplier: 1, constant: 45).active = true
         
         let iconImageHeightConstraints: () = NSLayoutConstraint(
             item: self.iconImage,
@@ -259,7 +259,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 30).active = true
+            multiplier: 1, constant: 45).active = true
         
     }
     

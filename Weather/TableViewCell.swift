@@ -204,11 +204,11 @@ class LocationListTableViewCell: UITableViewCell {
         
         let locationArrowImageYContraints: () = NSLayoutConstraint(
             item: locationArrowImageView,
-            attribute: .CenterY,
+            attribute: .Top,
             relatedBy: .Equal,
             toItem: contentView,
-            attribute: .CenterY,
-            multiplier: 1, constant: 0).active = true
+            attribute: .Top,
+            multiplier: 1, constant: 23).active = true
         
         let locationArrowImageWidthConstraints: () = NSLayoutConstraint(
             item: locationArrowImageView,

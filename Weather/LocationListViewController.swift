@@ -142,10 +142,11 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let location : Location = self.locations[indexPath.row]
-        self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location)
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+        if (locations.count != 0){
+            let location : Location = self.locations[indexPath.row]
+            self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     
