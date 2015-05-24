@@ -14,13 +14,15 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     let locationController = LocationController()
     
+    var selectedLocation : Location? = nil
+    
     let forecastView : ForecastView = {
         let colors = UIColor.yellowToPinkColor()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
     
-
+    
     
     override func loadView() {
         view = forecastView
@@ -30,18 +32,19 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         let pullToRefresh: UIScreenEdgePanGestureRecognizer = {
-            let pullToRefresh = UIScreenEdgePanGestureRecognizer(target: self, action: Selector("handleRefreshForecastView:"))
-            pullToRefresh.edges = UIRectEdge.Left
-            self.view.addGestureRecognizer(pullToRefresh)
-            return pullToRefresh
-            }()
+        
+        
+        var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        self.view.addGestureRecognizer(swipeDown)
+        
         
         self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
         
         self.locationController.retrieveLocations({location, success in
             if success {
                 self.requestWeatherData(location!)
+                self.selectedLocation = location!
                 
             }
         })
@@ -60,6 +63,8 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location) {
         requestWeatherData(location)
+        selectedLocation = location
+        
     }
     
     
@@ -75,20 +80,13 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         })
     }
     
-    func handleRefreshForecastView(sender : UIGestureRecognizer){
-        println("pulled")
-
-        
+    // Pull to refresh weather data
+    func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
-            self.locationController.retrieveLocations({location, success in
-                if success {
-                    self.requestWeatherData(location!)
-                    
-                }
-            })
-
+            let location = selectedLocation
+            self.requestWeatherData(location!)
+        
         }
-    
     }
 }
 
