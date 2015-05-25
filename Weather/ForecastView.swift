@@ -90,6 +90,13 @@ class ForecastView: GradientView {
         return icon
         }()
     
+    lazy var activityIndicatorView : UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        view.alpha = 0.85
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return view
+        }()
  
 
     
@@ -102,6 +109,7 @@ class ForecastView: GradientView {
         addSubview(iconImage)
         addSubview(summaryLabel)
         addSubview(cityListViewButton)
+        addSubview(activityIndicatorView)
         configureConstraints()
         
     }
@@ -261,6 +269,23 @@ class ForecastView: GradientView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 45).active = true
         
+        let activityIndicatorViewXConstraints: () = NSLayoutConstraint(
+            item: activityIndicatorView,
+            attribute: .CenterX,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .CenterX,
+            multiplier: 1, constant: 0).active = true
+        
+        let activityIndicatorViewYConstraints: () = NSLayoutConstraint(
+            item: activityIndicatorView,
+            attribute: .CenterY,
+            relatedBy: .Equal,
+            toItem: self,
+            attribute: .CenterY,
+            multiplier: 1, constant: -90).active = true
+
+
     }
     
 }

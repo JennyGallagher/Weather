@@ -35,6 +35,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         
         
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipeDown)
         
@@ -84,9 +85,16 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation
-            self.requestWeatherData(location!)
-        
-        }
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
+            if location != nil{
+                self.forecastView.activityIndicatorView.startAnimating()
+                self.requestWeatherData(location!)
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
+                    self.forecastView.activityIndicatorView.stopAnimating()
+                    
+                })
+                
+            }}
     }
 }
 
