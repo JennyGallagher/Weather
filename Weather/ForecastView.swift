@@ -22,10 +22,10 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 30.0)
-        label.text = "--"
-        label.textAlignment = NSTextAlignment.Center
+        label.text = "- -"
+        label.textAlignment = .Center
         label.userInteractionEnabled = false
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.lineBreakMode = .ByWordWrapping
         label.numberOfLines = 0
         return label
         }()
@@ -34,18 +34,8 @@ class ForecastView: GradientView {
         let image = UIImage(named: "List Filled-64")
         let button = UIButton()
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
-        button.setImage(image, forState: UIControlState.Normal)
+        button.setImage(image, forState: .Normal)
         return button
-        }()
-    
-    lazy var currentTimeLabel: UILabel! = {
-        let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.textColor = self.fontColor
-        label.font = UIFont(name: "Futura-CondensedExtraBold", size: 30.0)
-        label.text = "12:00 pm"
-        label.textAlignment = NSTextAlignment.Center
-        return label
         }()
     
     
@@ -54,8 +44,8 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 130.0)
-        label.text = "--"
-        label.textAlignment = NSTextAlignment.Center
+        label.text = "- -"
+        label.textAlignment = .Center
         return label
         }()
     
@@ -65,8 +55,7 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 20.0)
-//        label.text = "50°"
-        label.textAlignment = NSTextAlignment.Left
+        label.textAlignment = .Left
         return label
         }()
     
@@ -76,8 +65,8 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 25.0)
-        label.text = "Partly Cloudy"
-        label.textAlignment = NSTextAlignment.Left
+        label.text = "- -"
+        label.textAlignment = .Left
         return label
         }()
     
@@ -92,7 +81,7 @@ class ForecastView: GradientView {
     
     lazy var activityIndicatorView : UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
-        view.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        view.activityIndicatorViewStyle = .WhiteLarge
         view.alpha = 0.85
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         return view
@@ -121,7 +110,7 @@ class ForecastView: GradientView {
     
     func configureConstraints(){
         let tempLabelXConstraint: () = NSLayoutConstraint(
-            item: self.tempLabel,
+            item: tempLabel,
             attribute: .CenterX,
             relatedBy: .Equal,
             toItem: self,
@@ -129,7 +118,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let tempLabelYConstraint: () = NSLayoutConstraint(
-            item: self.tempLabel,
+            item: tempLabel,
             attribute: .CenterY,
             relatedBy: .Equal,
             toItem: self,
@@ -137,7 +126,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let cityLabelXConstraint: () = NSLayoutConstraint(
-            item: self.cityLabel,
+            item: cityLabel,
             attribute: .CenterX,
             relatedBy: .Equal,
             toItem: self,
@@ -145,7 +134,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let cityLabelLeftConstraint: () = NSLayoutConstraint(
-            item: self.cityLabel,
+            item: cityLabel,
             attribute: .Left,
             relatedBy: .GreaterThanOrEqual,
             toItem: self,
@@ -153,7 +142,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 10).active = true
         
         let cityLabelRightConstraint: () = NSLayoutConstraint(
-            item: self.cityLabel,
+            item: cityLabel,
             attribute: .Right,
             relatedBy: .GreaterThanOrEqual,
             toItem: self,
@@ -161,7 +150,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: -10).active = true
         
         let cityLabelYConstraint: () = NSLayoutConstraint(
-            item: self.cityLabel,
+            item: cityLabel,
             attribute: .Bottom,
             relatedBy: .Equal,
             toItem: self,
@@ -170,7 +159,7 @@ class ForecastView: GradientView {
         
         
         let cityListViewButtonXConstraint: () = NSLayoutConstraint(
-            item: self.cityListViewButton,
+            item: cityListViewButton,
             attribute: .Right,
             relatedBy: .Equal,
             toItem: self,
@@ -178,7 +167,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: -30).active = true
         
         let cityListViewButtonYConstraint: () = NSLayoutConstraint(
-            item: self.cityListViewButton,
+            item: cityListViewButton,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
@@ -187,7 +176,7 @@ class ForecastView: GradientView {
         
         
         let cityListViewButtonWidthConstraint: () = NSLayoutConstraint(
-            item: self.cityListViewButton,
+            item: cityListViewButton,
             attribute: .Width,
             relatedBy: .Equal,
             toItem: nil,
@@ -197,7 +186,7 @@ class ForecastView: GradientView {
         
         
         let cityListViewButtonHeightConstraint: () = NSLayoutConstraint(
-            item: self.cityListViewButton,
+            item: cityListViewButton,
             attribute: .Height,
             relatedBy: .Equal,
             toItem: nil,
@@ -206,7 +195,7 @@ class ForecastView: GradientView {
         
         
         let summaryLabelXConstraint: () = NSLayoutConstraint(
-            item: self.summaryLabel,
+            item: summaryLabel,
             attribute: .Left,
             relatedBy: .Equal,
             toItem: self,
@@ -214,7 +203,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 30).active = true
         
         let summaryLabelYConstraint: () = NSLayoutConstraint(
-            item: self.summaryLabel,
+            item: summaryLabel,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
@@ -222,7 +211,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 70).active = true
         
         let tempMinMaxLabelXConstraint: () = NSLayoutConstraint(
-            item: self.tempMinMaxLabel,
+            item: tempMinMaxLabel,
             attribute: .Leading,
             relatedBy: .Equal,
             toItem: iconImage,
@@ -230,7 +219,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 5).active = true
         
         let tempMinMaxLabelYConstraint: () = NSLayoutConstraint(
-            item: self.tempMinMaxLabel,
+            item: tempMinMaxLabel,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
@@ -238,7 +227,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 40).active = true
         
         let iconImageXContraints: () = NSLayoutConstraint(
-            item: self.iconImage,
+            item: iconImage,
             attribute: .Left,
             relatedBy: .Equal,
             toItem: self,
@@ -246,7 +235,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 30).active = true
         
         let iconImageYContraints: () = NSLayoutConstraint(
-            item: self.iconImage,
+            item: iconImage,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
@@ -254,7 +243,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 30).active = true
         
         let iconImageWidthConstraints: () = NSLayoutConstraint(
-            item: self.iconImage,
+            item: iconImage,
             attribute: .Width,
             relatedBy: .Equal,
             toItem: nil,
@@ -262,7 +251,7 @@ class ForecastView: GradientView {
             multiplier: 1, constant: 45).active = true
         
         let iconImageHeightConstraints: () = NSLayoutConstraint(
-            item: self.iconImage,
+            item: iconImage,
             attribute: .Height,
             relatedBy: .Equal,
             toItem: nil,

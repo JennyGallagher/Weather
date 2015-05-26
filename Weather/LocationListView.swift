@@ -46,7 +46,7 @@ class LocationListView: GradientView {
     
     lazy var refreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refreshTableView:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "refreshTableView:", forControlEvents: .ValueChanged)
         return refreshControl
         
         }()
@@ -101,7 +101,7 @@ class LocationListView: GradientView {
         
         // Table view constraints.
         let tableViewTopConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,
@@ -109,7 +109,7 @@ class LocationListView: GradientView {
             multiplier: 1, constant: 2).active = true
         
         let tableViewBottomConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Bottom,
             relatedBy: .Equal,
             toItem: self,
@@ -117,7 +117,7 @@ class LocationListView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let tableViewLeftConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Left,
             relatedBy: .Equal,
             toItem: self,
@@ -125,7 +125,7 @@ class LocationListView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let tableViewRightConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Right,
             relatedBy: .Equal,
             toItem: self,

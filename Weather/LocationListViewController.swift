@@ -98,8 +98,9 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             cell.cityLabel.text = "\(location.city), \(location.state)"
             
             if indexPath.row == 0{
-            
-            cell.locationArrowImageView.image = UIImage(named: "arrow8")}
+                
+                // Current location arrow image is only applied to the first cell
+                cell.locationArrowImageView.image = UIImage(named: "arrow8")}
             
             locationController.requestWeatherDataForLocation(location, completion: { success, weather in
                 if tableView.cellForRowAtIndexPath(indexPath) == cell {
@@ -110,17 +111,14 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
                 }
             })
         }
-        
         return cell
     }
     
     
     
-    
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         
-        if indexPath.row == 0  {
-            
+        if indexPath.row == 0 {
             return false
         }
         else {
@@ -131,9 +129,9 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+        if editingStyle == .Delete {
             self.locations.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
         }
     }
     

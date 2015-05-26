@@ -16,7 +16,7 @@ class FooterView: UIView {
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.customColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 32)
         return button
         }()
@@ -27,7 +27,7 @@ class FooterView: UIView {
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("°F", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.setTitleColor(UIColor.customColor(), forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.customColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
         return button
         }()

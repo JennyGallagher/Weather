@@ -23,18 +23,18 @@ struct Location : Printable, DebugPrintable {
     var debugDescription : String {
         
         get {
-            return self.description
+            return description
         }
     }
     
     
     
-    
+    // Added to use in NSUserDefaults -  delete if not used
     func toDictionary() -> [String:AnyObject] {
         var dictionary:[String:AnyObject] = [String:AnyObject]()
         
-        dictionary["city"] = self.city ?? ""
-        dictionary["state"] = self.state ?? ""
+        dictionary["city"] = city ?? ""
+        dictionary["state"] = state ?? ""
         
         return dictionary
     }

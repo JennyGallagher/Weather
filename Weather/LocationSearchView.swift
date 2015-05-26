@@ -118,7 +118,7 @@ class LocationSearchView: GradientView {
         
         
         let tableViewTopConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: searchBar,
@@ -126,7 +126,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let tableViewBottomConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Bottom,
             relatedBy: .Equal,
             toItem: self,
@@ -134,7 +134,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let tableViewLeftConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Left,
             relatedBy: .Equal,
             toItem: self,
@@ -142,7 +142,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let tableViewRightConstraint: () = NSLayoutConstraint(
-            item: self.tableView,
+            item: tableView,
             attribute: .Right,
             relatedBy: .Equal,
             toItem: self,
@@ -150,7 +150,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         let searchBarAboveTableViewConstraint: () = NSLayoutConstraint(
-            item: self.searchBar,
+            item: searchBar,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,

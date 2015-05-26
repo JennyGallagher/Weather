@@ -26,7 +26,7 @@ enum WeatherCondition : String {
     case Unknown = "default"
     
     func icon() -> UIImage {
-        return UIImage(named: self.rawValue) ?? UIImage(named: "default")!
+        return UIImage(named: rawValue) ?? UIImage(named: "default")!
     }
 }
 

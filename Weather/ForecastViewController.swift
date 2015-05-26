@@ -58,11 +58,13 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         navigationController.setNavigationBarHidden(true, animated: false)
         self.presentViewController(navigationController, animated: true, completion: nil)
         locationListViewController.delegate = self
+        UIView.setAnimationsEnabled(true)
     }
     
     
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location) {
+       
         requestWeatherData(location)
         selectedLocation = location
         
@@ -72,7 +74,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     func requestWeatherData(location : Location){
         self.locationController.requestWeatherDataForLocation(location, completion: { (success, weather) -> Void in
             if success {
-                self.forecastView.cityLabel.text = "\(weather.currentCity!),  \(weather.currentState!)"
+                self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
                 self.forecastView.tempLabel.text = "\(weather.temperature!)°"
                 self.forecastView.iconImage.image = weather.condition!.icon()
                 self.forecastView.summaryLabel.text = weather.summary
@@ -81,7 +83,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         })
     }
     
-    // Pull to refresh weather data
+    // Pull to refresh weather data with 1.5 second delay
     func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation

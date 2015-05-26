@@ -50,7 +50,7 @@ class GradientView: UIView {
         gradientAnimation.fromValue = [0.05, 0.7]
         gradientAnimation.byValue = [0.4, 0.8]
         gradientAnimation.duration = 6.0
-        gradientAnimation.repeatCount = Float.infinity
+        gradientAnimation.repeatCount = .infinity
         gradientAnimation.autoreverses = true
         
         gradientAnimation.timingFunction = CAMediaTimingFunction(name: "easeInEaseOut")
