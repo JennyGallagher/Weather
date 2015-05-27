@@ -23,7 +23,7 @@ class GooglePlaceAPI {
     func fetchPlacesAutoComplete(input:String, completion: (([Prediction]) -> Void)) -> ()
     {
         predictions.removeAll()
-        var urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(apiKey)&input=\(input)&types=(regions)"
+        var urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(apiKey)&input=\(input)&types=(cities)"
         
         urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         

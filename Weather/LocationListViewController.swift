@@ -23,7 +23,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     let locationListView : LocationListView = {
-        let colors = UIColor.yellowToPinkColor()
+        let colors = UIColor.tealToPurple()
         let view = LocationListView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -79,7 +79,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             self.locationController.retrieveLocations({location, success in
                 if success {
                     self.locationController.requestWeatherDataForLocation(location!, completion: { success, weather in
-                        cell.cityLabel.text =  "\(location!.city), \(location!.state)"
+                        cell.cityLabel.text =  "\(location!.city)"
                         cell.iconImageView.image = weather.condition?.icon()
                         cell.tempLabel.text = "\(weather.temperature!)°"
                         cell.summaryLabel.text = weather.summary
@@ -98,7 +98,8 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             cell.summaryLabel.text = ""
             
             let location : Location = self.locations[indexPath.row]
-            cell.cityLabel.text = "\(location.city), \(location.state)"
+            
+            cell.cityLabel.text = "\(location.city)"
             
             if indexPath.row == 0{
                 

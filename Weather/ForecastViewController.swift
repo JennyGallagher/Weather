@@ -17,7 +17,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     var selectedLocation : Location? = nil
     
     let forecastView : ForecastView = {
-        let colors = UIColor.yellowToPinkColor()
+        let colors = UIColor.tealToPurple()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
