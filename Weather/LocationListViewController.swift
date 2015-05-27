@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+
+
 protocol LocationListViewControllerDelegate {
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location)
     
@@ -18,6 +20,7 @@ protocol LocationListViewControllerDelegate {
 class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationSearchViewControllerDelegate, LocationListViewDelegate  {
     
     var delegate : LocationListViewControllerDelegate? = nil
+    
     
     let locationListView : LocationListView = {
         let colors = UIColor.yellowToPinkColor()

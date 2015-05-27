@@ -37,11 +37,24 @@ class GradientView: UIView {
         gradientAnimation()
     }
     
+    // Method to ensure that animation continues when the locationListView is dismissed
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gradientAnimation()
+        })
+    }
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
     
     func gradientAnimation(){
+        let key = "gradientAnimation"
+        
+        // Remove any existing animations for this key first.
+        background.removeAnimationForKey(key)
+        
         let locations = []
         
         background.locations = locations as [AnyObject]
@@ -55,7 +68,7 @@ class GradientView: UIView {
         
         gradientAnimation.timingFunction = CAMediaTimingFunction(name: "easeInEaseOut")
         
-        background.addAnimation(gradientAnimation, forKey: nil)
+        background.addAnimation(gradientAnimation, forKey: key)
         
     }
 }

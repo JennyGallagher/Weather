@@ -13,7 +13,6 @@ import UIKit
 import CoreLocation
 
 
-//let identifier = LocationSearchTableViewCellIdentifier
 
 protocol LocationSearchViewControllerDelegate {
     func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location)
@@ -27,8 +26,6 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     var place_ids : [String] = []
     var filteredData : [String] = []
     var googlePlaceAPI = GooglePlaceAPI()
-    var selectedIndex = NSIndexPath()
-    var selected : Bool!
     
     let locations : [Location] = []
     
@@ -72,7 +69,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        selected = false
+
         self.originalData.removeAll()
         self.place_ids.removeAll()
         googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text){ predictions in
@@ -102,11 +99,9 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedIndex = indexPath
-        selected = true
         
         var locationArray :  [Location] = []
-        googlePlaceAPI.fetchPlacesDetail(place_ids[selectedIndex.row]){ place in
+        googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
             
             var locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude)
             

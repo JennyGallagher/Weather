@@ -17,6 +17,7 @@ class ForecastView: GradientView {
     let fontColor : UIColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.85)
     //    Fonts: ROBOTECH GP,  LoveloLineBold
     
+    
     lazy var cityLabel: UILabel! = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
