@@ -12,7 +12,7 @@ import CoreLocation
 
 
 protocol LocationListViewControllerDelegate {
-    func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location)
+    func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool)
     
 }
 
@@ -149,7 +149,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         
         if (locations.count != 0){
             let location : Location = self.locations[indexPath.row]
-            self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location)
+            self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location, useCelsius : useCelsius)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

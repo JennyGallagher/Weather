@@ -15,6 +15,9 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     let locationController = LocationController()
     var selectedLocation : Location? = nil
     
+    var useCelsius : Bool = false
+    var useCelsiusSelected : Bool = false
+    
     let forecastView : ForecastView = {
         let colors = UIColor.tealToPurple()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
@@ -42,7 +45,8 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         
         self.locationController.retrieveLocations({location, success in
             if success {
-                self.requestWeatherData(location!)
+                self.requestWeatherData(location!, useCelsius: self.useCelsius)
+                println("line 48 \(self.useCelsius)")
                 self.selectedLocation = location!
                 
             }
@@ -62,16 +66,17 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     
     
-    func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location) {
-       
-        requestWeatherData(location)
+    func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool) {
+        println("line 68 \(useCelsius)")
+        requestWeatherData(location, useCelsius: useCelsius)
         selectedLocation = location
+        useCelsiusSelected = useCelsius
         
     }
     
-    
-    func requestWeatherData(location : Location){
-        self.locationController.requestWeatherDataForLocation(location, useCelsius: Bool(), completion: { (success, weather) -> Void in
+
+    func requestWeatherData(location : Location, useCelsius : Bool){
+        self.locationController.requestWeatherDataForLocation(location, useCelsius: useCelsius, completion: { (success, weather) -> Void in
             if success {
                 self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
                 self.forecastView.tempLabel.text = "\(weather.temperature!)°"
@@ -86,10 +91,12 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation
+            self.useCelsius = useCelsiusSelected
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()
-                self.requestWeatherData(location!)
+                println("line 94 \(useCelsius)")
+                self.requestWeatherData(location!, useCelsius: useCelsius)
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
                     self.forecastView.activityIndicatorView.stopAnimating()
                     

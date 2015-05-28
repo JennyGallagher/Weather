@@ -11,13 +11,10 @@
 import Foundation
 import CoreLocation
 
-protocol LocationControllerDelegate {
-    func locationController(controller: LocationController, didTapUseCelsius useCelsius: Bool)
-}
+
 
 class LocationController : NSObject, CLLocationManagerDelegate {
     
-    var delegate : LocationControllerDelegate? = nil
     
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
