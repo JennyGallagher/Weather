@@ -11,7 +11,13 @@
 import Foundation
 import CoreLocation
 
+protocol LocationControllerDelegate {
+    func locationController(controller: LocationController, didTapUseCelsius useCelsius: Bool)
+}
+
 class LocationController : NSObject, CLLocationManagerDelegate {
+    
+    var delegate : LocationControllerDelegate? = nil
     
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
@@ -105,7 +111,6 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                     
                     let newLocation = Location(city: placemark!.locality as String, state: placemark!.administrativeArea as String, latitude: self.currentLocationLat, longitude: self.currentLocationLong)
                     
-                    
                     self.completionToCallWhenLocationsAreDone?(newLocation, true)
                     self.completionToCallWhenLocationsAreDone = nil
                 }
@@ -119,14 +124,31 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     
     typealias WeatherCompletionClosure = (success : Bool, weather : WeatherData) -> Void
     
-    func requestWeatherDataForLocation(location: Location, completion: WeatherCompletionClosure) {
+    func requestWeatherDataForLocation(location: Location, useCelsius: Bool, completion: WeatherCompletionClosure) {
         
         let apiKey = "81e71bbb6b05cc0f6f5fca5ac0ecdac2"
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(location.latitude),\(location.longitude)", relativeToURL: baseURL)
+        
+//        let useCelsius : Bool = true
+        
+        let urlComponents: NSURLComponents = {
+            var components = NSURLComponents()
+            components.scheme = "http"
+            components.host = "api.forecast.io"
+            components.path = "/forecast/\(apiKey)/\(location.latitude),\(location.longitude)"
+            if useCelsius {
+                components.queryItems = [NSURLQueryItem(name: "units", value: "si")]
+            }
+            return components
+            }()
+        
+       
+        let URL = urlComponents.URL
+        
+        println(URL!)
+        
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error:NSError!) -> Void in
+        let downloadTask = sharedSession.downloadTaskWithURL(URL!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error:NSError!) -> Void in
             
             if (error == nil) {
                 let dataObject = NSData(contentsOfURL: url)

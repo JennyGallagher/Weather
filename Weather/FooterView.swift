@@ -22,7 +22,7 @@ class FooterView: UIView {
         }()
     
     
-    lazy var changeUnitsButton : UIButton! = {
+    lazy var useCelsiusButton : UIButton! = {
         let button =  UIButton(frame: CGRectMake(0, 0, 40, 40))
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("°F", forState: .Normal)
@@ -35,7 +35,7 @@ class FooterView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(addLocationButton)
-        addSubview(changeUnitsButton)
+        addSubview(useCelsiusButton)
         configureConstraints()
     }
     
@@ -61,7 +61,7 @@ class FooterView: UIView {
             multiplier: 1, constant: 0).active = true
         
         let changeUnitsButtonXConstraint: () = NSLayoutConstraint(
-            item: changeUnitsButton,
+            item: useCelsiusButton,
             attribute: .Right,
             relatedBy: .Equal,
             toItem: self,
@@ -69,7 +69,7 @@ class FooterView: UIView {
             multiplier: 1, constant: -25).active = true
         
         let changeUnitsButtonYConstraint: () = NSLayoutConstraint(
-            item: changeUnitsButton,
+            item: useCelsiusButton,
             attribute: .Top,
             relatedBy: .Equal,
             toItem: self,

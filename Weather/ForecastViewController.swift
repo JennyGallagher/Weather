@@ -13,7 +13,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     
     let locationController = LocationController()
-    
     var selectedLocation : Location? = nil
     
     let forecastView : ForecastView = {
@@ -72,7 +71,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     
     func requestWeatherData(location : Location){
-        self.locationController.requestWeatherDataForLocation(location, completion: { (success, weather) -> Void in
+        self.locationController.requestWeatherDataForLocation(location, useCelsius: Bool(), completion: { (success, weather) -> Void in
             if success {
                 self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
                 self.forecastView.tempLabel.text = "\(weather.temperature!)°"

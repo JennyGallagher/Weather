@@ -13,9 +13,14 @@ protocol LocationListViewDelegate : class {
     func didTapAddLocationButtonInLocationListView(view: LocationListView)
 }
 
+protocol ChangeUnitsDelegate : class {
+    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool)
+}
+
 class LocationListView: GradientView {
     
     weak var delegate : LocationListViewDelegate?
+    weak var unitsDelegate: ChangeUnitsDelegate?
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
@@ -37,6 +42,7 @@ class LocationListView: GradientView {
         let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100.0))
         footerView.backgroundColor = UIColor.clearColor()
         footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
+        footerView.useCelsiusButton.addTarget(self, action: "useCelsiusButtonTapped:", forControlEvents: .TouchUpInside)
         tableView.tableFooterView = footerView
         
         tableView.preservesSuperviewLayoutMargins = false
@@ -138,6 +144,13 @@ class LocationListView: GradientView {
     
     func addLocationButtonTapped(sender : UIButton!){
         self.delegate?.didTapAddLocationButtonInLocationListView(self)
+    }
+    
+
+    func useCelsiusButtonTapped(sender: UIButton!){
+        var useCelsius = true
+        self.unitsDelegate?.didTapUseCelsiusButton(self, useCelsius: useCelsius)
+        
     }
     
     func refreshTableView(sender : AnyObject){

@@ -17,10 +17,12 @@ protocol LocationListViewControllerDelegate {
 }
 
 
-class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationSearchViewControllerDelegate, LocationListViewDelegate  {
+class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationSearchViewControllerDelegate, LocationListViewDelegate, ChangeUnitsDelegate  {
     
     var delegate : LocationListViewControllerDelegate? = nil
-    
+    var useCelsius : Bool = false
+    let locationController = LocationController()
+    var locations : [Location] = []
     
     let locationListView : LocationListView = {
         let colors = UIColor.tealToPurple()
@@ -28,9 +30,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         return view
         }()
     
-    let locationController = LocationController()
-    
-    var locations : [Location] = []
     
     override func loadView() {
         view = locationListView
@@ -47,6 +46,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     private func prepareViewForInitialDataLoad() {
         (view as? LocationListView)?.delegate = self
+        (view as? LocationListView)?.unitsDelegate = self
         (view as? LocationListView)?.tableView.dataSource = self
         (view as? LocationListView)?.tableView.delegate = self
         
@@ -59,6 +59,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         (view as? LocationListView)?.tableView.reloadData()
     }
     
+
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.locations.count == 0 {
@@ -74,17 +75,19 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         cell = LocationListTableViewCell()
         
+        
         if indexPath.row == 0 && self.locations.isEmpty {
             
             self.locationController.retrieveLocations({location, success in
                 if success {
-                    self.locationController.requestWeatherDataForLocation(location!, completion: { success, weather in
+                    self.locationController.requestWeatherDataForLocation(location!, useCelsius: self.useCelsius, completion: { success, weather in
                         cell.cityLabel.text =  "\(location!.city)"
                         cell.iconImageView.image = weather.condition?.icon()
                         cell.tempLabel.text = "\(weather.temperature!)°"
                         cell.summaryLabel.text = weather.summary
                         cell.locationArrowImageView.image = UIImage(named: "arrow8")
                         self.locations.append(location!)
+                        println(self.useCelsius)
                         }
                     )}
             })
@@ -106,12 +109,12 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
                 // Current location arrow image is only applied to the first cell
                 cell.locationArrowImageView.image = UIImage(named: "arrow8")}
             
-            locationController.requestWeatherDataForLocation(location, completion: { success, weather in
+            locationController.requestWeatherDataForLocation(location, useCelsius: useCelsius, completion: { success, weather in
                 if tableView.cellForRowAtIndexPath(indexPath) == cell {
                     cell.iconImageView.image = weather.condition?.icon()
                     cell.tempLabel.text = "\(weather.temperature!)°"
                     cell.summaryLabel.text = weather.summary
-                    
+                    println(self.useCelsius)
                 }
             })
         }
@@ -158,6 +161,12 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         let locationSearchViewController = LocationSearchViewController()
         locationSearchViewController.delegate = self
         self.navigationController?.pushViewController(locationSearchViewController, animated: true)
+    }
+    
+    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool) {
+        self.useCelsius = true
+        view.tableView.reloadData()
+        
     }
     
 }
