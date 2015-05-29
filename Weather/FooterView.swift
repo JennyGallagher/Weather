@@ -16,6 +16,7 @@ class FooterView: UIView {
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleEdgeInsets = UIEdgeInsets(top: 7, left: 15, bottom: 55, right: 35)
         button.setTitleColor(UIColor.customColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 32)
         return button
@@ -27,6 +28,7 @@ class FooterView: UIView {
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("°F", forState: .Normal)
         button.setTitle("°C", forState: .Selected)
+        button.titleEdgeInsets = UIEdgeInsets(top: 15, left: 40, bottom: 60, right: 20)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.customColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
@@ -51,7 +53,7 @@ class FooterView: UIView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Left,
-            multiplier: 1, constant: 25).active = true
+            multiplier: 1, constant: 0).active = true
         
         let addLocationButtonYConstraint: () = NSLayoutConstraint(
             item: addLocationButton,
@@ -61,13 +63,30 @@ class FooterView: UIView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
+        let addLocationButtonWidthConstraints: () = NSLayoutConstraint(
+            item: addLocationButton,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1, constant: 100).active = true
+        
+        let addLocationButtonHeightConstraints: () = NSLayoutConstraint(
+            item: addLocationButton,
+            attribute: .Height,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1, constant: 100).active = true
+        
+        
         let changeUnitsButtonXConstraint: () = NSLayoutConstraint(
             item: useCelsiusButton,
             attribute: .Right,
             relatedBy: .Equal,
             toItem: self,
             attribute: .Right,
-            multiplier: 1, constant: -25).active = true
+            multiplier: 1, constant: 0).active = true
         
         let changeUnitsButtonYConstraint: () = NSLayoutConstraint(
             item: useCelsiusButton,
@@ -75,7 +94,23 @@ class FooterView: UIView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 4).active = true
+            multiplier: 1, constant: -0).active = true
+        
+        let changeUnitsButtonWidthConstraints: () = NSLayoutConstraint(
+            item: useCelsiusButton,
+            attribute: .Width,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1, constant: 100).active = true
+        
+        let changeUnitsButtonHeightConstraints: () = NSLayoutConstraint(
+            item: useCelsiusButton,
+            attribute: .Height,
+            relatedBy: .Equal,
+            toItem: nil,
+            attribute: .NotAnAttribute,
+            multiplier: 1, constant: 100).active = true
         
         
     }

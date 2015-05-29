@@ -25,7 +25,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     var locations : [Location] = []
     
     let locationListView : LocationListView = {
-        let colors = UIColor.tealToPurple()
+        let colors = UIColor.pinkToPurle()
         let view = LocationListView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()

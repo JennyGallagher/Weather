@@ -19,7 +19,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     var useCelsiusSelected : Bool = false
     
     let forecastView : ForecastView = {
-        let colors = UIColor.tealToPurple()
+        let colors = UIColor.pinkToPurle()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()

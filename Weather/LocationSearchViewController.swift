@@ -31,7 +31,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     
     let locationSearchView : LocationSearchView = {
-        let colors = UIColor.miamiViceColors()
+        let colors = UIColor.pinkToPurle()
         let view = LocationSearchView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()

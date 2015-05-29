@@ -35,7 +35,6 @@ class LocationListView: GradientView {
         tableView.rowHeight = 75
         tableView.estimatedRowHeight = 75
         tableView.layoutMargins = UIEdgeInsetsZero
-        
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         tableView.backgroundColor = UIColor.clearColor()
         

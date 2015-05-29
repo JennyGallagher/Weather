@@ -63,6 +63,7 @@ class LocationListTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         separatorInset = UIEdgeInsetsZero
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
