@@ -34,6 +34,7 @@ class ForecastView: GradientView {
     lazy var cityListViewButton: UIButton! = {
         let image = UIImage(named: "List Filled-64")
         let button = UIButton()
+        button.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setImage(image, forState: .Normal)
         return button
@@ -165,7 +166,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Right,
-            multiplier: 1, constant: -30).active = true
+            multiplier: 1, constant: 0).active = true
         
         let cityListViewButtonYConstraint: () = NSLayoutConstraint(
             item: cityListViewButton,
@@ -173,7 +174,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 30).active = true
+            multiplier: 1, constant: 0).active = true
         
         
         let cityListViewButtonWidthConstraint: () = NSLayoutConstraint(
@@ -182,7 +183,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 25).active = true
+            multiplier: 1, constant: 100).active = true
         
         
         
@@ -192,7 +193,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 25).active = true
+            multiplier: 1, constant: 100).active = true
         
         
         let summaryLabelXConstraint: () = NSLayoutConstraint(
@@ -209,7 +210,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 70).active = true
+            multiplier: 1, constant: 90).active = true
         
         let tempMinMaxLabelXConstraint: () = NSLayoutConstraint(
             item: tempMinMaxLabel,
@@ -225,7 +226,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 40).active = true
+            multiplier: 1, constant: 60).active = true
         
         let iconImageXContraints: () = NSLayoutConstraint(
             item: iconImage,
@@ -241,7 +242,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 30).active = true
+            multiplier: 1, constant: 25).active = true
         
         let iconImageWidthConstraints: () = NSLayoutConstraint(
             item: iconImage,
@@ -249,7 +250,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 45).active = true
+            multiplier: 1, constant: 65).active = true
         
         let iconImageHeightConstraints: () = NSLayoutConstraint(
             item: iconImage,
@@ -257,7 +258,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 45).active = true
+            multiplier: 1, constant: 65).active = true
         
         let activityIndicatorViewXConstraints: () = NSLayoutConstraint(
             item: activityIndicatorView,
@@ -273,7 +274,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .CenterY,
-            multiplier: 1, constant: -90).active = true
+            multiplier: 1, constant: -100).active = true
 
 
     }

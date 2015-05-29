@@ -110,14 +110,6 @@ class LocationListTableViewCell: UITableViewCell {
             toItem: contentView,
             attribute: .Top,
             multiplier: 1, constant: 14).active = true
-
-        let cityLabelBottomConstraint: () = NSLayoutConstraint(
-            item: cityLabel,
-            attribute: .Bottom,
-            relatedBy: .GreaterThanOrEqual,
-            toItem: summaryLabel,
-            attribute: .Top,
-            multiplier: 1, constant: 5).active = true
         
         // summaryLabel constraints
         let summaryLabelXConstraint: () = NSLayoutConstraint(
@@ -237,8 +229,7 @@ class LocationSearchTableViewCell : UITableViewCell {
         preservesSuperviewLayoutMargins = false
         backgroundColor = UIColor.clearColor()
         textLabel?.textColor = UIColor.customColor()
-        selectionStyle = .None
-        
+               
     }
 
     required init(coder aDecoder: NSCoder) {
