@@ -141,8 +141,6 @@ class LocationController : NSObject, CLLocationManagerDelegate {
        
         let URL = urlComponents.URL
         
-        println(URL!)
-        
         let sharedSession = NSURLSession.sharedSession()
         
         let downloadTask = sharedSession.downloadTaskWithURL(URL!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error:NSError!) -> Void in

@@ -14,7 +14,7 @@ protocol LocationListViewDelegate : class {
 }
 
 protocol ChangeUnitsDelegate : class {
-    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool)
+    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool, useCelsiusButtonSelected : Bool)
 }
 
 class LocationListView: GradientView {
@@ -138,24 +138,26 @@ class LocationListView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: 0).active = true
         
-
-        
     }
     
     func addLocationButtonTapped(sender : UIButton!){
         self.delegate?.didTapAddLocationButtonInLocationListView(self)
     }
     
-
+    
     func useCelsiusButtonTapped(sender: UIButton!){
-        var useCelsius = true
-        self.unitsDelegate?.didTapUseCelsiusButton(self, useCelsius: useCelsius)
+        sender.selected = !sender.selected
+        var useCelsiusButtonSelected = sender.selected
+        self.unitsDelegate?.didTapUseCelsiusButton(self, useCelsius: Bool(), useCelsiusButtonSelected: useCelsiusButtonSelected)
         
     }
     
+    
     func refreshTableView(sender : AnyObject){
-        tableView.reloadData()
-        refreshControl.endRefreshing()
+        dispatch_async(dispatch_get_main_queue(), { ()
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        })
     }
 }
 

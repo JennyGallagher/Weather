@@ -26,6 +26,7 @@ class FooterView: UIView {
         let button =  UIButton(frame: CGRectMake(0, 0, 40, 40))
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("°F", forState: .Normal)
+        button.setTitle("°C", forState: .Selected)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.customColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)

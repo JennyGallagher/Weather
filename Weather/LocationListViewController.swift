@@ -59,7 +59,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         (view as? LocationListView)?.tableView.reloadData()
     }
     
-
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.locations.count == 0 {
@@ -87,7 +87,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
                         cell.summaryLabel.text = weather.summary
                         cell.locationArrowImageView.image = UIImage(named: "arrow8")
                         self.locations.append(location!)
-                        println(self.useCelsius)
                         }
                     )}
             })
@@ -114,7 +113,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
                     cell.iconImageView.image = weather.condition?.icon()
                     cell.tempLabel.text = "\(weather.temperature!)°"
                     cell.summaryLabel.text = weather.summary
-                    println(self.useCelsius)
                 }
             })
         }
@@ -163,10 +161,17 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         self.navigationController?.pushViewController(locationSearchViewController, animated: true)
     }
     
-    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool) {
-        self.useCelsius = true
-        view.tableView.reloadData()
-        
+    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool, useCelsiusButtonSelected: Bool) {
+        var useCelsiusButtonSelected = useCelsiusButtonSelected
+        dispatch_async(dispatch_get_main_queue(), { ()
+            if useCelsiusButtonSelected == true {
+                self.useCelsius = true
+            }
+            else{
+                self.useCelsius = false
+            }
+            view.tableView.reloadData()
+        })
     }
     
 }

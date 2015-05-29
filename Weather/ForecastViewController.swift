@@ -46,7 +46,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         self.locationController.retrieveLocations({location, success in
             if success {
                 self.requestWeatherData(location!, useCelsius: self.useCelsius)
-                println("line 48 \(self.useCelsius)")
                 self.selectedLocation = location!
                 
             }
@@ -67,7 +66,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool) {
-        println("line 68 \(useCelsius)")
         requestWeatherData(location, useCelsius: useCelsius)
         selectedLocation = location
         useCelsiusSelected = useCelsius
@@ -95,7 +93,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()
-                println("line 94 \(useCelsius)")
                 self.requestWeatherData(location!, useCelsius: useCelsius)
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
                     self.forecastView.activityIndicatorView.stopAnimating()
