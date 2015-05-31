@@ -18,14 +18,11 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     var useCelsius : Bool = false
     var useCelsiusSelected : Bool = false
     
-    var weatherData : WeatherData?
-    
     let forecastView : ForecastView = {
         let colors = UIColor.yellowToPinkColor()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
-    
     
     
     override func loadView() {

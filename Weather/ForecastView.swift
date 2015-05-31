@@ -23,9 +23,7 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 30.0)
-        label.text = "- -"
         label.textAlignment = .Center
-//        label.userInteractionEnabled = false
         label.lineBreakMode = .ByWordWrapping
         label.numberOfLines = 0
         return label
@@ -48,7 +46,6 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 130.0)
-        label.text = "- -"
         label.textAlignment = .Center
         return label
         }()
@@ -69,7 +66,6 @@ class ForecastView: GradientView {
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
         label.font = UIFont(name: "Avenir-Black", size: 25.0)
-        label.text = "- -"
         label.textAlignment = .Left
         return label
         }()

@@ -10,7 +10,6 @@
 		1C032A611ABCC1750015A78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A601ABCC1750015A78F /* AppDelegate.swift */; };
 		1C032A631ABCC1750015A78F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A621ABCC1750015A78F /* ViewController.swift */; };
 		1C032A681ABCC1750015A78F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C032A671ABCC1750015A78F /* Images.xcassets */; };
-		1C032A6B1ABCC1750015A78F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C032A691ABCC1750015A78F /* LaunchScreen.xib */; };
 		1C032A771ABCC1750015A78F /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A761ABCC1750015A78F /* WeatherTests.swift */; };
 		1C032A811AC25FFF0015A78F /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A801AC25FFF0015A78F /* ForecastViewController.swift */; };
 		1C032A831AC262230015A78F /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A821AC262230015A78F /* LocationController.swift */; };
@@ -52,7 +51,6 @@
 		1C032A601ABCC1750015A78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C032A621ABCC1750015A78F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1C032A671ABCC1750015A78F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1C032A6A1ABCC1750015A78F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1C032A701ABCC1750015A78F /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C032A751ABCC1750015A78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C032A761ABCC1750015A78F /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				1C5821881AD0AF1A00116D82 /* Views */,
 				1C032A601ABCC1750015A78F /* AppDelegate.swift */,
 				1C032A671ABCC1750015A78F /* Images.xcassets */,
-				1C032A691ABCC1750015A78F /* LaunchScreen.xib */,
 				1C032A5E1ABCC1750015A78F /* Supporting Files */,
 				1C032A621ABCC1750015A78F /* ViewController.swift */,
 			);
@@ -325,7 +322,6 @@
 				1CEB954A1AE6FB600083705F /* Lovelo Line Bold.otf in Resources */,
 				1CEB95481AE6FB370083705F /* ROBOTECH GP.ttf in Resources */,
 				1CEB95461AE6F9BE0083705F /* flat-ui-icons-regular.ttf in Resources */,
-				1C032A6B1ABCC1750015A78F /* LaunchScreen.xib in Resources */,
 				1C032A681ABCC1750015A78F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,17 +379,6 @@
 			targetProxy = 1C032A711ABCC1750015A78F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1C032A691ABCC1750015A78F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1C032A6A1ABCC1750015A78F /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1C032A781ABCC1750015A78F /* Debug */ = {
@@ -481,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Weather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -494,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Weather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
