@@ -14,13 +14,13 @@ import CoreLocation
 
 
 
-protocol LocationSearchViewControllerDelegate {
+protocol LocationSearchViewControllerDelegate : class {
     func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location)
 }
 
 class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
-    var delegate : LocationSearchViewControllerDelegate? = nil
+    weak var delegate : LocationSearchViewControllerDelegate? = nil
     
     var originalData : [String] = []
     var place_ids : [String] = []
@@ -31,7 +31,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     
     let locationSearchView : LocationSearchView = {
-        let colors = UIColor.pinkToPurle()
+        let colors = UIColor.yellowToPinkColor()
         let view = LocationSearchView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -103,7 +103,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         var locationArray :  [Location] = []
         googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
             
-            var locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude)
+            var locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude, representsCurrentLocation: false)
             
             println("saved location \(locationFromAddressSearch)")
             

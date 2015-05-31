@@ -11,16 +11,13 @@ import UIKit
 /// Protocol containing the method signatures for the LocationListViewDelegate.
 protocol LocationListViewDelegate : class {
     func didTapAddLocationButtonInLocationListView(view: LocationListView)
-}
-
-protocol ChangeUnitsDelegate : class {
-    func didTapUseCelsiusButton(view: LocationListView, useCelsius: Bool, useCelsiusButtonSelected : Bool)
+    func didRequestWeatherRefreshInLocationListView(view: LocationListView)
+    func didTapUseCelsiusButtonInLocationListView(view: LocationListView, useCelsiusButtonSelected : Bool)
 }
 
 class LocationListView: GradientView {
     
     weak var delegate : LocationListViewDelegate?
-    weak var unitsDelegate: ChangeUnitsDelegate?
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
@@ -147,15 +144,13 @@ class LocationListView: GradientView {
     func useCelsiusButtonTapped(sender: UIButton!){
         sender.selected = !sender.selected
         var useCelsiusButtonSelected = sender.selected
-        self.unitsDelegate?.didTapUseCelsiusButton(self, useCelsius: Bool(), useCelsiusButtonSelected: useCelsiusButtonSelected)
-        
+        self.delegate?.didTapUseCelsiusButtonInLocationListView(self, useCelsiusButtonSelected: useCelsiusButtonSelected)
     }
     
     
     func refreshTableView(sender : AnyObject){
         dispatch_async(dispatch_get_main_queue(), { ()
-            self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
+            self.delegate?.didRequestWeatherRefreshInLocationListView(self)
         })
     }
 }

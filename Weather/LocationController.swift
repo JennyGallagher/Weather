@@ -106,7 +106,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                     
                     let placemark = placemarks.last as? CLPlacemark
                     
-                    let newLocation = Location(city: placemark!.locality as String, state: placemark!.administrativeArea as String, latitude: self.currentLocationLat, longitude: self.currentLocationLong)
+                    let newLocation = Location(city: placemark!.locality as String, state: placemark!.administrativeArea as String, latitude: self.currentLocationLat, longitude: self.currentLocationLong, representsCurrentLocation: true)
                     
                     self.completionToCallWhenLocationsAreDone?(newLocation, true)
                     self.completionToCallWhenLocationsAreDone = nil

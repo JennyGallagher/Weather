@@ -19,7 +19,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     var useCelsiusSelected : Bool = false
     
     let forecastView : ForecastView = {
-        let colors = UIColor.pinkToPurle()
+        let colors = UIColor.yellowToPinkColor()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
         }()
@@ -56,10 +56,11 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
 
     func cityListViewButtonTouched(sender: UIButton!) {
         let locationListViewController = LocationListViewController()
+        locationListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: locationListViewController)
         navigationController.setNavigationBarHidden(true, animated: false)
         self.presentViewController(navigationController, animated: true, completion: nil)
-        locationListViewController.delegate = self
+        
         
     }
     

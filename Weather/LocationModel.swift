@@ -13,6 +13,7 @@ struct Location : Printable, DebugPrintable {
     var state : String = ""
     var latitude : Double = 0
     var longitude : Double = 0
+    var representsCurrentLocation : Bool = false
     
     var description : String {
         get {

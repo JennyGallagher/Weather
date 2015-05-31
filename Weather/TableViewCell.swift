@@ -54,6 +54,8 @@ class LocationListTableViewCell: UITableViewCell {
         icon.alpha = 0.45
         icon.contentMode = .ScaleAspectFit
         icon.setTranslatesAutoresizingMaskIntoConstraints(false)
+        icon.image = UIImage(named: "arrow8")
+        icon.hidden = true
         return icon
         }()
     
