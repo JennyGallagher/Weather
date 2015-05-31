@@ -73,7 +73,7 @@ class LocationSearchView: GradientView {
         addSubview(blurView)
         addSubview(tableView)
         addSubview(searchBar)
-        tableView.addSubview(googleLogo)
+        addSubview(googleLogo)
         configureConstraints()
     }
     
@@ -125,13 +125,14 @@ class LocationSearchView: GradientView {
             attribute: .Bottom,
             multiplier: 1, constant: 0).active = true
         
+        // Keeps the tableview from overlapping with the Google logo
         let tableViewBottomConstraint: () = NSLayoutConstraint(
             item: tableView,
             attribute: .Bottom,
             relatedBy: .Equal,
             toItem: self,
             attribute: .Bottom,
-            multiplier: 1, constant: 0).active = true
+            multiplier: 1, constant: -250).active = true
         
         let tableViewLeftConstraint: () = NSLayoutConstraint(
             item: tableView,
@@ -165,6 +166,7 @@ class LocationSearchView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: -5).active = true
         
+        // Moves the logo above the top of keyboard
         let googleLogoYConstraint: () = NSLayoutConstraint(
             item: googleLogo,
             attribute: .Bottom,
