@@ -18,6 +18,8 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     var useCelsius : Bool = false
     var useCelsiusSelected : Bool = false
     
+    var weatherData : WeatherData?
+    
     let forecastView : ForecastView = {
         let colors = UIColor.yellowToPinkColor()
         let view = ForecastView(topColor: colors.topColor, bottomColor: colors.bottomColor)
@@ -28,14 +30,13 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     override func loadView() {
         view = forecastView
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        // Pull to refresh weather data 
+        // Pull to refresh weather data
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipeDown)
@@ -47,21 +48,18 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
             if success {
                 self.requestWeatherData(location!, useCelsius: self.useCelsius)
                 self.selectedLocation = location!
-                
             }
         })
         
     }
     
-
+    
     func cityListViewButtonTouched(sender: UIButton!) {
         let locationListViewController = LocationListViewController()
         locationListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: locationListViewController)
         navigationController.setNavigationBarHidden(true, animated: false)
         self.presentViewController(navigationController, animated: true, completion: nil)
-        
-        
     }
     
     
@@ -70,10 +68,9 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         requestWeatherData(location, useCelsius: useCelsius)
         selectedLocation = location
         useCelsiusSelected = useCelsius
-        
     }
     
-
+    
     func requestWeatherData(location : Location, useCelsius : Bool){
         self.locationController.requestWeatherDataForLocation(location, useCelsius: useCelsius, completion: { (success, weather) -> Void in
             if success {
@@ -94,14 +91,19 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
             var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()
+                self.forecastView.tempLabel.text = nil
+                self.forecastView.summaryLabel.text = nil
+                self.forecastView.iconImage.image = nil
+                self.forecastView.tempMinMaxLabel.text = nil
+                
                 self.requestWeatherData(location!, useCelsius: useCelsius)
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
                     self.forecastView.activityIndicatorView.stopAnimating()
-                    
                 })
                 
             }}
     }
+    
 }
 
 
