@@ -43,7 +43,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     private func retrieveCurrentLocation() {
-        self.locationController.retrieveLocations({location, success in
+        locationController.retrieveLocations({location, success in
             if success {
                 if let location = location {
                     self.locationAndWeatherPairs.insert((location, nil), atIndex: 0)
@@ -146,8 +146,8 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (locationAndWeatherPairs.count != 0){
             let location : Location = locationAndWeatherPairs[indexPath.row].location
-            self.delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location, useCelsius : useCelsius)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            delegate?.didSelectLocationInLocationListViewController(self, didSelectLocation: location, useCelsius : useCelsius)
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     

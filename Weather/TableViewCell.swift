@@ -18,7 +18,7 @@ class LocationListTableViewCell: UITableViewCell {
     lazy var cityLabel: UILabel! = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.textColor = .customColor()
+        label.textColor = .fontColor()
         label.font = UIFont(name: "Avenir-Black", size: 20.0)
         label.lineBreakMode = .ByTruncatingTail
         label.numberOfLines = 1
@@ -28,7 +28,7 @@ class LocationListTableViewCell: UITableViewCell {
     lazy var summaryLabel: UILabel! = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.textColor = .customColor()
+        label.textColor = .fontColor()
         label.font = UIFont(name: "Avenir-Black", size: 13)
         return label
         }()
@@ -36,7 +36,7 @@ class LocationListTableViewCell: UITableViewCell {
     lazy var tempLabel: UILabel! = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
-        label.textColor = .customColor()
+        label.textColor = .fontColor()
         label.font = UIFont(name: "Avenir-Black", size: 45)
         label.textAlignment = .Right
         return label
@@ -66,7 +66,8 @@ class LocationListTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        separatorInset = UIEdgeInsetsZero
+//        separatorInset = UIEdgeInsetsZero
+        separatorInset.right = separatorInset.left
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false
@@ -226,12 +227,13 @@ class LocationSearchTableViewCell : UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        separatorInset = UIEdgeInsetsZero
+//        separatorInset = UIEdgeInsetsZero
+        separatorInset.right = separatorInset.left
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false
         backgroundColor = UIColor.clearColor()
-        textLabel?.textColor = UIColor.customColor()
+        textLabel?.textColor = UIColor.fontColor()
                
     }
 

@@ -35,8 +35,8 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         
         // Pull to refresh weather data
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
-        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
-        self.view.addGestureRecognizer(swipeDown)
+        swipeDown.direction = .Down
+        view.addGestureRecognizer(swipeDown)
         
         
         self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
@@ -56,7 +56,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         locationListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: locationListViewController)
         navigationController.setNavigationBarHidden(true, animated: false)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        presentViewController(navigationController, animated: true, completion: nil)
     }
     
     

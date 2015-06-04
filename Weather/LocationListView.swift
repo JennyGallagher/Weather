@@ -35,11 +35,13 @@ class LocationListView: GradientView {
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         tableView.backgroundColor = UIColor.clearColor()
         
+        
         let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100.0))
         footerView.backgroundColor = UIColor.clearColor()
         footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
         footerView.useCelsiusButton.addTarget(self, action: "useCelsiusButtonTapped:", forControlEvents: .TouchUpInside)
         tableView.tableFooterView = footerView
+        
         
         tableView.preservesSuperviewLayoutMargins = false
         return tableView
@@ -137,14 +139,14 @@ class LocationListView: GradientView {
     }
     
     func addLocationButtonTapped(sender : UIButton!){
-        self.delegate?.didTapAddLocationButtonInLocationListView(self)
+        delegate?.didTapAddLocationButtonInLocationListView(self)
     }
     
     
     func useCelsiusButtonTapped(sender: UIButton!){
         sender.selected = !sender.selected
         var useCelsiusButtonSelected = sender.selected
-        self.delegate?.didTapUseCelsiusButtonInLocationListView(self, useCelsiusButtonSelected: useCelsiusButtonSelected)
+        delegate?.didTapUseCelsiusButtonInLocationListView(self, useCelsiusButtonSelected: useCelsiusButtonSelected)
     }
     
     

@@ -35,15 +35,15 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     
     func retrieveLocations(completion: (Location?, Bool) -> Void) {
         
-        self.locationManager.delegate = self
-        self.locationManager.distanceFilter = 500
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.delegate = self
+        locationManager.distanceFilter = 500
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
-            self.locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
         }
         else {
-            self.locationManager.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
         
         completionToCallWhenLocationsAreDone = completion
@@ -59,7 +59,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
             println("Authorized")
         case .AuthorizedWhenInUse:
             println("Authorized when in use")
-            self.locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocation()
         case .Denied:
             println("Denied")
         case .NotDetermined:
@@ -92,7 +92,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         currentLocationLongString = currentLocationCoordinates.longitude.description
         
         
-        self.locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let error = error {

@@ -47,13 +47,13 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         
         locationSearchView.searchBar.delegate = self
         
-        (view as? LocationSearchView)?.tableView.reloadData()
+        locationSearchView.tableView.reloadData()
     }
     
     
     private func prepareViewForInitialDataLoad() {
-        (view as? LocationSearchView)?.tableView.dataSource = self
-        (view as? LocationSearchView)?.tableView.delegate = self
+        locationSearchView.tableView.dataSource = self
+        locationSearchView.tableView.delegate = self
         
     }
     
@@ -64,14 +64,14 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filteredData.count
+        return filteredData.count
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
 
-        self.originalData.removeAll()
-        self.place_ids.removeAll()
+        originalData.removeAll()
+        place_ids.removeAll()
         googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text){ predictions in
             for prediction: Prediction in predictions {
                 

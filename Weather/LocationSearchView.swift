@@ -47,7 +47,7 @@ class LocationSearchView: GradientView {
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
         searchBar.searchBarStyle = .Minimal
-        searchBar.placeholder = "Add a City, State or Zip Code"
+        searchBar.placeholder = "Add a city"
         searchBar.showsCancelButton = true
         searchBar.autocapitalizationType = .Words
         searchBar.returnKeyType = .Search
