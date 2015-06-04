@@ -110,7 +110,7 @@ class FooterView: UIView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: -0).active = true
+            multiplier: 1, constant: 0).active = true
         
         let changeUnitsButtonWidthConstraints: () = NSLayoutConstraint(
             item: useCelsiusButton,
@@ -147,8 +147,8 @@ class FooterView: UIView {
         let vibrancyViewWidthConstraints: () = NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Width,
-            relatedBy: .LessThanOrEqual,
-            toItem: self,
+            relatedBy: .GreaterThanOrEqual,
+            toItem: lastLineSeparator,
             attribute: .Width,
             multiplier: 1, constant: -30).active = true
         
@@ -163,7 +163,7 @@ class FooterView: UIView {
         let vibrancyViewRightConstraint: () = NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Right,
-            relatedBy: .Equal,
+            relatedBy: .GreaterThanOrEqual,
             toItem: self,
             attribute: .Right,
             multiplier: 1, constant: -15).active = true
@@ -171,7 +171,7 @@ class FooterView: UIView {
         let vibrancyViewLeftConstraint: () = NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Left,
-            relatedBy: .Equal,
+            relatedBy: .GreaterThanOrEqual,
             toItem: self,
             attribute: .Left,
             multiplier: 1, constant: 15).active = true
