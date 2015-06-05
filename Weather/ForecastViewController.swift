@@ -71,11 +71,18 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     func requestWeatherData(location : Location, useCelsius : Bool){
         self.locationController.requestWeatherDataForLocation(location, useCelsius: useCelsius, completion: { (success, weather) -> Void in
             if success {
-                self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
                 self.forecastView.tempLabel.text = "\(weather.temperature!)°"
                 self.forecastView.iconImage.image = weather.condition!.icon()
                 self.forecastView.summaryLabel.text = weather.summary
                 self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
+                
+                if weather.currentState!.isEmpty {
+                    self.forecastView.cityLabel.text = weather.currentCity
+                }
+                else{
+                    self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
+                }
+                
             }
         })
     }
