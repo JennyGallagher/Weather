@@ -22,7 +22,7 @@ class ForecastView: GradientView {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
-        label.font = UIFont(name: "Avenir-Black", size: 30.0)
+        label.font = UIFont(name: "Avenir-Black", size: 32.0)
         label.textAlignment = .Center
         label.lineBreakMode = .ByWordWrapping
         label.numberOfLines = 0
@@ -55,7 +55,7 @@ class ForecastView: GradientView {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
-        label.font = UIFont(name: "Avenir-Black", size: 20.0)
+        label.font = UIFont(name: "Avenir-Black", size: 18.0)
         label.textAlignment = .Left
         return label
         }()
@@ -65,7 +65,7 @@ class ForecastView: GradientView {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = self.fontColor
-        label.font = UIFont(name: "Avenir-Black", size: 25.0)
+        label.font = UIFont(name: "Avenir-Black", size: 21.0)
         label.textAlignment = .Left
         return label
         }()
@@ -92,6 +92,8 @@ class ForecastView: GradientView {
     override init(topColor: UIColor, bottomColor: UIColor) {
         
         super.init(topColor: topColor, bottomColor: bottomColor)
+        
+        
         addSubview(cityLabel)
         addSubview(tempLabel)
         addSubview(tempMinMaxLabel)
@@ -107,6 +109,7 @@ class ForecastView: GradientView {
         fatalError("init(coder:) has not been implemented")
         
     }
+
     
     func configureConstraints(){
         let tempLabelXConstraint: () = NSLayoutConstraint(
@@ -155,7 +158,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Bottom,
-            multiplier: 1, constant: -30).active = true
+            multiplier: 1, constant: -25).active = true
         
         
         let cityListViewButtonXConstraint: () = NSLayoutConstraint(
@@ -208,7 +211,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 90).active = true
+            multiplier: 1, constant: 77).active = true
         
         let tempMinMaxLabelXConstraint: () = NSLayoutConstraint(
             item: tempMinMaxLabel,
@@ -216,7 +219,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: iconImage,
             attribute: .Trailing,
-            multiplier: 1, constant: 5).active = true
+            multiplier: 1, constant: 10).active = true
         
         let tempMinMaxLabelYConstraint: () = NSLayoutConstraint(
             item: tempMinMaxLabel,
@@ -224,7 +227,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 60).active = true
+            multiplier: 1, constant: 50).active = true
         
         let iconImageXContraints: () = NSLayoutConstraint(
             item: iconImage,
@@ -232,7 +235,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Left,
-            multiplier: 1, constant: 30).active = true
+            multiplier: 1, constant: 25).active = true
         
         let iconImageYContraints: () = NSLayoutConstraint(
             item: iconImage,
@@ -248,7 +251,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 65).active = true
+            multiplier: 1, constant: 55).active = true
         
         let iconImageHeightConstraints: () = NSLayoutConstraint(
             item: iconImage,
@@ -256,7 +259,7 @@ class ForecastView: GradientView {
             relatedBy: .Equal,
             toItem: nil,
             attribute: .NotAnAttribute,
-            multiplier: 1, constant: 65).active = true
+            multiplier: 1, constant: 55).active = true
         
         let activityIndicatorViewXConstraints: () = NSLayoutConstraint(
             item: activityIndicatorView,

@@ -48,14 +48,18 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
             }
         })
         
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshWhenBecomesActive:", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
+   
     
     func cityListViewButtonTouched(sender: UIButton!) {
         let locationListViewController = LocationListViewController()
         locationListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: locationListViewController)
         navigationController.setNavigationBarHidden(true, animated: false)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
@@ -67,6 +71,26 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         useCelsiusSelected = useCelsius
     }
     
+    // Weather details refresh when app returns to foreground
+    func refreshWhenBecomesActive(note: NSNotification){
+        let location = selectedLocation
+        useCelsius = useCelsiusSelected
+        if location != nil{
+            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+            if location != nil{
+                self.forecastView.activityIndicatorView.startAnimating()
+                self.forecastView.tempLabel.text = nil
+                self.forecastView.summaryLabel.text = nil
+                self.forecastView.iconImage.image = nil
+                self.forecastView.tempMinMaxLabel.text = nil
+                
+                self.requestWeatherData(location!, useCelsius: useCelsius)
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
+                    self.forecastView.activityIndicatorView.stopAnimating()
+                })
+            }
+        }
+    }
     
     func requestWeatherData(location : Location, useCelsius : Bool){
         self.locationController.requestWeatherDataForLocation(location, useCelsius: useCelsius, completion: { (success, weather) -> Void in
@@ -82,11 +106,11 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 else{
                     self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
                 }
-                
             }
         })
     }
     
+   
     // Pull to refresh weather data with 1.5 second delay
     func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
@@ -104,10 +128,9 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
                     self.forecastView.activityIndicatorView.stopAnimating()
                 })
-                
-            }}
+            }
+        }
     }
-    
 }
 
 

@@ -51,7 +51,6 @@ class LocationListTableViewCell: UITableViewCell {
     
     lazy var locationArrowImageView: UIImageView = {
         let icon = UIImageView()
-//        icon.alpha = 1
         icon.contentMode = .ScaleAspectFit
         icon.setTranslatesAutoresizingMaskIntoConstraints(false)
         icon.image = UIImage(named: "LocationArrow")
@@ -229,6 +228,7 @@ class LocationSearchTableViewCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 //        separatorInset = UIEdgeInsetsZero
         separatorInset.right = separatorInset.left
+        textLabel?.font = UIFont(name: "Avenir-Heavy", size: 19)
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false

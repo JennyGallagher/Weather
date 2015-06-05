@@ -50,6 +50,7 @@ class LocationListView: GradientView {
     
     lazy var refreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.fontColor()
         refreshControl.addTarget(self, action: "refreshTableView:", forControlEvents: .ValueChanged)
         return refreshControl
         
@@ -110,7 +111,7 @@ class LocationListView: GradientView {
             relatedBy: .Equal,
             toItem: self,
             attribute: .Top,
-            multiplier: 1, constant: 2).active = true
+            multiplier: 1, constant: 0).active = true
         
         let tableViewBottomConstraint: () = NSLayoutConstraint(
             item: tableView,
