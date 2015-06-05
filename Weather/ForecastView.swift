@@ -33,7 +33,7 @@ class ForecastView: GradientView {
         let image = UIImage(named: "List Filled-64")
         let button = UIButton()
         button.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
-        button.alpha = 0.85
+        button.alpha = 0.65
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.adjustsImageWhenHighlighted = false
         button.setImage(image, forState: .Normal)

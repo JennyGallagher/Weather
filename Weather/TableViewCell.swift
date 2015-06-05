@@ -51,10 +51,10 @@ class LocationListTableViewCell: UITableViewCell {
     
     lazy var locationArrowImageView: UIImageView = {
         let icon = UIImageView()
-        icon.alpha = 0.45
+//        icon.alpha = 1
         icon.contentMode = .ScaleAspectFit
         icon.setTranslatesAutoresizingMaskIntoConstraints(false)
-        icon.image = UIImage(named: "arrow8")
+        icon.image = UIImage(named: "LocationArrow")
         icon.hidden = true
         return icon
         }()

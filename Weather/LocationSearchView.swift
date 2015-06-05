@@ -51,8 +51,10 @@ class LocationSearchView: GradientView {
         searchBar.showsCancelButton = true
         searchBar.autocapitalizationType = .Words
         searchBar.returnKeyType = .Search
-        searchBar.tintColor = .customColor()
+//        searchBar.backgroundColor = .clearColor()
+        searchBar.barTintColor = .whiteColor()
         searchBar.becomeFirstResponder()
+        
         
         
         // Customizing searchbar text color
@@ -64,7 +66,9 @@ class LocationSearchView: GradientView {
                 }
             }
         }
-        textFieldInsideSearchBar?.textColor = .customColor()
+        textFieldInsideSearchBar?.textColor = .whiteColor()
+        textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(string: "Add a city", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
         return searchBar
         }()
     
