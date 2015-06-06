@@ -12,6 +12,8 @@ let LocationListTableViewCellIdentifier = "LocationListTableViewCellIdentifier"
 let LocationSearchTableViewCellIdentifier = "LocationSearchTableViewCellIdentifier"
 
 
+let fontName = "Avenir-Black"
+
 class LocationListTableViewCell: UITableViewCell {
     
     
@@ -19,7 +21,7 @@ class LocationListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .fontColor()
-        label.font = UIFont(name: "Avenir-Black", size: 20.0)
+        label.font = UIFont(name: fontName, size: 20.0)
         label.lineBreakMode = .ByTruncatingTail
         label.numberOfLines = 1
         return label
@@ -29,7 +31,7 @@ class LocationListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .fontColor()
-        label.font = UIFont(name: "Avenir-Black", size: 13)
+        label.font = UIFont(name: fontName, size: 13)
         return label
         }()
     
@@ -37,7 +39,7 @@ class LocationListTableViewCell: UITableViewCell {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
         label.textColor = .fontColor()
-        label.font = UIFont(name: "Avenir-Black", size: 45)
+        label.font = UIFont(name: fontName, size: 45)
         label.textAlignment = .Right
         return label
         }()
@@ -183,8 +185,6 @@ class LocationListTableViewCell: UITableViewCell {
             multiplier: 1, constant: 25).active = true
         
         // locationArrow constraints
-        
-        // iconImage constraints
         let locationArrowImageXContraints: () = NSLayoutConstraint(
             item: locationArrowImageView,
             attribute: .Left,

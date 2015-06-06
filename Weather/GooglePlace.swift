@@ -16,6 +16,7 @@ class Prediction {
     let description : String
     let place_id : String
     init(dictionary: [String : AnyObject]){
+        
         description = dictionary["description"] as! String
         place_id = dictionary["place_id"] as! String
     }

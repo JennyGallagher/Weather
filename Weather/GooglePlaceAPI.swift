@@ -38,9 +38,11 @@ class GooglePlaceAPI {
             if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? [String : AnyObject] {
                 if let results = json["predictions"] as? [[String : AnyObject]] {
                     for rawPlace : AnyObject in results {
+                        
                         let place = Prediction(dictionary: rawPlace as! [String : AnyObject])
+                        
                         self.predictions.append(place)
-                        //                        println("\(place.description) , \(place.place_id)")
+
                     }
                 }
             }

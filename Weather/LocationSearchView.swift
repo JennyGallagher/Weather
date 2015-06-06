@@ -13,7 +13,7 @@ import UIKit
 
 class LocationSearchView: GradientView {
     
-    
+    let placeholderText = "Enter a city name"
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
@@ -47,7 +47,7 @@ class LocationSearchView: GradientView {
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
         searchBar.searchBarStyle = .Minimal
-        searchBar.placeholder = "Add a city"
+//        searchBar.placeholder = self.placeholderText
         searchBar.showsCancelButton = true
         searchBar.autocapitalizationType = .Words
         searchBar.returnKeyType = .Search
@@ -57,8 +57,11 @@ class LocationSearchView: GradientView {
         
         
         
-        // Customizing searchbar text color
+        // Customizing searchbar text color and font
         var textFieldInsideSearchBar : UITextField? = nil
+
+        
+        
         for subview in searchBar.subviews {
             for subSubview in subview.subviews {
                 if let textField = subSubview as? UITextField {
@@ -67,7 +70,20 @@ class LocationSearchView: GradientView {
             }
         }
         textFieldInsideSearchBar?.textColor = .whiteColor()
-        textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(string: "Add a city", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        textFieldInsideSearchBar?.font = UIFont(name: "Avenir-Medium", size: 14)
+        textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(string: self.placeholderText, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)!])
+        textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(string: self.placeholderText, attributes: [NSForegroundColorAttributeName: UIColor(white: 1.0, alpha: 0.7)])
+        
+        
+        // Changes the Magniying Glass in searchbar to white
+        var textFieldInsideSearchBarLeftView : UIImageView = textFieldInsideSearchBar?.leftView as! UIImageView
+        textFieldInsideSearchBarLeftView.image = textFieldInsideSearchBarLeftView.image?.imageWithRenderingMode(.AlwaysTemplate)
+        textFieldInsideSearchBarLeftView.tintColor =  UIColor.whiteColor()
+        
+
+        
+        
         
         return searchBar
         }()

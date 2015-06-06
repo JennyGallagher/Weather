@@ -52,14 +52,18 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshWhenBecomesActive:", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
-   
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    
     
     func cityListViewButtonTouched(sender: UIButton!) {
         let locationListViewController = LocationListViewController()
         locationListViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: locationListViewController)
         navigationController.setNavigationBarHidden(true, animated: false)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
         presentViewController(navigationController, animated: true, completion: nil)
     }
     

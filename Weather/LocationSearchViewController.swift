@@ -75,11 +75,15 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text){ predictions in
             for prediction: Prediction in predictions {
                 
+                
                 self.originalData.append(prediction.description)
                 self.place_ids.append(prediction.place_id)
+                
             }
+            
             self.filteredData = self.originalData
-            (self.view as? LocationSearchView)?.tableView.reloadData()
+            
+            self.locationSearchView.tableView.reloadData()
             
         }
     }
@@ -91,7 +95,11 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationSearchTableViewCellIdentifier, forIndexPath: indexPath) as! LocationSearchTableViewCell
         
         cell = LocationSearchTableViewCell()
+        
+    
+        
         cell.textLabel!.text = self.filteredData[indexPath.row]
+        
         
         return cell
     }
