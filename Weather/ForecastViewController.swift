@@ -80,7 +80,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         let location = selectedLocation
         useCelsius = useCelsiusSelected
         if location != nil{
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()
                 self.forecastView.tempLabel.text = nil
@@ -120,7 +120,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation
             self.useCelsius = useCelsiusSelected
-            var dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()
                 self.forecastView.tempLabel.text = nil

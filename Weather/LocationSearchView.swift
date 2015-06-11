@@ -14,6 +14,7 @@ import UIKit
 class LocationSearchView: GradientView {
     
     let placeholderText = "Enter a city name"
+    let font = "Avenir-Medium"
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
@@ -66,13 +67,15 @@ class LocationSearchView: GradientView {
         textFieldInsideSearchBar?.textColor = .whiteColor()
         
         textFieldInsideSearchBar?.font = UIFont(
-            name: "Avenir-Medium",
+            name: self.font,
             size: 14)
+        
+        textFieldInsideSearchBar?.autocapitalizationType = .Words
         
         textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(
             string: self.placeholderText,
             attributes: [NSFontAttributeName: UIFont(
-                name: "Avenir-Medium",
+                name: self.font,
                 size: 14)!])
         
         textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(
@@ -83,7 +86,7 @@ class LocationSearchView: GradientView {
         
         
         // Changes the Magniying Glass in searchbar to white
-        var textFieldInsideSearchBarLeftView : UIImageView = textFieldInsideSearchBar?.leftView as! UIImageView
+        let textFieldInsideSearchBarLeftView : UIImageView = textFieldInsideSearchBar?.leftView as! UIImageView
         textFieldInsideSearchBarLeftView.image = textFieldInsideSearchBarLeftView.image?.imageWithRenderingMode(.AlwaysTemplate)
         textFieldInsideSearchBarLeftView.tintColor =  UIColor.whiteColor()
        

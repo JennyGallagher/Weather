@@ -108,10 +108,10 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var locationArray :  [Location] = []
+        let locationArray :  [Location] = []
         googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
             
-            var locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude, representsCurrentLocation: false)
+            let locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude, representsCurrentLocation: false)
             
             println("saved location \(locationFromAddressSearch)")
             

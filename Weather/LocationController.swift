@@ -128,7 +128,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
 //        let useCelsius : Bool = true
         
         let urlComponents: NSURLComponents = {
-            var components = NSURLComponents()
+            let components = NSURLComponents()
             components.scheme = "http"
             components.host = "api.forecast.io"
             components.path = "/forecast/\(apiKey)/\(location.latitude),\(location.longitude)"
@@ -149,7 +149,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                 let dataObject = NSData(contentsOfURL: url)
                 let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as! NSDictionary
                 
-                var currentWeather = WeatherData(weatherDictionary: weatherDictionary)
+                let currentWeather = WeatherData(weatherDictionary: weatherDictionary)
                 currentWeather.currentCity = location.city
                 currentWeather.currentState = location.state
                 

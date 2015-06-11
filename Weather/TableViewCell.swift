@@ -224,11 +224,12 @@ class LocationListTableViewCell: UITableViewCell {
 
 class LocationSearchTableViewCell : UITableViewCell {
 
+    let fontName = "Avenir-Heavy"
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        separatorInset = UIEdgeInsetsZero
         separatorInset.right = separatorInset.left
-        textLabel?.font = UIFont(name: "Avenir-Heavy", size: 19)
+        textLabel?.font = UIFont(name: self.fontName, size: 19)
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1C032A611ABCC1750015A78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A601ABCC1750015A78F /* AppDelegate.swift */; };
-		1C032A631ABCC1750015A78F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A621ABCC1750015A78F /* ViewController.swift */; };
 		1C032A681ABCC1750015A78F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C032A671ABCC1750015A78F /* Images.xcassets */; };
 		1C032A771ABCC1750015A78F /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A761ABCC1750015A78F /* WeatherTests.swift */; };
 		1C032A811AC25FFF0015A78F /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C032A801AC25FFF0015A78F /* ForecastViewController.swift */; };
@@ -29,10 +28,6 @@
 		1CCDE5721AFD6DCD002AB9BC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCDE5711AFD6DCD002AB9BC /* TableViewCell.swift */; };
 		1CCDE5741AFD6F36002AB9BC /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCDE5731AFD6F36002AB9BC /* LocationSearchView.swift */; };
 		1CDDF8BF1AEFFB0F00965B57 /* LocationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDF8BE1AEFFB0F00965B57 /* LocationListView.swift */; };
-		1CEB95461AE6F9BE0083705F /* flat-ui-icons-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CEB95451AE6F9870083705F /* flat-ui-icons-regular.ttf */; };
-		1CEB95481AE6FB370083705F /* ROBOTECH GP.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CEB95471AE6FB0E0083705F /* ROBOTECH GP.ttf */; };
-		1CEB954A1AE6FB600083705F /* Lovelo Line Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1CEB95491AE6FB510083705F /* Lovelo Line Bold.otf */; };
-		1CEED2641B0BA1F200C7E41E /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CEED2631B0BA1B300C7E41E /* weathericons-regular-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C032A5B1ABCC1750015A78F /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C032A5B1ABCC1750015A78F /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Weather.app; path = RainCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C032A5F1ABCC1750015A78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C032A601ABCC1750015A78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C032A621ABCC1750015A78F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1C032A671ABCC1750015A78F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1C032A701ABCC1750015A78F /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C032A751ABCC1750015A78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,7 +54,6 @@
 		1C2FA3321AD6EC8500EF66F5 /* GradientLayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLayerExtension.swift; sourceTree = "<group>"; };
 		1C2FA33C1AD7722400EF66F5 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		1C2FA33E1AD77BCD00EF66F5 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		1C2FA3401AD840F200EF66F5 /* GrafientAnimation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GrafientAnimation.playground; sourceTree = "<group>"; };
 		1C32DF561AF882AC00D29185 /* GooglePlaceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlaceAPI.swift; sourceTree = "<group>"; };
 		1C32DF581AF882DA00D29185 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		1C32DF5A1AFA7C5500D29185 /* LocationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
@@ -76,10 +69,6 @@
 		1CCDE5711AFD6DCD002AB9BC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		1CCDE5731AFD6F36002AB9BC /* LocationSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		1CDDF8BE1AEFFB0F00965B57 /* LocationListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListView.swift; sourceTree = "<group>"; };
-		1CEB95451AE6F9870083705F /* flat-ui-icons-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "flat-ui-icons-regular.ttf"; sourceTree = "<group>"; };
-		1CEB95471AE6FB0E0083705F /* ROBOTECH GP.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ROBOTECH GP.ttf"; sourceTree = "<group>"; };
-		1CEB95491AE6FB510083705F /* Lovelo Line Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lovelo Line Bold.otf"; sourceTree = "<group>"; };
-		1CEED2631B0BA1B300C7E41E /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "weathericons-regular-webfont.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +119,6 @@
 				1C032A601ABCC1750015A78F /* AppDelegate.swift */,
 				1C032A671ABCC1750015A78F /* Images.xcassets */,
 				1C032A5E1ABCC1750015A78F /* Supporting Files */,
-				1C032A621ABCC1750015A78F /* ViewController.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -138,11 +126,7 @@
 		1C032A5E1ABCC1750015A78F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1CEB95491AE6FB510083705F /* Lovelo Line Bold.otf */,
-				1CEB95471AE6FB0E0083705F /* ROBOTECH GP.ttf */,
 				1C032A5F1ABCC1750015A78F /* Info.plist */,
-				1CEB95451AE6F9870083705F /* flat-ui-icons-regular.ttf */,
-				1CEED2631B0BA1B300C7E41E /* weathericons-regular-webfont.ttf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -163,7 +147,6 @@
 				1C9C4F281ACB44A5007DD25A /* NewLocationController.playground */,
 				1C9C4F271ACB3E44007DD25A /* MyPlayground.playground */,
 				1C032A751ABCC1750015A78F /* Info.plist */,
-				1C2FA3401AD840F200EF66F5 /* GrafientAnimation.playground */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -318,10 +301,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CEED2641B0BA1F200C7E41E /* weathericons-regular-webfont.ttf in Resources */,
-				1CEB954A1AE6FB600083705F /* Lovelo Line Bold.otf in Resources */,
-				1CEB95481AE6FB370083705F /* ROBOTECH GP.ttf in Resources */,
-				1CEB95461AE6F9BE0083705F /* flat-ui-icons-regular.ttf in Resources */,
 				1C032A681ABCC1750015A78F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +323,6 @@
 				1C2FA33D1AD7722400EF66F5 /* GradientView.swift in Sources */,
 				1C32DF591AF882DA00D29185 /* GooglePlace.swift in Sources */,
 				1C032A831AC262230015A78F /* LocationController.swift in Sources */,
-				1C032A631ABCC1750015A78F /* ViewController.swift in Sources */,
 				1C032A611ABCC1750015A78F /* AppDelegate.swift in Sources */,
 				1C2FA33F1AD77BCD00EF66F5 /* UIColorExtension.swift in Sources */,
 				1C5821811ACDEAF800116D82 /* LocationModel.swift in Sources */,

@@ -146,7 +146,7 @@ class LocationListView: GradientView {
     
     func useCelsiusButtonTapped(sender: UIButton!){
         sender.selected = !sender.selected
-        var useCelsiusButtonSelected = sender.selected
+        let useCelsiusButtonSelected = sender.selected
         delegate?.didTapUseCelsiusButtonInLocationListView(self, useCelsiusButtonSelected: useCelsiusButtonSelected)
     }
     
