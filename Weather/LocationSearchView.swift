@@ -49,6 +49,7 @@ class LocationSearchView: GradientView {
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
         searchBar.searchBarStyle = .Minimal
+        searchBar.barStyle = .Default
         searchBar.showsCancelButton = true
         searchBar.autocapitalizationType = .Words
         searchBar.returnKeyType = .Search
@@ -66,18 +67,19 @@ class LocationSearchView: GradientView {
         }
         textFieldInsideSearchBar?.textColor = .whiteColor()
         
+        // Sets searchbar text font
         textFieldInsideSearchBar?.font = UIFont(
             name: self.font,
             size: 14)
         
-        textFieldInsideSearchBar?.autocapitalizationType = .Words
-        
+        // Sets placeholder text font
         textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(
             string: self.placeholderText,
             attributes: [NSFontAttributeName: UIFont(
                 name: self.font,
                 size: 14)!])
         
+        // Sets placeholder text color
         textFieldInsideSearchBar?.attributedPlaceholder = NSAttributedString(
             string: self.placeholderText,
             attributes: [NSForegroundColorAttributeName: UIColor(
@@ -109,7 +111,8 @@ class LocationSearchView: GradientView {
     
     func configureConstraints(){
         
-        let blurViewTopConstraint: () = NSLayoutConstraint(
+        // blurView constraints
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Top,
             relatedBy: .Equal,
@@ -117,7 +120,7 @@ class LocationSearchView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let blurViewBottomConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -125,7 +128,7 @@ class LocationSearchView: GradientView {
             attribute: .Bottom,
             multiplier: 1, constant: 0).active = true
         
-        let blurViewLeftConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Left,
             relatedBy: .Equal,
@@ -133,7 +136,7 @@ class LocationSearchView: GradientView {
             attribute: .Left,
             multiplier: 1, constant: 0).active = true
         
-        let blurViewRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Right,
             relatedBy: .Equal,
@@ -141,8 +144,8 @@ class LocationSearchView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: 0).active = true
         
-        
-        let tableViewTopConstraint: () = NSLayoutConstraint(
+        // tableView constraints
+         NSLayoutConstraint(
             item: tableView,
             attribute: .Top,
             relatedBy: .Equal,
@@ -159,7 +162,7 @@ class LocationSearchView: GradientView {
             attribute: .Bottom,
             multiplier: 1, constant: -250).active = true
         
-        let tableViewLeftConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Left,
             relatedBy: .Equal,
@@ -167,7 +170,7 @@ class LocationSearchView: GradientView {
             attribute: .Left,
             multiplier: 1, constant: 0).active = true
         
-        let tableViewRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Right,
             relatedBy: .Equal,
@@ -175,7 +178,8 @@ class LocationSearchView: GradientView {
             attribute: .Right,
             multiplier: 1, constant: 0).active = true
         
-        let searchBarAboveTableViewConstraint: () = NSLayoutConstraint(
+        // searchBar constraints
+        NSLayoutConstraint(
             item: searchBar,
             attribute: .Top,
             relatedBy: .Equal,
@@ -183,7 +187,8 @@ class LocationSearchView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let googleLogoXConstraint: () = NSLayoutConstraint(
+        // googleLogo constraints
+        NSLayoutConstraint(
             item: googleLogo,
             attribute: .Right,
             relatedBy: .Equal,
@@ -192,7 +197,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: -5).active = true
         
         // Moves the logo above the top of keyboard
-        let googleLogoYConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: googleLogo,
             attribute: .Bottom,
             relatedBy: .Equal,

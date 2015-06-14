@@ -72,7 +72,7 @@ class LocationListView: GradientView {
     
     func configureConstraints(){
         // Blurred background constraints.
-        let blurViewTopConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Top,
             relatedBy: .Equal,
@@ -80,7 +80,7 @@ class LocationListView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let blurViewBottomConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -88,7 +88,7 @@ class LocationListView: GradientView {
             attribute: .Bottom,
             multiplier: 1, constant: 0).active = true
         
-        let blurViewLeftConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Left,
             relatedBy: .Equal,
@@ -96,7 +96,7 @@ class LocationListView: GradientView {
             attribute: .Left,
             multiplier: 1, constant: 0).active = true
         
-        let blurViewRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: blurView,
             attribute: .Right,
             relatedBy: .Equal,
@@ -105,7 +105,7 @@ class LocationListView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         // Table view constraints.
-        let tableViewTopConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Top,
             relatedBy: .Equal,
@@ -113,7 +113,7 @@ class LocationListView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let tableViewBottomConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -121,7 +121,7 @@ class LocationListView: GradientView {
             attribute: .Bottom,
             multiplier: 1, constant: 0).active = true
         
-        let tableViewLeftConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Left,
             relatedBy: .Equal,
@@ -129,7 +129,7 @@ class LocationListView: GradientView {
             attribute: .Left,
             multiplier: 1, constant: 0).active = true
         
-        let tableViewRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Right,
             relatedBy: .Equal,

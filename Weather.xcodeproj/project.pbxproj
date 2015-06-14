@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1C032A5B1ABCC1750015A78F /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Weather.app; path = RainCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C032A5B1ABCC1750015A78F /* RainCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C032A5F1ABCC1750015A78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C032A601ABCC1750015A78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C032A671ABCC1750015A78F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -60,10 +60,7 @@
 		1C5821801ACDEAF800116D82 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		1C5821821ACDEBDD00116D82 /* WeatherDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
 		1C5821861AD0AECA00116D82 /* ForecastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
-		1C779B171ACD908F00AB02FF /* ForwardGeocode.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = ForwardGeocode.playground; path = ../ForwardGeocode.playground; sourceTree = "<group>"; };
 		1C78A6961B05104900FBB091 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
-		1C9C4F271ACB3E44007DD25A /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../MyPlayground.playground; sourceTree = "<group>"; };
-		1C9C4F281ACB44A5007DD25A /* NewLocationController.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = NewLocationController.playground; path = ../NewLocationController.playground; sourceTree = "<group>"; };
 		1CC11B071AF27EC80077F63C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		1CCDE56F1AFD5660002AB9BC /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		1CCDE5711AFD6DCD002AB9BC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -103,7 +100,7 @@
 		1C032A5C1ABCC1750015A78F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C032A5B1ABCC1750015A78F /* Weather.app */,
+				1C032A5B1ABCC1750015A78F /* RainCheck.app */,
 				1C032A701ABCC1750015A78F /* WeatherTests.xctest */,
 			);
 			name = Products;
@@ -112,8 +109,11 @@
 		1C032A5D1ABCC1750015A78F /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				1C8883F01B0648E100CC81BD /* Forecast */,
+				1C8883EF1B05AD8F00CC81BD /* LocationList */,
+				1C8883F11B0648FB00CC81BD /* LocationSearch */,
+				1C032A821AC262230015A78F /* LocationController.swift */,
 				1C32DF551AF8037200D29185 /* GooglePlacesAutocomplete */,
-				1C58217F1ACDC33200116D82 /* Controller */,
 				1C58217D1ACDC30800116D82 /* Model */,
 				1C5821881AD0AF1A00116D82 /* Views */,
 				1C032A601ABCC1750015A78F /* AppDelegate.swift */,
@@ -143,9 +143,6 @@
 		1C032A741ABCC1750015A78F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1C779B171ACD908F00AB02FF /* ForwardGeocode.playground */,
-				1C9C4F281ACB44A5007DD25A /* NewLocationController.playground */,
-				1C9C4F271ACB3E44007DD25A /* MyPlayground.playground */,
 				1C032A751ABCC1750015A78F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -167,17 +164,6 @@
 				1C5821821ACDEBDD00116D82 /* WeatherDataModel.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		1C58217F1ACDC33200116D82 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1C8883F01B0648E100CC81BD /* Forecast */,
-				1C8883EF1B05AD8F00CC81BD /* LocationList */,
-				1C8883F11B0648FB00CC81BD /* LocationSearch */,
-				1C032A821AC262230015A78F /* LocationController.swift */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		1C5821881AD0AF1A00116D82 /* Views */ = {
@@ -237,7 +223,7 @@
 			);
 			name = RainCheck;
 			productName = Weather;
-			productReference = 1C032A5B1ABCC1750015A78F /* Weather.app */;
+			productReference = 1C032A5B1ABCC1750015A78F /* RainCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1C032A6F1ABCC1750015A78F /* WeatherTests */ = {

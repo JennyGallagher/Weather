@@ -47,6 +47,12 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             if success {
                 if let location = location {
                     self.locationAndWeatherPairs.insert((location, nil), atIndex: 0)
+                    
+                    let locations = Location.restoreSavedLocationsFromUserDefaults()
+                    
+                    let locationsWithNilWeather = locations.map { LocationAndWeatherPair( $0, nil) }
+                    self.locationAndWeatherPairs.extend(locationsWithNilWeather)
+                    
                     self.locationListView.tableView.reloadData()
                     self.populateWeatherDataForLocations()
                 }
@@ -88,6 +94,17 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location) {
         let locationWeatherPair : LocationAndWeatherPair = (location, nil)
         locationAndWeatherPairs.append(locationWeatherPair)
+        
+//        let locations = locationAndWeatherPairs.map { locationAndWeatherPair in
+//            return locationAndWeatherPair.location
+//        }
+//        let filteredLocations = locations.filter { location in
+//            return !location.representsCurrentLocation
+//        }
+        
+        let locations = locationAndWeatherPairs.map { $0.0 }.filter { !$0.representsCurrentLocation }
+        Location.saveLocationsToUserDefaults(locations)
+        
         locationListView.tableView.reloadData()
         populateWeatherDataForLocations()
     }
@@ -136,6 +153,8 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             locationAndWeatherPairs.removeAtIndex(indexPath.row)
+            let locationsToSave = locationAndWeatherPairs.map{ $0.0 }.filter { !$0.representsCurrentLocation }
+            Location.saveLocationsToUserDefaults(locationsToSave)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
         }
     }

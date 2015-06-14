@@ -31,8 +31,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         // Pull to refresh weather data
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = .Down
@@ -41,13 +40,20 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         
         self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
         
-        self.locationController.retrieveLocations({location, success in
-            if success {
-                self.requestWeatherData(location!, useCelsius: self.useCelsius)
-                self.selectedLocation = location!
-            }
-        })
-        
+        // If we have a default location, use that.
+        if let defaultLocation = Location.restoreSavedDefaultLocationFromUserDefaults() {
+            self.requestWeatherData(defaultLocation, useCelsius: self.useCelsius)
+            self.selectedLocation = defaultLocation
+        }
+        // Otherwise, go with the current GPS location.
+        else {
+            self.locationController.retrieveLocations({location, success in
+                if success {
+                    self.requestWeatherData(location!, useCelsius: self.useCelsius)
+                    self.selectedLocation = location!
+                }
+            })
+        }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshWhenBecomesActive:", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
@@ -71,6 +77,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool) {
         requestWeatherData(location, useCelsius: useCelsius)
+        Location.saveDefaultLocationToUserDefaults(location)
         selectedLocation = location
         useCelsiusSelected = useCelsius
     }
@@ -104,6 +111,9 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 self.forecastView.summaryLabel.text = weather.summary
                 self.forecastView.tempMinMaxLabel.text = "\(weather.temperatureMin!)°/ \(weather.temperatureMax!)°"
                 
+                self.forecastView.cityListViewButton.hidden = false
+                
+                
                 if weather.currentState!.isEmpty {
                     self.forecastView.cityLabel.text = weather.currentCity
                 }
@@ -120,6 +130,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation
             self.useCelsius = useCelsiusSelected
+            self.forecastView.cityListViewButton.hidden = true
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()

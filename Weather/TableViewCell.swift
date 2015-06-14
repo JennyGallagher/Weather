@@ -67,7 +67,7 @@ class LocationListTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-//        separatorInset = UIEdgeInsetsZero
+        //        separatorInset = UIEdgeInsetsZero
         separatorInset.right = separatorInset.left
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
@@ -92,7 +92,7 @@ class LocationListTableViewCell: UITableViewCell {
     private func configureConstraints() {
         
         // cityLabel constraints
-        let cityLabelLeftConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: cityLabel,
             attribute: .Leading,
             relatedBy: .Equal,
@@ -100,7 +100,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Left,
             multiplier: 1, constant: 22).active = true
         
-        let cityLabelRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: cityLabel,
             attribute: .Trailing,
             relatedBy: .Equal,
@@ -108,7 +108,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Right,
             multiplier: 1, constant: -75).active = true
         
-        let cityLabelTopConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: cityLabel,
             attribute: .Top,
             relatedBy: .Equal,
@@ -117,7 +117,7 @@ class LocationListTableViewCell: UITableViewCell {
             multiplier: 1, constant: 14).active = true
         
         // summaryLabel constraints
-        let summaryLabelXConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: summaryLabel,
             attribute: .Left,
             relatedBy: .Equal,
@@ -125,7 +125,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Right,
             multiplier: 1, constant: 8).active = true
         
-        let summaryLabelYConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: summaryLabel,
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -134,16 +134,16 @@ class LocationListTableViewCell: UITableViewCell {
             multiplier: 1, constant: -14).active = true
         
         // tempLabel constraints
-        let tempLabelRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tempLabel,
             attribute: .Trailing,
             relatedBy: .Equal,
             toItem: contentView,
             attribute: .Right,
             multiplier: 1, constant: -10).active = true
-    
         
-        let tempLabelYConstraint: () = NSLayoutConstraint(
+        
+        NSLayoutConstraint(
             item: tempLabel,
             attribute: .CenterY,
             relatedBy: .Equal,
@@ -152,7 +152,7 @@ class LocationListTableViewCell: UITableViewCell {
             multiplier: 1, constant: 0).active = true
         
         // iconImage constraints
-        let iconImageXContraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: iconImageView,
             attribute: .Left,
             relatedBy: .Equal,
@@ -160,7 +160,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Left,
             multiplier: 1, constant: 20).active = true
         
-        let iconImageYContraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: iconImageView,
             attribute: .Bottom,
             relatedBy: .Equal,
@@ -168,7 +168,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Bottom,
             multiplier: 1, constant: -10).active = true
         
-        let iconImageWidthConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: iconImageView,
             attribute: .Width,
             relatedBy: .Equal,
@@ -176,7 +176,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 25).active = true
         
-        let iconImageHeightConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: iconImageView,
             attribute: .Height,
             relatedBy: .Equal,
@@ -185,7 +185,7 @@ class LocationListTableViewCell: UITableViewCell {
             multiplier: 1, constant: 25).active = true
         
         // locationArrow constraints
-        let locationArrowImageXContraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: locationArrowImageView,
             attribute: .Left,
             relatedBy: .Equal,
@@ -193,7 +193,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Left,
             multiplier: 1, constant: 5).active = true
         
-        let locationArrowImageYContraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: locationArrowImageView,
             attribute: .Top,
             relatedBy: .Equal,
@@ -201,7 +201,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Top,
             multiplier: 1, constant: 23).active = true
         
-        let locationArrowImageWidthConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: locationArrowImageView,
             attribute: .Width,
             relatedBy: .Equal,
@@ -209,7 +209,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 12).active = true
         
-        let locationArrowImageHeightConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: locationArrowImageView,
             attribute: .Height,
             relatedBy: .Equal,
@@ -223,7 +223,7 @@ class LocationListTableViewCell: UITableViewCell {
 }
 
 class LocationSearchTableViewCell : UITableViewCell {
-
+    
     let fontName = "Avenir-Heavy"
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -235,9 +235,9 @@ class LocationSearchTableViewCell : UITableViewCell {
         preservesSuperviewLayoutMargins = false
         backgroundColor = UIColor.clearColor()
         textLabel?.textColor = UIColor.fontColor()
-               
+        
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -30,7 +30,7 @@ enum WeatherCondition : String {
     }
 }
 
-class WeatherData {
+struct WeatherData {
     
     var currentCity : String?
     var currentState : String?

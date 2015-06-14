@@ -10,6 +10,7 @@ import UIKit
 
 class FooterView: UIView {
     
+    let fontName = "Avenir-Heavy"
     
     lazy var lastLineSeparator : UIView! = {
         let view = UIView()
@@ -31,7 +32,7 @@ class FooterView: UIView {
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.titleEdgeInsets = UIEdgeInsets(top: 7, left: 15, bottom: 55, right: 35)
         button.setTitleColor(UIColor.fontColor(), forState: .Normal)
-        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 32)
+        button.titleLabel?.font  = UIFont(name: self.fontName, size: 32)
         return button
         }()
     
@@ -44,7 +45,7 @@ class FooterView: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 15, left: 40, bottom: 60, right: 20)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.fontColor(), forState: .Normal)
-        button.titleLabel?.font  = UIFont(name: "Avenir-Heavy", size: 25)
+        button.titleLabel?.font  = UIFont(name: self.fontName, size: 25)
         return button
         }()
     
@@ -63,7 +64,8 @@ class FooterView: UIView {
     }
     
     func configureConstraints(){
-        let addLocationButtonXConstraint: () = NSLayoutConstraint(
+        // addLocationButton constraints
+        NSLayoutConstraint(
             item: addLocationButton,
             attribute: .Left,
             relatedBy: .Equal,
@@ -71,7 +73,7 @@ class FooterView: UIView {
             attribute: .Left,
             multiplier: 1, constant: 0).active = true
         
-        let addLocationButtonYConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: addLocationButton,
             attribute: .Top,
             relatedBy: .Equal,
@@ -79,7 +81,7 @@ class FooterView: UIView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let addLocationButtonWidthConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: addLocationButton,
             attribute: .Width,
             relatedBy: .Equal,
@@ -87,7 +89,7 @@ class FooterView: UIView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 100).active = true
         
-        let addLocationButtonHeightConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: addLocationButton,
             attribute: .Height,
             relatedBy: .Equal,
@@ -95,8 +97,8 @@ class FooterView: UIView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 100).active = true
         
-        
-        let changeUnitsButtonXConstraint: () = NSLayoutConstraint(
+        // changeUnitsButton constraints
+        NSLayoutConstraint(
             item: useCelsiusButton,
             attribute: .Right,
             relatedBy: .Equal,
@@ -104,7 +106,7 @@ class FooterView: UIView {
             attribute: .Right,
             multiplier: 1, constant: 0).active = true
         
-        let changeUnitsButtonYConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: useCelsiusButton,
             attribute: .Top,
             relatedBy: .Equal,
@@ -112,7 +114,7 @@ class FooterView: UIView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        let changeUnitsButtonWidthConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: useCelsiusButton,
             attribute: .Width,
             relatedBy: .Equal,
@@ -120,7 +122,7 @@ class FooterView: UIView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 100).active = true
         
-        let changeUnitsButtonHeightConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: useCelsiusButton,
             attribute: .Height,
             relatedBy: .Equal,
@@ -128,7 +130,8 @@ class FooterView: UIView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 100).active = true
         
-        let lastLineSeperatorWidthConstraints: () = NSLayoutConstraint(
+        // lastLineSeperator constraints
+        NSLayoutConstraint(
             item: lastLineSeparator,
             attribute: .Width,
             relatedBy: .Equal,
@@ -136,7 +139,7 @@ class FooterView: UIView {
             attribute: .Width,
             multiplier: 1, constant: 0).active = true
         
-        let lastLineSeperatorHeightConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: lastLineSeparator,
             attribute: .Height,
             relatedBy: .Equal,
@@ -144,7 +147,8 @@ class FooterView: UIView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 1).active = true
         
-        let vibrancyViewWidthConstraints: () = NSLayoutConstraint(
+        // vibrancyView constraints
+        NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Width,
             relatedBy: .GreaterThanOrEqual,
@@ -152,7 +156,7 @@ class FooterView: UIView {
             attribute: .Width,
             multiplier: 1, constant: -30).active = true
         
-        let vibrancyViewHeightConstraints: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Height,
             relatedBy: .Equal,
@@ -160,7 +164,7 @@ class FooterView: UIView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 0.5).active = true
         
-        let vibrancyViewRightConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Right,
             relatedBy: .GreaterThanOrEqual,
@@ -168,7 +172,7 @@ class FooterView: UIView {
             attribute: .Right,
             multiplier: 1, constant: -15).active = true
 
-        let vibrancyViewLeftConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: vibrancyEffectView,
             attribute: .Left,
             relatedBy: .GreaterThanOrEqual,

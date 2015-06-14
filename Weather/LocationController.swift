@@ -149,7 +149,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                 let dataObject = NSData(contentsOfURL: url)
                 let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as! NSDictionary
                 
-                let currentWeather = WeatherData(weatherDictionary: weatherDictionary)
+                var currentWeather = WeatherData(weatherDictionary: weatherDictionary)
                 currentWeather.currentCity = location.city
                 currentWeather.currentState = location.state
                 
