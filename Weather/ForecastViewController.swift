@@ -31,21 +31,29 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Pull to refresh weather data
         var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = .Down
         view.addGestureRecognizer(swipeDown)
         
         
+        if let defaultUseCelsius =
+            UseCelsius.restoreSavedDefaultUnitFromUserDefaults() {
+                self.useCelsius = defaultUseCelsius.useCelsius
+        }
+        
+        
         self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
+        
+        
         
         // If we have a default location, use that.
         if let defaultLocation = Location.restoreSavedDefaultLocationFromUserDefaults() {
             self.requestWeatherData(defaultLocation, useCelsius: self.useCelsius)
             self.selectedLocation = defaultLocation
         }
-        // Otherwise, go with the current GPS location.
+            // Otherwise, go with the current GPS location.
         else {
             self.locationController.retrieveLocations({location, success in
                 if success {
@@ -113,7 +121,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 
                 self.forecastView.cityListViewButton.hidden = false
                 
-                
                 if weather.currentState!.isEmpty {
                     self.forecastView.cityLabel.text = weather.currentCity
                 }
@@ -124,13 +131,12 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         })
     }
     
-   
+    
     // Pull to refresh weather data with 1.5 second delay
     func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation
             self.useCelsius = useCelsiusSelected
-            self.forecastView.cityListViewButton.hidden = true
             let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()

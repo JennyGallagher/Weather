@@ -51,7 +51,7 @@ struct Location : Printable, DebugPrintable {
         }
     }
     
-    // Added to use in NSUserDefaults -  delete if not used
+    /// MARK: Location NSuserDefaults
     func toDictionary() -> [String : AnyObject] {
         var dictionary = [String : AnyObject]()
         

@@ -209,9 +209,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1C032A5A1ABCC1750015A78F /* RainCheck */ = {
+		1C032A5A1ABCC1750015A78F /* Weather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "RainCheck" */;
+			buildConfigurationList = 1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "Weather" */;
 			buildPhases = (
 				1C032A571ABCC1750015A78F /* Sources */,
 				1C032A581ABCC1750015A78F /* Frameworks */,
@@ -221,7 +221,7 @@
 			);
 			dependencies = (
 			);
-			name = RainCheck;
+			name = Weather;
 			productName = Weather;
 			productReference = 1C032A5B1ABCC1750015A78F /* RainCheck.app */;
 			productType = "com.apple.product-type.application";
@@ -276,7 +276,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1C032A5A1ABCC1750015A78F /* RainCheck */,
+				1C032A5A1ABCC1750015A78F /* Weather */,
 				1C032A6F1ABCC1750015A78F /* WeatherTests */,
 			);
 		};
@@ -339,7 +339,7 @@
 /* Begin PBXTargetDependency section */
 		1C032A721ABCC1750015A78F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1C032A5A1ABCC1750015A78F /* RainCheck */;
+			target = 1C032A5A1ABCC1750015A78F /* Weather */;
 			targetProxy = 1C032A711ABCC1750015A78F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -500,7 +500,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "RainCheck" */ = {
+		1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "Weather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C032A7B1ABCC1750015A78F /* Debug */,

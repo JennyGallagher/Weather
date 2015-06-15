@@ -9,7 +9,9 @@
 
 import UIKit
 
+let SavedUseCelsius = "false"
 
+let UseCelsiusSavedUserDefaultKey = "UseCelsiusSavedUserDefaultKey"
 
 // Conditions and their matching icons
 enum WeatherCondition : String {
@@ -77,5 +79,49 @@ struct WeatherData {
         
         return dateFormatter.stringFromDate(weatherDate)
     }
+}
+
+
+/// MARK: Units NSuserDefaults
+struct UseCelsius {
+    var useCelsius : Bool = false
+    
+    init(dictionary: [String : AnyObject]) {
+        self.useCelsius = dictionary[SavedUseCelsius] as? Bool ?? true
+    }
+    
+    init(useCelsius : Bool){
+        self.useCelsius = useCelsius
+    }
+    
+    
+    
+    func useCelsiusToDictionary() -> [String : AnyObject] {
+        var dictionary = [String : AnyObject]()
+       
+        dictionary[SavedUseCelsius] = useCelsius ?? ""
+        
+        return dictionary
+    }
+    
+    static func saveDefaultUnitsToUserDefaults(useCelsius : UseCelsius) {
+        
+        let useCelsiusAsDictionary = useCelsius.useCelsiusToDictionary()
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(useCelsiusAsDictionary, forKey: UseCelsiusSavedUserDefaultKey)
+        
+        userDefaults.synchronize()
+    }
+    
+    
+    static func restoreSavedDefaultUnitFromUserDefaults() -> UseCelsius? {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        if let useCelsiusAsDictionary = userDefaults.objectForKey(UseCelsiusSavedUserDefaultKey) as? [String : AnyObject] {
+            return UseCelsius(dictionary: useCelsiusAsDictionary)
+        }
+        return nil
+    }
+    
 }
 

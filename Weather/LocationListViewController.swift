@@ -21,9 +21,12 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     weak var delegate : LocationListViewControllerDelegate? = nil
     var useCelsius : Bool = false
+    var useCelsiusButtonSelected: Bool?
+    
     let locationController = LocationController()
     var locationAndWeatherPairs : [LocationAndWeatherPair] = []
     
+    let footerView = FooterView()
     
     let locationListView : LocationListView = {
         let colors = UIColor.yellowToPinkColor()
@@ -40,6 +43,14 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         prepareViewForInitialDataLoad()
         retrieveCurrentLocation()
+        
+        if let defaultUseCelsius =
+            UseCelsius.restoreSavedDefaultUnitFromUserDefaults() {
+                useCelsius = defaultUseCelsius.useCelsius
+                if useCelsius {
+                    
+                }
+        }
     }
     
     private func retrieveCurrentLocation() {
@@ -68,6 +79,8 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         }
         locationListView.tableView.reloadData()
     }
+    
+
     
     private func populateWeatherDataForLocations() {
         for i in 0..<locationAndWeatherPairs.count {
@@ -184,8 +197,14 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         populateWeatherDataForLocations()
     }
     
+    
+    
     func didTapUseCelsiusButtonInLocationListView(view: LocationListView, useCelsiusButtonSelected: Bool) {
         useCelsius = useCelsiusButtonSelected
+        
+        let savedUsedCelsius = UseCelsius(useCelsius: useCelsius)
+        UseCelsius.saveDefaultUnitsToUserDefaults(savedUsedCelsius)
+        
         clearAllWeatherData()
         populateWeatherDataForLocations()
     }

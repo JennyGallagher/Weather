@@ -8,9 +8,13 @@
 
 import UIKit
 
+
 class FooterView: UIView {
     
+
+    
     let fontName = "Avenir-Heavy"
+    
     
     lazy var lastLineSeparator : UIView! = {
         let view = UIView()
@@ -29,7 +33,6 @@ class FooterView: UIView {
         let button =  UIButton()
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitle("+", forState: .Normal)
-        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.titleEdgeInsets = UIEdgeInsets(top: 7, left: 15, bottom: 55, right: 35)
         button.setTitleColor(UIColor.fontColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: self.fontName, size: 32)
@@ -40,10 +43,16 @@ class FooterView: UIView {
     lazy var useCelsiusButton : UIButton! = {
         let button =  UIButton()
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        if let defaultUseCelsius =
+            UseCelsius.restoreSavedDefaultUnitFromUserDefaults() {
+                var useCelsius : Bool = false
+                useCelsius = defaultUseCelsius.useCelsius
+                if useCelsius {
+                    button.selected = true
+                }}
         button.setTitle("°F", forState: .Normal)
         button.setTitle("°C", forState: .Selected)
         button.titleEdgeInsets = UIEdgeInsets(top: 15, left: 40, bottom: 60, right: 20)
-        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(UIColor.fontColor(), forState: .Normal)
         button.titleLabel?.font  = UIFont(name: self.fontName, size: 25)
         return button
@@ -182,4 +191,5 @@ class FooterView: UIView {
       
     }
     
+
 }

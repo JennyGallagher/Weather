@@ -13,6 +13,7 @@ protocol LocationListViewDelegate : class {
     func didTapAddLocationButtonInLocationListView(view: LocationListView)
     func didRequestWeatherRefreshInLocationListView(view: LocationListView)
     func didTapUseCelsiusButtonInLocationListView(view: LocationListView, useCelsiusButtonSelected : Bool)
+
 }
 
 class LocationListView: GradientView {
