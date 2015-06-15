@@ -45,7 +45,7 @@
 		1C032A5F1ABCC1750015A78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C032A601ABCC1750015A78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C032A671ABCC1750015A78F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1C032A701ABCC1750015A78F /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C032A701ABCC1750015A78F /* RainCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RainCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C032A751ABCC1750015A78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C032A761ABCC1750015A78F /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		1C032A801AC25FFF0015A78F /* ForecastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				1C032A5B1ABCC1750015A78F /* RainCheck.app */,
-				1C032A701ABCC1750015A78F /* WeatherTests.xctest */,
+				1C032A701ABCC1750015A78F /* RainCheckTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,9 +209,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1C032A5A1ABCC1750015A78F /* Weather */ = {
+		1C032A5A1ABCC1750015A78F /* RainCheck */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "Weather" */;
+			buildConfigurationList = 1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "RainCheck" */;
 			buildPhases = (
 				1C032A571ABCC1750015A78F /* Sources */,
 				1C032A581ABCC1750015A78F /* Frameworks */,
@@ -221,14 +221,14 @@
 			);
 			dependencies = (
 			);
-			name = Weather;
+			name = RainCheck;
 			productName = Weather;
 			productReference = 1C032A5B1ABCC1750015A78F /* RainCheck.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1C032A6F1ABCC1750015A78F /* WeatherTests */ = {
+		1C032A6F1ABCC1750015A78F /* RainCheckTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C032A7D1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "WeatherTests" */;
+			buildConfigurationList = 1C032A7D1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "RainCheckTests" */;
 			buildPhases = (
 				1C032A6C1ABCC1750015A78F /* Sources */,
 				1C032A6D1ABCC1750015A78F /* Frameworks */,
@@ -239,9 +239,9 @@
 			dependencies = (
 				1C032A721ABCC1750015A78F /* PBXTargetDependency */,
 			);
-			name = WeatherTests;
+			name = RainCheckTests;
 			productName = WeatherTests;
-			productReference = 1C032A701ABCC1750015A78F /* WeatherTests.xctest */;
+			productReference = 1C032A701ABCC1750015A78F /* RainCheckTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -263,7 +263,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1C032A561ABCC1750015A78F /* Build configuration list for PBXProject "Weather" */;
+			buildConfigurationList = 1C032A561ABCC1750015A78F /* Build configuration list for PBXProject "RainCheck" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -276,8 +276,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1C032A5A1ABCC1750015A78F /* Weather */,
-				1C032A6F1ABCC1750015A78F /* WeatherTests */,
+				1C032A5A1ABCC1750015A78F /* RainCheck */,
+				1C032A6F1ABCC1750015A78F /* RainCheckTests */,
 			);
 		};
 /* End PBXProject section */
@@ -339,7 +339,7 @@
 /* Begin PBXTargetDependency section */
 		1C032A721ABCC1750015A78F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1C032A5A1ABCC1750015A78F /* Weather */;
+			target = 1C032A5A1ABCC1750015A78F /* RainCheck */;
 			targetProxy = 1C032A711ABCC1750015A78F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -435,7 +435,7 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RainCheck;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -449,7 +449,7 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RainCheck;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -468,8 +468,8 @@
 				);
 				INFOPLIST_FILE = WeatherTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather.app/Weather";
+				PRODUCT_NAME = RainCheckTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RainCheck.app/RainCheck";
 			};
 			name = Debug;
 		};
@@ -483,15 +483,15 @@
 				);
 				INFOPLIST_FILE = WeatherTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather.app/Weather";
+				PRODUCT_NAME = RainCheckTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RainCheck.app/RainCheck";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1C032A561ABCC1750015A78F /* Build configuration list for PBXProject "Weather" */ = {
+		1C032A561ABCC1750015A78F /* Build configuration list for PBXProject "RainCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C032A781ABCC1750015A78F /* Debug */,
@@ -500,7 +500,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "Weather" */ = {
+		1C032A7A1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "RainCheck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C032A7B1ABCC1750015A78F /* Debug */,
@@ -509,7 +509,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C032A7D1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
+		1C032A7D1ABCC1750015A78F /* Build configuration list for PBXNativeTarget "RainCheckTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C032A7E1ABCC1750015A78F /* Debug */,
