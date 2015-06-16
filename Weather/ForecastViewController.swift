@@ -84,6 +84,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool) {
+        
         requestWeatherData(location, useCelsius: useCelsius)
         Location.saveDefaultLocationToUserDefaults(location)
         selectedLocation = location

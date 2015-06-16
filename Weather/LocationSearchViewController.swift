@@ -44,6 +44,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareViewForInitialDataLoad()
+
         
         locationSearchView.searchBar.delegate = self
         

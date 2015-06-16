@@ -31,7 +31,6 @@ class LocationSearchView: GradientView {
         
         tableView.separatorEffect = UIVibrancyEffect(forBlurEffect: UIBlurEffect())
         tableView.backgroundColor = UIColor.clearColor()
-        
         tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.preservesSuperviewLayoutMargins = false
         return tableView
