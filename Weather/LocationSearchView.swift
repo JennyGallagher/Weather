@@ -150,7 +150,7 @@ class LocationSearchView: GradientView {
             relatedBy: .Equal,
             toItem: searchBar,
             attribute: .Bottom,
-            multiplier: 1, constant: 0).active = true
+            multiplier: 1, constant: -2).active = true
         
         // Keeps the tableview from overlapping with the Google logo
         let tableViewBottomConstraint: () = NSLayoutConstraint(

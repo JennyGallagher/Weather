@@ -229,7 +229,7 @@ class LocationSearchTableViewCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         separatorInset.right = separatorInset.left
-        textLabel?.font = UIFont(name: self.fontName, size: 19)
+        textLabel?.font = UIFont(name: self.fontName, size: 17)
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
         preservesSuperviewLayoutMargins = false
