@@ -33,7 +33,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         super.viewDidLoad()
         
         // Pull to refresh weather data
-        var swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
         swipeDown.direction = .Down
         view.addGestureRecognizer(swipeDown)
         
@@ -115,6 +115,9 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     func requestWeatherData(location : Location, useCelsius : Bool){
         self.locationController.requestWeatherDataForLocation(location, useCelsius: useCelsius, completion: { (success, weather) -> Void in
             if success {
+                guard let weather = weather else {
+                    return
+                }
                 self.forecastView.tempLabel.text = "\(weather.temperature!)°"
                 self.forecastView.iconImage.image = weather.condition!.icon()
                 self.forecastView.summaryLabel.text = weather.summary
@@ -125,7 +128,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 if weather.currentState!.isEmpty {
                     self.forecastView.cityLabel.text = weather.currentCity
                 }
-                else{
+                else {
                     self.forecastView.cityLabel.text = "\(weather.currentCity!), \(weather.currentState!)"
                 }
             }

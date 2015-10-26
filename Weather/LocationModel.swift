@@ -16,7 +16,7 @@ let LocationSavedLongitude = "longitude"
 let LocationSavedUserList = "locationSavedUserList"
 let LocationSavedUserDefault = "locationSavedUserDefault"
 
-struct Location : Printable, DebugPrintable {
+struct Location : CustomStringConvertible, CustomDebugStringConvertible {
     var city : String = ""
     var state : String = ""
     var latitude : Double = 0

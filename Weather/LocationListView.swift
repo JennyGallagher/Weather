@@ -22,14 +22,14 @@ class LocationListView: GradientView {
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
-        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
         return blurView
         }()
     
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView.registerClass(LocationListTableViewCell.self, forCellReuseIdentifier: LocationListTableViewCellIdentifier)
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = 75
         tableView.estimatedRowHeight = 75
         tableView.layoutMargins = UIEdgeInsetsZero

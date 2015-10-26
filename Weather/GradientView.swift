@@ -57,7 +57,7 @@ class GradientView: UIView {
         
         let locations = []
         
-        background.locations = locations as [AnyObject]
+        background.locations = locations as? [NSNumber] //as [AnyObject]
         
         let gradientAnimation = CABasicAnimation(keyPath: "locations")
         gradientAnimation.fromValue = [0.05, 0.7]

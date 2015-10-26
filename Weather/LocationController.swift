@@ -50,41 +50,39 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     }
     
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         
         print("The authorization status of location services is changed to: ")
         
         switch CLLocationManager.authorizationStatus() {
         case .AuthorizedAlways:
-            println("Authorized")
+            print("Authorized")
         case .AuthorizedWhenInUse:
-            println("Authorized when in use")
+            print("Authorized when in use")
             locationManager.startUpdatingLocation()
         case .Denied:
-            println("Denied")
+            print("Denied")
         case .NotDetermined:
-            println("Not determined")
+            print("Not determined")
         case .Restricted:
-            println("Restricted")
-        default:
-            println("Unhandled")
+            print("Restricted")
         }
     }
     
     
     // didFailWithError
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         
-        println(error.localizedDescription)
+        print(error.localizedDescription)
     }
     
     
     // didUpdateLocations - reverse geocode
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let location = locations.last as! CLLocation
+        let location = locations.last as CLLocation!
         let currentLocationCoordinates = location.coordinate
-        println("didUpdateLocations:  \(location.coordinate.latitude), \(location.coordinate.longitude)")
+        print("didUpdateLocations:  \(location.coordinate.latitude), \(location.coordinate.longitude)")
         
         currentLocationLat = currentLocationCoordinates.latitude
         currentLocationLong = currentLocationCoordinates.longitude
@@ -96,17 +94,17 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             if let error = error {
-                println("Error:  \(error.localizedDescription)")
+                print("Error:  \(error.localizedDescription)")
                 self.completionToCallWhenLocationsAreDone?(nil, false)
                 self.completionToCallWhenLocationsAreDone = nil
             }
             else {
                 
-                if placemarks.count > 0 {
+                if placemarks!.count > 0 {
                     
-                    let placemark = placemarks.last as? CLPlacemark
+                    let placemark = placemarks!.last as CLPlacemark!
                     
-                    let newLocation = Location(city: placemark!.locality as String, state: placemark!.administrativeArea as String, latitude: self.currentLocationLat, longitude: self.currentLocationLong, representsCurrentLocation: true)
+                    let newLocation = Location(city: placemark!.locality as String!, state: placemark!.administrativeArea as String!, latitude: self.currentLocationLat, longitude: self.currentLocationLong, representsCurrentLocation: true)
                     
                     self.completionToCallWhenLocationsAreDone?(newLocation, true)
                     self.completionToCallWhenLocationsAreDone = nil
@@ -119,7 +117,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     
     // Network call to Forecast.io
     
-    typealias WeatherCompletionClosure = (success : Bool, weather : WeatherData) -> Void
+    typealias WeatherCompletionClosure = (success : Bool, weather : WeatherData?) -> Void
     
     func requestWeatherDataForLocation(location: Location, useCelsius: Bool, completion: WeatherCompletionClosure) {
         
@@ -129,7 +127,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         
         let urlComponents: NSURLComponents = {
             let components = NSURLComponents()
-            components.scheme = "http"
+            components.scheme = "https"
             components.host = "api.forecast.io"
             components.path = "/forecast/\(apiKey)/\(location.latitude),\(location.longitude)"
             if useCelsius {
@@ -143,20 +141,36 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask = sharedSession.downloadTaskWithURL(URL!, completionHandler: { (url: NSURL!, response: NSURLResponse!, error:NSError!) -> Void in
+        let downloadTask = sharedSession.downloadTaskWithURL(URL!, completionHandler: { (url: NSURL? , response: NSURLResponse?, error:NSError?) -> Void in
             
             if (error == nil) {
-                let dataObject = NSData(contentsOfURL: url)
-                let weatherDictionary: NSDictionary = NSJSONSerialization.JSONObjectWithData(dataObject!, options: nil, error: nil) as! NSDictionary
                 
-                var currentWeather = WeatherData(weatherDictionary: weatherDictionary)
-                currentWeather.currentCity = location.city
-                currentWeather.currentState = location.state
+                do {
                 
+                    let dataObject = NSData(contentsOfURL: url!)
+                    guard let weatherDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(dataObject!, options: []) as? NSDictionary else {
+                        dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                            completion(success: false, weather: nil)
+                        })
+                        
+                        return
+                    }
+                    
+                    var currentWeather = WeatherData(weatherDictionary: weatherDictionary)
+                    currentWeather.currentCity = location.city
+                    currentWeather.currentState = location.state
+                    
+                    dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                        completion(success: true, weather: currentWeather)
+                    })
+                    
+                }
+                catch {
+                    
+                    print("There was an unknown error")
                 
-                dispatch_async(dispatch_get_main_queue(), {() -> Void in
-                    completion(success: true, weather: currentWeather)
-                })
+                }
+                
             }
         })
         

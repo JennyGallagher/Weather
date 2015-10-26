@@ -62,7 +62,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
                     let locations = Location.restoreSavedLocationsFromUserDefaults()
                     
                     let locationsWithNilWeather = locations.map { LocationAndWeatherPair( $0, nil) }
-                    self.locationAndWeatherPairs.extend(locationsWithNilWeather)
+                    self.locationAndWeatherPairs.appendContentsOf(locationsWithNilWeather)
                     
                     self.locationListView.tableView.reloadData()
                     self.populateWeatherDataForLocations()
@@ -128,7 +128,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(LocationListTableViewCellIdentifier, forIndexPath: indexPath) as! LocationListTableViewCell
         let location = locationAndWeatherPairs[indexPath.row].location
         let weatherData = locationAndWeatherPairs[indexPath.row].weatherData
         

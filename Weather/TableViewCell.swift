@@ -19,7 +19,7 @@ class LocationListTableViewCell: UITableViewCell {
     
     lazy var cityLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .fontColor()
         label.font = UIFont(name: fontName, size: 20.0)
         label.lineBreakMode = .ByTruncatingTail
@@ -29,7 +29,7 @@ class LocationListTableViewCell: UITableViewCell {
     
     lazy var summaryLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .fontColor()
         label.font = UIFont(name: fontName, size: 13)
         return label
@@ -37,7 +37,7 @@ class LocationListTableViewCell: UITableViewCell {
     
     lazy var tempLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .fontColor()
         label.font = UIFont(name: fontName, size: 45)
         label.textAlignment = .Right
@@ -47,21 +47,22 @@ class LocationListTableViewCell: UITableViewCell {
     lazy var iconImageView: UIImageView = {
         let icon = UIImageView()
         icon.contentMode = .ScaleAspectFit
-        icon.setTranslatesAutoresizingMaskIntoConstraints(false)
+        icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
         }()
     
     lazy var locationArrowImageView: UIImageView = {
         let icon = UIImageView()
         icon.contentMode = .ScaleAspectFit
-        icon.setTranslatesAutoresizingMaskIntoConstraints(false)
+        icon.translatesAutoresizingMaskIntoConstraints = false
         icon.image = UIImage(named: "LocationArrow")
         icon.hidden = true
         return icon
         }()
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        
+        fatalError("LocationListTableViewCell does not support initWithCoder")
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -97,7 +98,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Leading,
             relatedBy: .Equal,
             toItem: contentView,
-            attribute: .Left,
+            attribute: .Leading,
             multiplier: 1, constant: 22).active = true
         
         NSLayoutConstraint(
@@ -105,7 +106,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Trailing,
             relatedBy: .Equal,
             toItem: contentView,
-            attribute: .Right,
+            attribute: .Trailing,
             multiplier: 1, constant: -75).active = true
         
         NSLayoutConstraint(
@@ -139,7 +140,7 @@ class LocationListTableViewCell: UITableViewCell {
             attribute: .Trailing,
             relatedBy: .Equal,
             toItem: contentView,
-            attribute: .Right,
+            attribute: .Trailing,
             multiplier: 1, constant: -10).active = true
         
         

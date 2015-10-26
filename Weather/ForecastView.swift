@@ -21,7 +21,7 @@ class ForecastView: GradientView {
     
     lazy var cityLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = self.fontColor
         label.font = UIFont(name: self.fontName, size: 32.0)
         label.textAlignment = .Center
@@ -35,7 +35,7 @@ class ForecastView: GradientView {
         let button = UIButton()
         button.imageEdgeInsets = UIEdgeInsets(top: 35, left: 35, bottom: 35, right: 35)
         button.alpha = 0.65
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.adjustsImageWhenHighlighted = false
         button.setImage(image, forState: .Normal)
         button.hidden = true
@@ -45,7 +45,7 @@ class ForecastView: GradientView {
     
     lazy var tempLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = self.fontColor
         label.font = UIFont(name: self.fontName, size: 130.0)
         label.textAlignment = .Center
@@ -55,7 +55,7 @@ class ForecastView: GradientView {
     
     lazy var tempMinMaxLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = self.fontColor
         label.font = UIFont(name: self.fontName, size: 18.0)
         label.textAlignment = .Left
@@ -65,7 +65,7 @@ class ForecastView: GradientView {
     
     lazy var summaryLabel: UILabel! = {
         let label = UILabel()
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = self.fontColor
         label.font = UIFont(name: self.fontName, size: 21.0)
         label.textAlignment = .Left
@@ -77,7 +77,7 @@ class ForecastView: GradientView {
         let icon = UIImageView()
         icon.contentMode = .ScaleAspectFit
         icon.alpha = 0.85
-        icon.setTranslatesAutoresizingMaskIntoConstraints(false)
+        icon.translatesAutoresizingMaskIntoConstraints = false
         return icon
         }()
     
@@ -85,7 +85,7 @@ class ForecastView: GradientView {
         let view = UIActivityIndicatorView()
         view.activityIndicatorViewStyle = .WhiteLarge
         view.alpha = 0.85
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
         }()
  

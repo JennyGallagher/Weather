@@ -18,20 +18,20 @@ class FooterView: UIView {
     
     lazy var lastLineSeparator : UIView! = {
         let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
         }()
     
     lazy var vibrancyEffectView : UIVisualEffectView = {
         let view = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect()))
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.contentView.backgroundColor = UIColor.whiteColor()
         return view
         }()
     
     lazy var addLocationButton : UIButton! = {
         let button =  UIButton()
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("+", forState: .Normal)
         button.titleEdgeInsets = UIEdgeInsets(top: 7, left: 15, bottom: 55, right: 35)
         button.setTitleColor(UIColor.fontColor(), forState: .Normal)
@@ -42,7 +42,7 @@ class FooterView: UIView {
     
     lazy var useCelsiusButton : UIButton! = {
         let button =  UIButton()
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        button.translatesAutoresizingMaskIntoConstraints = false
         if let defaultUseCelsius =
             UseCelsius.restoreSavedDefaultUnitFromUserDefaults() {
                 var useCelsius : Bool = false

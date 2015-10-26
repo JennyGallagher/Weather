@@ -12,7 +12,7 @@ class BlurView : UIVisualEffectView {
     
     init() {
         let blurEffect = UIBlurEffect(style: .Light)
-        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+//     This wasn't getting called 10/21   let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
         super.init(effect: blurEffect)
     }
 

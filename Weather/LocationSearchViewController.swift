@@ -73,7 +73,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
 
         originalData.removeAll()
         place_ids.removeAll()
-        googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text){ predictions in
+        googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text!){ predictions in
             for prediction: Prediction in predictions {
                 
                 
@@ -109,12 +109,11 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let locationArray :  [Location] = []
-        googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
+          googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
             
             let locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude, representsCurrentLocation: false)
             
-            println("saved location \(locationFromAddressSearch)")
+            print("saved location \(locationFromAddressSearch)")
             
             self.delegate?.locationSearchViewController(self, didAddNewLocation: locationFromAddressSearch)
             

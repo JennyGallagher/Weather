@@ -14,7 +14,7 @@ import UIKit
 
 class GooglePlaceAPI {
     let apiKey = "AIzaSyAvo1QZkVdSprAnJeenXa2xS4O-OKtbB3M"
-    var placesTask = NSURLSessionDataTask()
+    var placesTask : NSURLSessionDataTask?
     var session: NSURLSession {
         return NSURLSession.sharedSession()
     }
@@ -25,57 +25,83 @@ class GooglePlaceAPI {
     {
         predictions.removeAll()
         var urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(apiKey)&input=\(input)&types=(cities)"
+       
+        urlString = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) ?? ""
         
-        urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        
-        if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
-            placesTask.cancel()
+        if let placesTask = placesTask {
+            if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
+                placesTask.cancel()
+            }
         }
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         placesTask = session.dataTaskWithURL(NSURL(string: urlString)!) {data, response, error in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             self.predictions = [Prediction]()
-            if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? [String : AnyObject] {
-                if let results = json["predictions"] as? [[String : AnyObject]] {
-                    for rawPlace : AnyObject in results {
-                        
-                        let place = Prediction(dictionary: rawPlace as! [String : AnyObject])
-                        
-                        self.predictions.append(place)
-
-                    }
+            
+            do {
+                if let data = data,
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String : AnyObject] {
+                        if let results = json["predictions"] as? [[String : AnyObject]] {
+                            for rawPlace : AnyObject in results {
+                                
+                                let place = Prediction(dictionary: rawPlace as! [String : AnyObject])
+                                
+                                self.predictions.append(place)
+                                
+                            }
+                        }
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(self.predictions)
                 }
             }
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(self.predictions)
+            catch {
+                print("Failed to parse predictions")
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion([])
+                }
             }
         }
-        placesTask.resume()
+        placesTask?.resume()
     }
     
     func fetchPlacesDetail(placeid:String, completion: ((Detail?) -> Void)) -> ()
     {
-        var place : Detail!
+        var place : Detail?
         var urlString = "https://maps.googleapis.com/maps/api/place/details/json?key=\(apiKey)&placeid=\(placeid)"
-        urlString = urlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
-            placesTask.cancel()
+        urlString = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) ?? ""
+        
+        if let placesTask = placesTask {
+            if placesTask.taskIdentifier > 0 && placesTask.state == .Running {
+                placesTask.cancel()
+            }
         }
+        
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        placesTask = session.dataTaskWithURL(NSURL(string: urlString)!) {data, response, error in
+        placesTask = session.dataTaskWithURL(NSURL(string: urlString)!) { data, response, error in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            if let json = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:nil) as? NSDictionary {
-                if let results = json["result"] as? NSDictionary {
-                    place = Detail(dictionary: results)
-                    //                    println("\(place.address) , \(place.coordinate.latitude) , \(place.coordinate.longitude)")
+            
+            do {
+                if let data = data,
+                    let json = try NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
+                        if let results = json["result"] as? NSDictionary {
+                            place = Detail(dictionary: results)
+                            
+                        }
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(place)
                 }
             }
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(place)
+            catch {
+                print("Failed to parse data")
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(nil)
+                }
             }
         }
-        placesTask.resume()
+        placesTask?.resume()
     }
     
     

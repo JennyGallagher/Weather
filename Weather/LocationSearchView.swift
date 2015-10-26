@@ -18,14 +18,14 @@ class LocationSearchView: GradientView {
     
     lazy var blurView : BlurView = {
         let blurView = BlurView()
-        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
         return blurView
         }()
     
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
         tableView.registerClass(LocationSearchTableViewCell.self, forCellReuseIdentifier: LocationSearchTableViewCellIdentifier)
-        tableView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 75
         tableView.layoutMargins = UIEdgeInsetsZero
         
@@ -39,7 +39,7 @@ class LocationSearchView: GradientView {
     lazy var googleLogo : UIImageView! = {
         let imageView = UIImageView(image: UIImage(named: "powered-by-google-on-non-white"))
         imageView.contentMode = .ScaleAspectFit
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
         }()
     
@@ -153,7 +153,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: -2).active = true
         
         // Keeps the tableview from overlapping with the Google logo
-        let tableViewBottomConstraint: () = NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Bottom,
             relatedBy: .Equal,

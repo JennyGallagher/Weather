@@ -38,18 +38,19 @@ class Detail {
         address  = dictionary["formatted_address"] as! String
         let addressComponents = dictionary["address_components"] as! [Dictionary<String,AnyObject>]
         for component: Dictionary<String,AnyObject> in addressComponents {
-            var types = component["types"] as! [String]
+            let types = component["types"] as! [String]
             
-            if contains(types, "locality") {
+            
+            if types.contains("locality") {
                 self.city = component["long_name"] as? String
                 
-            } else if contains(types, "administrative_area_level_1") {
+            } else if types.contains("administrative_area_level_1") {
                 self.state = component["short_name"] as? String
                 
-            } else if contains(types, "postal_code") {
+            } else if types.contains("postal_code") {
                 self.postalCode = component["long_name"] as? String
                 
-            } else if contains(types, "country") {
+            } else if types.contains("country") {
                 self.country = component["long_name"] as? String
             }
         }
