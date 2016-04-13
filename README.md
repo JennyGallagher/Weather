@@ -5,12 +5,12 @@ Download [RainCheck](https://itunes.apple.com/app/id1009096503) free in the App 
 ---
 <br />
 RainCheck is a weather app written in Swift 2.0 and updated for iOS9.
-* Interacts with Forecast.io’s API for weather data and Google Places API for location search.
+* Interacts with Forecast.io’s API for weather data and Google Places API for location search
 * Interfaces with Core Location to determine current location
 * Features animations produced in code, utilizing Core Animation and Core Graphics
 <br />
 
-(You must register for an API key before data can retrieved. Replace the key defined inside ForecastAPI.swift with your own key.)
+(You must register for API keys before data can retrieved. Replace the keys defined inside GooglePlaceAPI.swift and LocationController.swift with your own keys.)
 
 
 
