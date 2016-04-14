@@ -25,7 +25,6 @@ class Prediction {
 
 class Detail {
     
-    
     var city: String?
     var state: String?
     var postalCode: String?
@@ -39,7 +38,6 @@ class Detail {
         let addressComponents = dictionary["address_components"] as! [Dictionary<String,AnyObject>]
         for component: Dictionary<String,AnyObject> in addressComponents {
             let types = component["types"] as! [String]
-            
             
             if types.contains("locality") {
                 self.city = component["long_name"] as? String
@@ -60,7 +58,6 @@ class Detail {
         let lat = location["lat"] as! CLLocationDegrees
         let lng = location["lng"] as! CLLocationDegrees
         coordinate = CLLocationCoordinate2DMake(lat, lng)
-        
         
     }
 }

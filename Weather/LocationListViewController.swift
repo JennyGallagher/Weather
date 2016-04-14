@@ -32,7 +32,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         let colors = UIColor.yellowToPinkColor()
         let view = LocationListView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
-        }()
+    }()
     
     
     override func loadView() {
@@ -80,7 +80,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         locationListView.tableView.reloadData()
     }
     
-
     
     private func populateWeatherDataForLocations() {
         for i in 0..<locationAndWeatherPairs.count {
@@ -107,13 +106,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location) {
         let locationWeatherPair : LocationAndWeatherPair = (location, nil)
         locationAndWeatherPairs.append(locationWeatherPair)
-        
-//        let locations = locationAndWeatherPairs.map { locationAndWeatherPair in
-//            return locationAndWeatherPair.location
-//        }
-//        let filteredLocations = locations.filter { location in
-//            return !location.representsCurrentLocation
-//        }
         
         let locations = locationAndWeatherPairs.map { $0.0 }.filter { !$0.representsCurrentLocation }
         Location.saveLocationsToUserDefaults(locations)
@@ -145,10 +137,9 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             cell.tempLabel.text = ""
             cell.summaryLabel.text = ""
         }
-
+        
         return cell
     }
-    
     
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -160,7 +151,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
             return true
         }
     }
-    
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -198,7 +188,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     
-    
     func didTapUseCelsiusButtonInLocationListView(view: LocationListView, useCelsiusButtonSelected: Bool) {
         useCelsius = useCelsiusButtonSelected
         
@@ -208,7 +197,6 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         clearAllWeatherData()
         populateWeatherDataForLocations()
     }
-    
 }
 
 

@@ -33,7 +33,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         super.viewDidLoad()
         
         // Pull to refresh weather data
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(ForecastViewController.respondToSwipeGesture(_:)))
         swipeDown.direction = .Down
         view.addGestureRecognizer(swipeDown)
         
@@ -44,8 +44,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         }
         
         
-        self.forecastView.cityListViewButton.addTarget(self, action: "cityListViewButtonTouched:", forControlEvents: .TouchUpInside)
-        
+        self.forecastView.cityListViewButton.addTarget(self, action: #selector(ForecastViewController.cityListViewButtonTouched(_:)), forControlEvents: .TouchUpInside)
         
         
         // If we have a default location, use that.
@@ -63,14 +62,13 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
             })
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshWhenBecomesActive:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ForecastViewController.refreshWhenBecomesActive(_:)), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
-    
     
     
     func cityListViewButtonTouched(sender: UIButton!) {
@@ -80,7 +78,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
         navigationController.setNavigationBarHidden(true, animated: false)
         presentViewController(navigationController, animated: true, completion: nil)
     }
-    
     
     
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool) {

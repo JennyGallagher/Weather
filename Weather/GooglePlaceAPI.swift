@@ -25,7 +25,7 @@ class GooglePlaceAPI {
     {
         predictions.removeAll()
         var urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(apiKey)&input=\(input)&types=(cities)"
-       
+        
         urlString = urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()) ?? ""
         
         if let placesTask = placesTask {

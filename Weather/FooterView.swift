@@ -11,8 +11,6 @@ import UIKit
 
 class FooterView: UIView {
     
-
-    
     let fontName = "Avenir-Heavy"
     
     
@@ -22,7 +20,7 @@ class FooterView: UIView {
         return view
         }()
     
-    lazy var vibrancyEffectView : UIVisualEffectView = {
+     lazy var vibrancyEffectView : UIVisualEffectView = {
         let view = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect()))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentView.backgroundColor = UIColor.whiteColor()
@@ -38,7 +36,6 @@ class FooterView: UIView {
         button.titleLabel?.font  = UIFont(name: self.fontName, size: 32)
         return button
         }()
-    
     
     lazy var useCelsiusButton : UIButton! = {
         let button =  UIButton()
@@ -190,6 +187,4 @@ class FooterView: UIView {
             multiplier: 1, constant: 15).active = true
       
     }
-    
-
 }

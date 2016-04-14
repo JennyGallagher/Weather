@@ -34,7 +34,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         let colors = UIColor.yellowToPinkColor()
         let view = LocationSearchView(topColor: colors.topColor, bottomColor: colors.bottomColor)
         return view
-        }()
+    }()
     
     
     override func loadView() {
@@ -44,10 +44,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareViewForInitialDataLoad()
-
-        
         locationSearchView.searchBar.delegate = self
-        
         locationSearchView.tableView.reloadData()
     }
     
@@ -70,12 +67,11 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-
+        
         originalData.removeAll()
         place_ids.removeAll()
         googlePlaceAPI.fetchPlacesAutoComplete(locationSearchView.searchBar.text!){ predictions in
             for prediction: Prediction in predictions {
-                
                 
                 self.originalData.append(prediction.description)
                 self.place_ids.append(prediction.place_id)
@@ -83,12 +79,10 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
             }
             
             self.filteredData = self.originalData
-            
             self.locationSearchView.tableView.reloadData()
             
         }
     }
-    
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -96,20 +90,15 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         var cell = tableView.dequeueReusableCellWithIdentifier(LocationSearchTableViewCellIdentifier, forIndexPath: indexPath) as! LocationSearchTableViewCell
         
         cell = LocationSearchTableViewCell()
-        
-    
-        
         cell.textLabel!.text = self.filteredData[indexPath.row]
-        
         
         return cell
     }
     
-
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-          googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
+        googlePlaceAPI.fetchPlacesDetail(place_ids[indexPath.row]){ place in
             
             let locationFromAddressSearch = Location(city: place!.city ?? "", state: place!.state ?? "", latitude: place!.coordinate.latitude, longitude: place!.coordinate.longitude, representsCurrentLocation: false)
             
@@ -125,7 +114,6 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-    
 }
 
 

@@ -29,7 +29,6 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     let locations : [Location] = []
     var selectedLocation : Location? = nil
     
-    
     var completionToCallWhenLocationsAreDone : ((Location?, Bool) -> Void)? = nil
     
     
@@ -89,7 +88,6 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         currentLocationLatString = currentLocationCoordinates.latitude.description
         currentLocationLongString = currentLocationCoordinates.longitude.description
         
-        
         locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
@@ -123,8 +121,6 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         
         let apiKey = "81e71bbb6b05cc0f6f5fca5ac0ecdac2"
         
-//        let useCelsius : Bool = true
-        
         let urlComponents: NSURLComponents = {
             let components = NSURLComponents()
             components.scheme = "https"
@@ -134,9 +130,9 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                 components.queryItems = [NSURLQueryItem(name: "units", value: "si")]
             }
             return components
-            }()
+        }()
         
-       
+        
         let URL = urlComponents.URL
         
         let sharedSession = NSURLSession.sharedSession()
@@ -146,7 +142,7 @@ class LocationController : NSObject, CLLocationManagerDelegate {
             if (error == nil) {
                 
                 do {
-                
+                    
                     let dataObject = NSData(contentsOfURL: url!)
                     guard let weatherDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(dataObject!, options: []) as? NSDictionary else {
                         dispatch_async(dispatch_get_main_queue(), {() -> Void in
@@ -168,30 +164,15 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                 catch {
                     
                     print("There was an unknown error")
-                
+                    
                 }
-                
             }
         })
         
         downloadTask.resume()
     }
-    
 }
 
 
-
-
-
-
-
-
-
-
-
-// Retrieving weather in the future: https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE,TIME
-
-
-///Google API : AIzaSyDd-w4c07w0ILUr_l0inPcHXqIZiP-XzpM
 
 

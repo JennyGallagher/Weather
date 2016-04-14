@@ -18,6 +18,7 @@ extension UIColor {
         return (topColor, bottomColor)
     }
     
+//    Additional color combinations, would be fun if the colors combinations randomly changed when a new location is selected
     class func miamiViceColors() -> (topColor : UIColor, bottomColor : UIColor) {
         let topColor = UIColor(red: (242/255.0), green: (145/255.0), blue: (216/255.0), alpha: 1)
         let bottomColor = UIColor(red: (39/255.0), green: (242/255.0), blue: (242/255.0), alpha: 1)
@@ -69,6 +70,4 @@ extension UIColor {
     class func fontColor() ->UIColor{
         return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
     }
-    
-    
 }

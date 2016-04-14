@@ -9,8 +9,6 @@
 import UIKit
 
 
-
-
 class LocationSearchView: GradientView {
     
     let placeholderText = "Enter a city name"
@@ -20,7 +18,7 @@ class LocationSearchView: GradientView {
         let blurView = BlurView()
         blurView.translatesAutoresizingMaskIntoConstraints = false
         return blurView
-        }()
+    }()
     
     lazy var tableView : UITableView = {
         let tableView = UITableView(frame: CGRectZero, style: .Plain)
@@ -34,14 +32,14 @@ class LocationSearchView: GradientView {
         tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.preservesSuperviewLayoutMargins = false
         return tableView
-        }()
+    }()
     
     lazy var googleLogo : UIImageView! = {
         let imageView = UIImageView(image: UIImage(named: "powered-by-google-on-non-white"))
         imageView.contentMode = .ScaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-        }()
+    }()
     
     
     lazy var searchBar : UISearchBar = {
@@ -90,9 +88,9 @@ class LocationSearchView: GradientView {
         let textFieldInsideSearchBarLeftView : UIImageView = textFieldInsideSearchBar?.leftView as! UIImageView
         textFieldInsideSearchBarLeftView.image = textFieldInsideSearchBarLeftView.image?.imageWithRenderingMode(.AlwaysTemplate)
         textFieldInsideSearchBarLeftView.tintColor =  UIColor.whiteColor()
-       
+        
         return searchBar
-        }()
+    }()
     
     override init(topColor: UIColor, bottomColor: UIColor) {
         super.init(topColor: topColor, bottomColor: bottomColor)
@@ -144,7 +142,7 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: 0).active = true
         
         // tableView constraints
-         NSLayoutConstraint(
+        NSLayoutConstraint(
             item: tableView,
             attribute: .Top,
             relatedBy: .Equal,
@@ -205,6 +203,4 @@ class LocationSearchView: GradientView {
             multiplier: 1, constant: -225).active = true
         
     }
-    
-    
 }

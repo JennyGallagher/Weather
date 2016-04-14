@@ -68,7 +68,6 @@ class LocationListTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        //        separatorInset = UIEdgeInsetsZero
         separatorInset.right = separatorInset.left
         layoutMargins = UIEdgeInsetsZero
         selectionStyle = .None
@@ -78,7 +77,6 @@ class LocationListTableViewCell: UITableViewCell {
         configureConstraints()
         
     }
-    
     
     
     private func configureSubviews(){

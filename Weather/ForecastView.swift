@@ -42,7 +42,6 @@ class ForecastView: GradientView {
         return button
         }()
     
-    
     lazy var tempLabel: UILabel! = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +50,6 @@ class ForecastView: GradientView {
         label.textAlignment = .Center
         return label
         }()
-    
     
     lazy var tempMinMaxLabel: UILabel! = {
         let label = UILabel()
@@ -62,7 +60,6 @@ class ForecastView: GradientView {
         return label
         }()
     
-    
     lazy var summaryLabel: UILabel! = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +68,6 @@ class ForecastView: GradientView {
         label.textAlignment = .Left
         return label
         }()
-    
     
     lazy var iconImage: UIImageView = {
         let icon = UIImageView()
@@ -88,13 +84,11 @@ class ForecastView: GradientView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
         }()
- 
 
     
     override init(topColor: UIColor, bottomColor: UIColor) {
         
         super.init(topColor: topColor, bottomColor: bottomColor)
-        
         
         addSubview(cityLabel)
         addSubview(tempLabel)
@@ -182,7 +176,6 @@ class ForecastView: GradientView {
             attribute: .Top,
             multiplier: 1, constant: 0).active = true
         
-        
         NSLayoutConstraint(
             item: cityListViewButton,
             attribute: .Width,
@@ -191,8 +184,6 @@ class ForecastView: GradientView {
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 100).active = true
         
-        
-        
         NSLayoutConstraint(
             item: cityListViewButton,
             attribute: .Height,
@@ -200,7 +191,6 @@ class ForecastView: GradientView {
             toItem: nil,
             attribute: .NotAnAttribute,
             multiplier: 1, constant: 100).active = true
-        
         
         // summaryLabel constraints
         NSLayoutConstraint(
@@ -285,7 +275,6 @@ class ForecastView: GradientView {
             toItem: self,
             attribute: .CenterY,
             multiplier: 1, constant: -100).active = true
-
 
     }
     

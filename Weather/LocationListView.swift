@@ -13,7 +13,6 @@ protocol LocationListViewDelegate : class {
     func didTapAddLocationButtonInLocationListView(view: LocationListView)
     func didRequestWeatherRefreshInLocationListView(view: LocationListView)
     func didTapUseCelsiusButtonInLocationListView(view: LocationListView, useCelsiusButtonSelected : Bool)
-
 }
 
 class LocationListView: GradientView {
@@ -39,8 +38,8 @@ class LocationListView: GradientView {
         
         let footerView = FooterView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100.0))
         footerView.backgroundColor = UIColor.clearColor()
-        footerView.addLocationButton.addTarget(self, action: "addLocationButtonTapped:", forControlEvents: .TouchUpInside)
-        footerView.useCelsiusButton.addTarget(self, action: "useCelsiusButtonTapped:", forControlEvents: .TouchUpInside)
+        footerView.addLocationButton.addTarget(self, action: #selector(LocationListView.addLocationButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        footerView.useCelsiusButton.addTarget(self, action: #selector(LocationListView.useCelsiusButtonTapped(_:)), forControlEvents: .TouchUpInside)
         tableView.tableFooterView = footerView
         
         
@@ -52,9 +51,8 @@ class LocationListView: GradientView {
     lazy var refreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.fontColor()
-        refreshControl.addTarget(self, action: "refreshTableView:", forControlEvents: .ValueChanged)
-        return refreshControl
-        
+        refreshControl.addTarget(self, action: #selector(LocationListView.refreshTableView(_:)), forControlEvents: .ValueChanged)
+        return refreshControl        
         }()
     
     

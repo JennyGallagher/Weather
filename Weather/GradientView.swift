@@ -24,7 +24,7 @@ class GradientView: UIView {
         super.init(frame: CGRectZero)
         self.layer.insertSublayer(background, atIndex: 0)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "gradientAnimation", name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GradientView.gradientAnimation), name: UIApplicationDidBecomeActiveNotification, object: nil)
     }
     
     required init(coder aDecoder: NSCoder) {
