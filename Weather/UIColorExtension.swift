@@ -18,56 +18,54 @@ extension UIColor {
         return (topColor, bottomColor)
     }
     
-//    Additional color combinations, would be fun if the colors combinations randomly changed when a new location is selected
-    class func miamiViceColors() -> (topColor : UIColor, bottomColor : UIColor) {
-        let topColor = UIColor(red: (242/255.0), green: (145/255.0), blue: (216/255.0), alpha: 1)
-        let bottomColor = UIColor(red: (39/255.0), green: (242/255.0), blue: (242/255.0), alpha: 1)
-        
-        return (topColor, bottomColor)
-    }
-    
-    class func tealToPurple() -> (topColor : UIColor, bottomColor : UIColor) {
-        let topColor = UIColor(red: (78/255.0), green: (250/255.0), blue: (213/255.0), alpha: 1)
-        let bottomColor = UIColor(red: (158/255.0), green: (15/255.0), blue: (237/255.0), alpha: 1)
-        
-        return (topColor, bottomColor)
-    }
-    
-    class func neonYellowToPink() -> (topColor : UIColor, bottomColor : UIColor) {
-        let topColor = UIColor(red: (204/255.0), green: (253/255.0), blue: (102/255.0), alpha: 1)
-        let bottomColor = UIColor(red: (242/255.0), green: (5/255.0), blue: (116/255.0), alpha: 1)
-        
-        return (topColor, bottomColor)
-    }
-    
-    class func yellowToPinkColor2() -> (topColor : UIColor, bottomColor : UIColor) {
-        let topColor = UIColor(red: (255/255.0), green: (191/255.0), blue: (64/255.0), alpha: 1)
-        let bottomColor = UIColor(red: (255/255.0), green: (9/255.0), blue: (162/255.0), alpha: 1)
-        
-        return (topColor, bottomColor)
-    }
-    
-    class func yellowToPurle() -> (topColor : UIColor, bottomColor : UIColor) {
-        let topColor = UIColor(red: (254/255.0), green: (215/255.0), blue: (69/255.0), alpha: 1)
-        let bottomColor = UIColor(red: (158/255.0), green: (15/255.0), blue: (237/255.0), alpha: 1)
-        
-        return (topColor, bottomColor)
-    }
-    
-    class func pinkToPurle() -> (topColor : UIColor, bottomColor : UIColor) {
-        let topColor = UIColor(red: (255/255.0), green: (9/255.0), blue: (162/255.0), alpha: 1)
-        let bottomColor = UIColor(red: (158/255.0), green: (15/255.0), blue: (237/255.0), alpha: 1)
-        
-        return (topColor, bottomColor)
-    }
-
-    
-    class func customColor() -> UIColor{
-        return UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.55)
-    }
-    
-    
     class func fontColor() ->UIColor{
         return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
     }
+    
+//    TO DO: Would be fun if the colors combinations randomly changed when a new location is selected. Below are color combos to use if that functionality is added.
+    
+    
+//    class func miamiViceColors() -> (topColor : UIColor, bottomColor : UIColor) {
+//        let topColor = UIColor(red: (242/255.0), green: (145/255.0), blue: (216/255.0), alpha: 1)
+//        let bottomColor = UIColor(red: (39/255.0), green: (242/255.0), blue: (242/255.0), alpha: 1)
+//        
+//        return (topColor, bottomColor)
+//    }
+//    
+//    class func tealToPurple() -> (topColor : UIColor, bottomColor : UIColor) {
+//        let topColor = UIColor(red: (78/255.0), green: (250/255.0), blue: (213/255.0), alpha: 1)
+//        let bottomColor = UIColor(red: (158/255.0), green: (15/255.0), blue: (237/255.0), alpha: 1)
+//        
+//        return (topColor, bottomColor)
+//    }
+//    
+//    class func neonYellowToPink() -> (topColor : UIColor, bottomColor : UIColor) {
+//        let topColor = UIColor(red: (204/255.0), green: (253/255.0), blue: (102/255.0), alpha: 1)
+//        let bottomColor = UIColor(red: (242/255.0), green: (5/255.0), blue: (116/255.0), alpha: 1)
+//        
+//        return (topColor, bottomColor)
+//    }
+//    
+//    class func yellowToPinkColor2() -> (topColor : UIColor, bottomColor : UIColor) {
+//        let topColor = UIColor(red: (255/255.0), green: (191/255.0), blue: (64/255.0), alpha: 1)
+//        let bottomColor = UIColor(red: (255/255.0), green: (9/255.0), blue: (162/255.0), alpha: 1)
+//        
+//        return (topColor, bottomColor)
+//    }
+//    
+//    class func yellowToPurle() -> (topColor : UIColor, bottomColor : UIColor) {
+//        let topColor = UIColor(red: (254/255.0), green: (215/255.0), blue: (69/255.0), alpha: 1)
+//        let bottomColor = UIColor(red: (158/255.0), green: (15/255.0), blue: (237/255.0), alpha: 1)
+//        
+//        return (topColor, bottomColor)
+//    }
+//    
+//    class func pinkToPurle() -> (topColor : UIColor, bottomColor : UIColor) {
+//        let topColor = UIColor(red: (255/255.0), green: (9/255.0), blue: (162/255.0), alpha: 1)
+//        let bottomColor = UIColor(red: (158/255.0), green: (15/255.0), blue: (237/255.0), alpha: 1)
+//        
+//        return (topColor, bottomColor)
+//    }
+
+
 }

@@ -114,12 +114,13 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     
     
     // Network call to Forecast.io
+ 
     
     typealias WeatherCompletionClosure = (success : Bool, weather : WeatherData?) -> Void
     
     func requestWeatherDataForLocation(location: Location, useCelsius: Bool, completion: WeatherCompletionClosure) {
         
-        let apiKey = "81e71bbb6b05cc0f6f5fca5ac0ecdac2"
+        let apiKey = "add unique API key here"
         
         let urlComponents: NSURLComponents = {
             let components = NSURLComponents()
