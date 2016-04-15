@@ -16,7 +16,7 @@ RainCheck is a weather app written in Swift 2.0 and updated for iOS9.
 <br />
 
 
-![alt text](http://s22.postimg.org/byl19zioh/Screen_Shot_2016_04_13_at_2_27_30_PM.png)
+![alt text](http://i.imgur.com/dU0LCPh.png)
 
 ![alt text](http://i.imgur.com/hb3emAw.gif)
 
