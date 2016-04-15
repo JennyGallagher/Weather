@@ -19,11 +19,6 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private let geocoder = CLGeocoder()
     
-    var currentLocationLat : Double!
-    var currentLocationLong : Double!
-    var currentLocationLatString : String!
-    var currentLocationLongString : String!
-    
     var selectedCity : NSString? = nil
     var selectedState : NSString? = nil
     let locations : [Location] = []
@@ -50,59 +45,36 @@ class LocationController : NSObject, CLLocationManagerDelegate {
     
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        
-        print("The authorization status of location services is changed to: ")
-        
         switch CLLocationManager.authorizationStatus() {
-        case .AuthorizedAlways:
-            print("Authorized")
         case .AuthorizedWhenInUse:
-            print("Authorized when in use")
             locationManager.startUpdatingLocation()
-        case .Denied:
-            print("Denied")
-        case .NotDetermined:
-            print("Not determined")
-        case .Restricted:
-            print("Restricted")
+        default:
+            break
         }
     }
     
     
-    // didFailWithError
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-        print(error.localizedDescription)
+        fatalError(error.localizedDescription) // TODO: Better error handling
     }
     
     
-    // didUpdateLocations - reverse geocode
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         let location = locations.last as CLLocation!
         let currentLocationCoordinates = location.coordinate
-        print("didUpdateLocations:  \(location.coordinate.latitude), \(location.coordinate.longitude)")
-        
-        currentLocationLat = currentLocationCoordinates.latitude
-        currentLocationLong = currentLocationCoordinates.longitude
-        currentLocationLatString = currentLocationCoordinates.latitude.description
-        currentLocationLongString = currentLocationCoordinates.longitude.description
         
         locationManager.stopUpdatingLocation()
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-            if let error = error {
-                print("Error:  \(error.localizedDescription)")
+            if let _ = error {
                 self.completionToCallWhenLocationsAreDone?(nil, false)
                 self.completionToCallWhenLocationsAreDone = nil
             }
             else {
-                
                 if placemarks!.count > 0 {
-                    
                     let placemark = placemarks!.last as CLPlacemark!
                     
-                    let newLocation = Location(city: placemark!.locality as String!, state: placemark!.administrativeArea as String!, latitude: self.currentLocationLat, longitude: self.currentLocationLong, representsCurrentLocation: true)
+                    let newLocation = Location(city: placemark!.locality as String!, state: placemark!.administrativeArea as String!, latitude: currentLocationCoordinates.latitude, longitude: currentLocationCoordinates.longitude, representsCurrentLocation: true)
                     
                     self.completionToCallWhenLocationsAreDone?(newLocation, true)
                     self.completionToCallWhenLocationsAreDone = nil
@@ -138,21 +110,16 @@ class LocationController : NSObject, CLLocationManagerDelegate {
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask = sharedSession.downloadTaskWithURL(URL!, completionHandler: { (url: NSURL? , response: NSURLResponse?, error:NSError?) -> Void in
+        let dataTask = sharedSession.dataTaskWithURL(URL!, completionHandler: { (data: NSData? , response: NSURLResponse?, error: NSError?) -> Void in
             
-            if (error == nil) {
-                
+            if error == nil {
                 do {
-                    
-                    let dataObject = NSData(contentsOfURL: url!)
-                    guard let weatherDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(dataObject!, options: []) as? NSDictionary else {
+                    guard let weatherDictionary: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
                         dispatch_async(dispatch_get_main_queue(), {() -> Void in
                             completion(success: false, weather: nil)
                         })
-                        
                         return
                     }
-                    
                     var currentWeather = WeatherData(weatherDictionary: weatherDictionary)
                     currentWeather.currentCity = location.city
                     currentWeather.currentState = location.state
@@ -162,15 +129,13 @@ class LocationController : NSObject, CLLocationManagerDelegate {
                     })
                     
                 }
-                catch {
-                    
-                    print("There was an unknown error")
-                    
+                catch let error as NSError {
+                    fatalError(error.localizedDescription)
                 }
             }
         })
         
-        downloadTask.resume()
+        dataTask.resume()
     }
 }
 

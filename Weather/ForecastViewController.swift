@@ -52,7 +52,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
             self.requestWeatherData(defaultLocation, useCelsius: self.useCelsius)
             self.selectedLocation = defaultLocation
         }
-            // Otherwise, go with the current GPS location.
+        // Otherwise, go with the current GPS location.
         else {
             self.locationController.retrieveLocations({location, success in
                 if success {
@@ -115,6 +115,7 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 guard let weather = weather else {
                     return
                 }
+                self.forecastView.activityIndicatorView.stopAnimating()
                 self.forecastView.tempLabel.text = "\(weather.temperature!)°"
                 self.forecastView.iconImage.image = weather.condition!.icon()
                 self.forecastView.summaryLabel.text = weather.summary
@@ -133,12 +134,11 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
     }
     
     
-    // Pull to refresh weather data with 1.5 second delay
+    // Pull to refresh weather data
     func respondToSwipeGesture(sender : UIGestureRecognizer){
         if sender.state == UIGestureRecognizerState.Ended{
             let location = selectedLocation
             self.useCelsius = useCelsiusSelected
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
             if location != nil{
                 self.forecastView.activityIndicatorView.startAnimating()
                 self.forecastView.tempLabel.text = nil
@@ -147,9 +147,6 @@ class ForecastViewController: UIViewController, LocationListViewControllerDelega
                 self.forecastView.tempMinMaxLabel.text = nil
                 
                 self.requestWeatherData(location!, useCelsius: useCelsius)
-                dispatch_after(dispatchTime, dispatch_get_main_queue(), { () -> Void in
-                    self.forecastView.activityIndicatorView.stopAnimating()
-                })
             }
         }
     }

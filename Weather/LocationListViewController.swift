@@ -15,7 +15,10 @@ protocol LocationListViewControllerDelegate : class {
     func didSelectLocationInLocationListViewController(controller: LocationListViewController, didSelectLocation location: Location, useCelsius : Bool)
 }
 
-typealias LocationAndWeatherPair = (location: Location, weatherData: WeatherData?)
+struct LocationAndWeatherPair {
+    var location: Location
+    var weatherData: WeatherData?
+}
 
 class LocationListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, LocationSearchViewControllerDelegate, LocationListViewDelegate {
     
@@ -42,7 +45,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareViewForInitialDataLoad()
-        retrieveCurrentLocation()
+        retrieveLocations()
         
         if let defaultUseCelsius =
             UseCelsius.restoreSavedDefaultUnitFromUserDefaults() {
@@ -53,15 +56,15 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    private func retrieveCurrentLocation() {
+    private func retrieveLocations() {
         locationController.retrieveLocations({location, success in
             if success {
                 if let location = location {
-                    self.locationAndWeatherPairs.insert((location, nil), atIndex: 0)
+                    self.locationAndWeatherPairs.insert(LocationAndWeatherPair(location: location, weatherData: nil), atIndex: 0)
                     
                     let locations = Location.restoreSavedLocationsFromUserDefaults()
                     
-                    let locationsWithNilWeather = locations.map { LocationAndWeatherPair( $0, nil) }
+                    let locationsWithNilWeather = locations.map { LocationAndWeatherPair(location: $0, weatherData: nil) }
                     self.locationAndWeatherPairs.appendContentsOf(locationsWithNilWeather)
                     
                     self.locationListView.tableView.reloadData()
@@ -104,10 +107,10 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     
     
     func locationSearchViewController(controller: LocationSearchViewController, didAddNewLocation location: Location) {
-        let locationWeatherPair : LocationAndWeatherPair = (location, nil)
+        let locationWeatherPair = LocationAndWeatherPair(location: location, weatherData: nil)
         locationAndWeatherPairs.append(locationWeatherPair)
         
-        let locations = locationAndWeatherPairs.map { $0.0 }.filter { !$0.representsCurrentLocation }
+        let locations = locationAndWeatherPairs.map { $0.location }.filter { !$0.representsCurrentLocation }
         Location.saveLocationsToUserDefaults(locations)
         
         locationListView.tableView.reloadData()
@@ -156,7 +159,7 @@ class LocationListViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             locationAndWeatherPairs.removeAtIndex(indexPath.row)
-            let locationsToSave = locationAndWeatherPairs.map{ $0.0 }.filter { !$0.representsCurrentLocation }
+            let locationsToSave = locationAndWeatherPairs.map{ $0.location }.filter { !$0.representsCurrentLocation }
             Location.saveLocationsToUserDefaults(locationsToSave)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left)
         }

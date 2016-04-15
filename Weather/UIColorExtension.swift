@@ -22,7 +22,7 @@ extension UIColor {
         return UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
     }
     
-//    TO DO: Would be fun if the colors combinations randomly changed when a new location is selected. Below are color combos to use if that functionality is added.
+//    TODO: Would be fun if the colors combinations randomly changed when a new location is selected. Below are color combos to use if that functionality is added.
     
     
 //    class func miamiViceColors() -> (topColor : UIColor, bottomColor : UIColor) {
